@@ -1,0 +1,6 @@
+# Ignore everything in the Data folder
+/Data/*
+
+# But do NOT ignore the output folder and its contents
+!Data/output/
+!Data/output/**
