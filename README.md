@@ -25,10 +25,27 @@ MScProject/
 │   ├── studentRegistration.csv   # Registration records
 │   ├── studentVle.csv            # VLE interaction data
 │   ├── vle.csv                   # VLE resource information
-│   └── output/                   # 📁 Generated output files
-│       ├── processed_data.csv    # Processed dataset
-│		├── X_train_encoded.csv   # Train data encoded
-│       └── X_test_encoded.csv	  # Test data encoded
+│   ├── output/                   # 📁 Generated output files
+│   │   ├── processed_data.csv    # Processed dataset
+│   │   ├── X_test_encoded.csv    # X Test data encoded
+│   │   ├── X_train_encoded.csv   # X Train data encoded
+│   │   ├── y_test.csv   		  # Y Train data encoded
+│   │   └── y_train.csv	  		  # Y Test data encoded
+│	│
+│	└── model_metrics/
+│		├── models/				  # 📁Trained model files 
+│		│   └── random_forest_optimized.pkl
+│		├── metrics/			  # 📁Performance metrics and data
+│		│   ├── random_forest_optimized_metrics.json
+│		│   ├── random_forest_optimized_confusion_matrix.json
+│		│   ├── random_forest_optimized_confusion_matrix.txt
+│		│   ├── random_forest_optimized_feature_importance.csv
+│		│   └── random_forest_optimized_feature_importance.json
+│		├── reports/			  # 📁Classification reports
+│		│   ├── random_forest_optimized_classification_report.json
+│		│   └── random_forest_optimized_report.txt
+│		└── random_forest_optimized_20240115_143022_USAGE_INSTRUCTIONS.txt
+│
 ├── Python_files/                 # 🐍 Core analysis modules
 │   ├── config.py                 # Configuration and constants
 │   ├── data_loader.py            # Data loading and validation
@@ -37,19 +54,11 @@ MScProject/
 │	├── encoding_utils.py         # Encoding for the training and test data
 │   └── visualization.py          # Interactive plotting
 └── Notebooks/                    # 📓 Analysis interfaces
-    ├── main_analysis.ipynb       # Complete analysis workflow
-    ├── quick_analysis.ipynb      # Modular analysis interface
-    ├── analysis_results/         # 📊 Analysis outputs
-    │   ├── regression_summary.csv
-    │   ├── cross_tables.xlsx
-    │   ├── student_segments.csv
-    │   └── key_insights.txt
-    └── plots/                    # 📈 Interactive visualizations
-        ├── gender_regression_plot.html
-        ├── age_band_regression_plot.html
-        ├── imd_band_regression_plot.html
-        ├── student_segments.html
-        └── correlation_heatmap.html
+    ├── 01_data_ingest_cleaning.ipynb       # Complete analysis workflow
+    ├── 02_visual_analysis.ipynb    # Visualisation of the data
+	├── 03_data_stratification_encoding.ipynb    # Visualisation of the data
+	├── 04_model_random_forest.ipynb    # Visualisation of the data
+
 ```
 
 ## 🚀 Quick Start Guide

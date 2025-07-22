@@ -1,0 +1,67 @@
+
+RANDOM FOREST MODEL USAGE INSTRUCTIONS
+=====================================
+
+Model Information:
+- Model Name: random_forest_optimized
+- Model Type: Random Forest Classifier (Optimized)
+- File Location: ../Data\model_metrics\models\random_forest_optimized.pkl
+
+LOADING THE MODEL:
+-----------------
+```python
+import joblib
+import pandas as pd
+import numpy as np
+
+# Load the trained model
+model = joblib.load('../Data\model_metrics\models\random_forest_optimized.pkl')
+
+# Make predictions on new data
+# Ensure your new data has the same features as training data
+predictions = model.predict(X_new)
+prediction_probabilities = model.predict_proba(X_new)
+```
+
+BEST HYPERPARAMETERS:
+-------------------
+{
+  "class_weight": "balanced",
+  "max_depth": 15,
+  "max_features": "sqrt",
+  "min_samples_leaf": 5,
+  "min_samples_split": 2,
+  "n_estimators": 300
+}
+
+PERFORMANCE METRICS:
+------------------
+- Test Accuracy: 0.5493
+- Test F1-Weighted: 0.5509
+- Test F1-Macro: 0.4654
+- Best CV Score (f1_weighted): 0.5522
+
+TOP 5 IMPORTANT FEATURES:
+-----------------------
+1. imd_band_ord: 0.2171
+2. excellent_Score: 0.1858
+3. student_engagementt: 0.1577
+4. active_in_VLE: 0.1073
+5. highest_education_ord: 0.0948
+
+
+FILES SAVED:
+-----------
+- Model: ../Data\model_metrics\models\random_forest_optimized.pkl
+- Metrics: ../Data\model_metrics\metrics\random_forest_optimized_metrics.json
+- Classification Report: ../Data\model_metrics\reports\random_forest_optimized_classification_report.json
+- Feature Importance: ../Data\model_metrics\metrics\random_forest_optimized_feature_importance.csv
+- Usage Instructions: This file
+
+NOTES:
+-----
+- This model was optimized using GridSearchCV
+- Total combinations tested: 648
+- Cross-validation: 3-fold
+- Optimization runtime: 7.5 minutes
+- Primary scoring metric: f1_weighted

@@ -1,0 +1,105 @@
+{
+  "model_info": {
+    "model_name": "Random Forest Classifier",
+    "optimization_method": "GridSearchCV",
+    "primary_scoring_metric": "f1_weighted",
+    "total_runtime_minutes": 7.53
+  },
+  "dataset_info": {
+    "training_samples": 22180,
+    "test_samples": 5545,
+    "n_features": 20,
+    "n_classes": 3,
+    "class_distribution": {
+      "0": 4237,
+      "1": 5634,
+      "2": 12309
+    }
+  },
+  "hyperparameters": {
+    "best_params": {
+      "class_weight": "balanced",
+      "max_depth": 15,
+      "max_features": "sqrt",
+      "min_samples_leaf": 5,
+      "min_samples_split": 2,
+      "n_estimators": 300
+    },
+    "total_combinations_tested": 648,
+    "cv_folds": 3
+  },
+  "cross_validation_results": {
+    "best_cv_score": 0.5521902160318578,
+    "cv_scores_by_metric": {
+      "accuracy": {
+        "mean": 0.5509465836667683,
+        "std": 0.005258024406113717
+      },
+      "f1_weighted": {
+        "mean": 0.5521902160318578,
+        "std": 0.005725053939643476
+      },
+      "f1_macro": {
+        "mean": 0.4658018705041771,
+        "std": 0.007136787281025694
+      },
+      "precision_weighted": {
+        "mean": 0.5535063730321063,
+        "std": 0.006367024650173597
+      },
+      "recall_weighted": {
+        "mean": 0.5509465836667683,
+        "std": 0.005258024406113717
+      }
+    }
+  },
+  "test_set_performance": {
+    "accuracy": 0.5493237150586113,
+    "f1_weighted": 0.550932263110483,
+    "f1_macro": 0.46538457326334476
+  },
+  "feature_importance": {
+    "top_10_features": [
+      {
+        "feature": "imd_band_ord",
+        "importance": 0.21706927250712843
+      },
+      {
+        "feature": "excellent_Score",
+        "importance": 0.18583913991480802
+      },
+      {
+        "feature": "student_engagementt",
+        "importance": 0.15774712789649878
+      },
+      {
+        "feature": "active_in_VLE",
+        "importance": 0.10728858666912634
+      },
+      {
+        "feature": "highest_education_ord",
+        "importance": 0.09475975252616711
+      },
+      {
+        "feature": "age_band_ord",
+        "importance": 0.04084890323690206
+      },
+      {
+        "feature": "disability_binary",
+        "importance": 0.027324801910806742
+      },
+      {
+        "feature": "courses_per_term",
+        "importance": 0.017212766591088117
+      },
+      {
+        "feature": "region_Scotland",
+        "importance": 0.015786688502898622
+      },
+      {
+        "feature": "region_London Region",
+        "importance": 0.014467756411686456
+      }
+    ]
+  }
+}

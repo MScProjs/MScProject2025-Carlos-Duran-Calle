@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 from sklearn.preprocessing import OneHotEncoder
+import os
 
 def encode_categorical_variables(X_train, X_test=None):
     """
@@ -193,12 +194,13 @@ def encode_categorical_variables(X_train, X_test=None):
         ], axis=1)
     else:
         final_features_test = None
-    
-    print(f"✅ Final feature count: {final_features_train.shape[1]}")
-    print(f"   → Numerical features: {len(numerical_cols)}")
-    print(f"   → Region (one-hot): {len(region_feature_names)}")
-    print(f"   → Ordinal features: 3 (education, imd_band, age_band)")
-    print(f"   → Binary features: 1 (disability)")
+
+    print(f"{'✅ Final feature count':24}: {final_features_train.shape[1]}")
+    print(f"{'   → Numerical features':25}: {len(numerical_cols)}")
+    print(f"{'   → Region (one-hot)':25}: {len(region_feature_names)}")
+    print(f"{'   → Ordinal features':25}: 3 (education, imd_band, age_band)")
+    print(f"{'   → Binary features':25}: 1 (disability)")
+
     
     return final_features_train, final_features_test, encoders
 
@@ -214,4 +216,61 @@ def print_encoding_summary():
         ('age_band', 'OrdinalEncoder'),
         ('disability', 'Binary')
     ]:
-        print(f"   {var}: {encoder_type}")
+        # aquí aplicamos :22 al nombre de la variable
+        print(f"   {var:22}: {encoder_type}")
+
+def save_encoded_data(X_train_encoded, X_test_encoded=None, y_train=None, y_test=None):
+    """
+    Save encoded training and test data along with labels to CSV files.
+    
+    Parameters:
+    - X_train_encoded: Encoded training features (DataFrame)
+    - X_test_encoded: Encoded test features (DataFrame, optional)
+    - y_train: Training labels (Series, optional)
+    - y_test: Test labels (Series, optional)
+    """
+    # Define the output directory path
+    # Since we're in Notebooks folder, go up one level (..) then into Data/output
+    output_dir = os.path.join('..', 'Data', 'output')
+
+    # Simple names for features
+    train_file_simple = os.path.join(output_dir, 'X_train_encoded.csv')
+    test_file_simple = os.path.join(output_dir, 'X_test_encoded.csv')
+
+    # Simple names for labels
+    y_train_file = os.path.join(output_dir, 'y_train.csv')
+    y_test_file = os.path.join(output_dir, 'y_test.csv')
+
+    try:
+        # Save the encoded training data
+        X_train_encoded.to_csv(train_file_simple, index=False)
+        print(f"✅ Training data saved to: {train_file_simple}")
+        print(f"   Shape: {X_train_encoded.shape}")
+        
+        # Save the training labels (Series type)
+        if y_train is not None:
+            y_train.to_csv(y_train_file, index=False)
+            print(f"✅ Training labels saved to: {y_train_file}")
+            print(f"   Shape: {y_train.shape}")
+        else:
+            print("⚠️  No training labels to save (y_train is None)")
+        
+        # Save the encoded test data (if it exists)
+        if X_test_encoded is not None:
+            X_test_encoded.to_csv(test_file_simple, index=False)
+            print(f"✅ Test data saved to: {test_file_simple}")
+            print(f"   Shape: {X_test_encoded.shape}")
+        else:
+            print("⚠️  No test data to save (X_test_encoded is None)")
+        
+        # Save the test labels (Series type)
+        if y_test is not None:
+            y_test.to_csv(y_test_file, index=False)
+            print(f"✅ Test labels saved to: {y_test_file}")
+            print(f"   Shape: {y_test.shape}")
+        else:
+            print("⚠️  No test labels to save (y_test is None)")
+        
+    except Exception as e:
+        print(f"❌ Error saving files: {str(e)}")
+        print("Please check that the Data/output directory exists and you have write permissions")
