@@ -1,5 +1,6 @@
 # Ignore everything in the Data folder
 /Data/*
+/Python_files/__pycache__*
 
 # But do NOT ignore the output folder and its contents
 !Data/output/

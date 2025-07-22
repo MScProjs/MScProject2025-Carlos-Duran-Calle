@@ -16,8 +16,8 @@ This project analyzes student performance data to identify factors affecting aca
 
 ```
 MScProject/
-├── README.md                      # This comprehensive guide
-├── Data/                          # 📊 Data files and outputs
+├── README.md                     # This comprehensive guide
+├── Data/                         # 📊 Data files and outputs
 │   ├── assessments.csv           # Assessment information
 │   ├── courses.csv               # Course details
 │   ├── studentAssessment.csv     # Student assessment scores
@@ -26,12 +26,15 @@ MScProject/
 │   ├── studentVle.csv            # VLE interaction data
 │   ├── vle.csv                   # VLE resource information
 │   └── output/                   # 📁 Generated output files
-│       └── processed_data.csv    # Processed dataset
+│       ├── processed_data.csv    # Processed dataset
+│		├── X_train_encoded.csv   # Train data encoded
+│       └── X_test_encoded.csv	  # Test data encoded
 ├── Python_files/                 # 🐍 Core analysis modules
 │   ├── config.py                 # Configuration and constants
 │   ├── data_loader.py            # Data loading and validation
 │   ├── data_processor.py         # Data processing pipeline
 │   ├── analysis_engine.py        # Statistical analysis functions
+│	├── encoding_utils.py         # Encoding for the training and test data
 │   └── visualization.py          # Interactive plotting
 └── Notebooks/                    # 📓 Analysis interfaces
     ├── main_analysis.ipynb       # Complete analysis workflow
