@@ -1,0 +1,72 @@
+
+MULTINOMIAL LOGISTIC REGRESSION MODEL USAGE INSTRUCTIONS
+=======================================================
+
+Model Information:
+- Model Name: multinomial_logistic_regression_optimized
+- Model Type: Multinomial Logistic Regression (Optimized)
+- File Location: ../Data\model_metrics\models\multinomial_logistic_regression_optimized.pkl
+
+LOADING THE MODEL:
+-----------------
+```python
+import joblib
+import pandas as pd
+import numpy as np
+
+# Load the trained model
+model = joblib.load('../Data\model_metrics\models\multinomial_logistic_regression_optimized.pkl')
+
+# Make predictions on new data
+# Ensure your new data has the same features as training data
+predictions = model.predict(X_new)
+prediction_probabilities = model.predict_proba(X_new)
+
+# Get coefficients
+coefficients = model.coef_
+intercept = model.intercept_
+```
+
+BEST HYPERPARAMETERS:
+-------------------
+{
+  "C": 0.01,
+  "class_weight": "balanced",
+  "l1_ratio": 0.5,
+  "max_iter": 1000,
+  "penalty": "l2",
+  "solver": "lbfgs"
+}
+
+PERFORMANCE METRICS:
+------------------
+- Test Accuracy: 0.5601
+- Test F1-Weighted: 0.5598
+- Test F1-Macro: 0.4754
+- Best CV Score (f1_weighted): 0.5623
+
+TOP 5 IMPORTANT FEATURES:
+-----------------------
+1. excellent_Score: 0.4232
+2. active_in_VLE: 0.2880
+3. student_engagementt: 0.2223
+4. disability_binary: 0.1732
+5. highest_education_ord: 0.1247
+
+
+FILES SAVED:
+-----------
+- Model: ../Data\model_metrics\models\multinomial_logistic_regression_optimized.pkl
+- Metrics: ../Data\model_metrics\metrics\multinomial_logistic_regression_optimized_metrics.json
+- Classification Report: ../Data\model_metrics\reports\multinomial_logistic_regression_optimized_classification_report.json
+- Coefficient Analysis: ../Data\model_metrics\metrics\multinomial_logistic_regression_optimized_coefficients.csv
+- Usage Instructions: This file
+
+NOTES:
+-----
+- This model was optimized using GridSearchCV
+- Total combinations tested: 450
+- Cross-validation: 3-fold
+- Optimization runtime: 1.6 minutes
+- Primary scoring metric: f1_weighted
+- Model type: Multinomial (can handle multi-class problems)

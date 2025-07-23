@@ -1,0 +1,25 @@
+{
+  "confusion_matrix": [
+    [
+      344,
+      335,
+      380
+    ],
+    [
+      390,
+      530,
+      490
+    ],
+    [
+      390,
+      454,
+      2232
+    ]
+  ],
+  "class_labels": [
+    0,
+    1,
+    2
+  ],
+  "model_name": "multinomial_logistic_regression_optimized"
+}

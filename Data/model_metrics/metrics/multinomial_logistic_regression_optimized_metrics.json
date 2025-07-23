@@ -1,0 +1,105 @@
+{
+  "model_info": {
+    "model_name": "Multinomial Logistic Regression",
+    "optimization_method": "GridSearchCV",
+    "primary_scoring_metric": "f1_weighted",
+    "total_runtime_minutes": 1.64
+  },
+  "dataset_info": {
+    "training_samples": 22180,
+    "test_samples": 5545,
+    "n_features": 20,
+    "n_classes": 3,
+    "class_distribution": {
+      "0": 4237,
+      "1": 5634,
+      "2": 12309
+    }
+  },
+  "hyperparameters": {
+    "best_params": {
+      "C": 0.01,
+      "class_weight": "balanced",
+      "l1_ratio": 0.5,
+      "max_iter": 1000,
+      "penalty": "l2",
+      "solver": "lbfgs"
+    },
+    "total_combinations_tested": 450,
+    "cv_folds": 3
+  },
+  "cross_validation_results": {
+    "best_cv_score": 0.5622825286265002,
+    "cv_scores_by_metric": {
+      "accuracy": {
+        "mean": 0.563570784490532,
+        "std": 0.007285206964524231
+      },
+      "f1_weighted": {
+        "mean": 0.5622825286265002,
+        "std": 0.006639347611465386
+      },
+      "f1_macro": {
+        "mean": 0.4788037172320737,
+        "std": 0.00828937626389559
+      },
+      "precision_weighted": {
+        "mean": 0.5613576739472969,
+        "std": 0.006167595080529579
+      },
+      "recall_weighted": {
+        "mean": 0.563570784490532,
+        "std": 0.007285206964524231
+      }
+    }
+  },
+  "test_set_performance": {
+    "accuracy": 0.5601442741208296,
+    "f1_weighted": 0.5597902658271003,
+    "f1_macro": 0.47538240790245584
+  },
+  "coefficient_analysis": {
+    "top_10_features": [
+      {
+        "feature": "excellent_Score",
+        "importance": 0.4232217554189555
+      },
+      {
+        "feature": "active_in_VLE",
+        "importance": 0.2879644098237613
+      },
+      {
+        "feature": "student_engagementt",
+        "importance": 0.22231108162295246
+      },
+      {
+        "feature": "disability_binary",
+        "importance": 0.1732133691240573
+      },
+      {
+        "feature": "highest_education_ord",
+        "importance": 0.12466897102124243
+      },
+      {
+        "feature": "region_Wales",
+        "importance": 0.11049595799437029
+      },
+      {
+        "feature": "region_Scotland",
+        "importance": 0.11043435290151944
+      },
+      {
+        "feature": "courses_per_term",
+        "importance": 0.10740070715765933
+      },
+      {
+        "feature": "region_South East Region",
+        "importance": 0.06118539884556564
+      },
+      {
+        "feature": "region_South Region",
+        "importance": 0.059396831631176907
+      }
+    ]
+  }
+}

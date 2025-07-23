@@ -29,35 +29,45 @@ MScProject/
 │   │   ├── processed_data.csv    # Processed dataset
 │   │   ├── X_test_encoded.csv    # X Test data encoded
 │   │   ├── X_train_encoded.csv   # X Train data encoded
-│   │   ├── y_test.csv   		  # Y Train data encoded
-│   │   └── y_train.csv	  		  # Y Test data encoded
-│	│
-│	└── model_metrics/
-│		├── models/				  # 📁Trained model files 
-│		│   └── random_forest_optimized.pkl
-│		├── metrics/			  # 📁Performance metrics and data
-│		│   ├── random_forest_optimized_metrics.json
-│		│   ├── random_forest_optimized_confusion_matrix.json
-│		│   ├── random_forest_optimized_confusion_matrix.txt
-│		│   ├── random_forest_optimized_feature_importance.csv
-│		│   └── random_forest_optimized_feature_importance.json
-│		├── reports/			  # 📁Classification reports
-│		│   ├── random_forest_optimized_classification_report.json
-│		│   └── random_forest_optimized_report.txt
-│		└── random_forest_optimized_20240115_143022_USAGE_INSTRUCTIONS.txt
+│   │   ├── y_test.csv   		  # Y Test data encoded
+│   │   └── y_train.csv	  		  # Y Train data encoded
+│   │
+│   └── model_metrics/            # 🤖 Model outputs and evaluation
+│       ├── models/               # 📁 Trained model files 
+│       │   ├── random_forest_optimized.pkl
+│       │   └── multinomial_logistic_regression_optimized.pkl
+│       ├── metrics/              # 📁 Performance metrics and data
+│       │   ├── random_forest_optimized_metrics.json
+│       │   ├── random_forest_optimized_confusion_matrix.json
+│       │   ├── random_forest_optimized_confusion_matrix.txt
+│       │   ├── random_forest_optimized_feature_importance.csv
+│       │   ├── random_forest_optimized_feature_importance.json
+│       │   ├── multinomial_logistic_regression_optimized_metrics.json
+│       │   ├── multinomial_logistic_regression_optimized_confusion_matrix.json
+│       │   ├── multinomial_logistic_regression_optimized_confusion_matrix.txt
+│       │   ├── multinomial_logistic_regression_optimized_coefficients.csv
+│       │   └── multinomial_logistic_regression_optimized_coefficients.json
+│       ├── reports/              # 📁 Classification reports
+│       │   ├── random_forest_optimized_classification_report.json
+│       │   ├── random_forest_optimized_classification_report.txt
+│       │   ├── multinomial_logistic_regression_optimized_classification_report.json
+│       │   └── multinomial_logistic_regression_optimized_classification_report.txt
+│       ├── random_forest_optimized_USAGE_INSTRUCTIONS.txt
+│       └── multinomial_logistic_regression_optimized_USAGE_INSTRUCTIONS.txt
 │
 ├── Python_files/                 # 🐍 Core analysis modules
 │   ├── config.py                 # Configuration and constants
 │   ├── data_loader.py            # Data loading and validation
 │   ├── data_processor.py         # Data processing pipeline
 │   ├── analysis_engine.py        # Statistical analysis functions
-│	├── encoding_utils.py         # Encoding for the training and test data
+│   ├── encoding_utils.py         # Encoding for the training and test data
 │   └── visualization.py          # Interactive plotting
 └── Notebooks/                    # 📓 Analysis interfaces
-    ├── 01_data_ingest_cleaning.ipynb       # Complete analysis workflow
-    ├── 02_visual_analysis.ipynb    # Visualisation of the data
-	├── 03_data_stratification_encoding.ipynb    # Visualisation of the data
-	├── 04_model_random_forest.ipynb    # Visualisation of the data
+    ├── 01_data_ingest_cleaning.ipynb              # Complete analysis workflow
+    ├── 02_visual_analysis.ipynb                   # Visualisation of the data
+    ├── 03_data_stratification_encoding.ipynb      # Data stratification and encoding
+    ├── 04_model_random_forest.ipynb               # Random Forest model optimization
+    └── 05_model_multi_logistic_regression.ipynb   # Logistic Regression model optimization
 
 ```
 
