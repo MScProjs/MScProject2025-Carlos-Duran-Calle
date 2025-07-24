@@ -1,0 +1,93 @@
+
+K-NEAREST NEIGHBORS MODEL USAGE INSTRUCTIONS
+===========================================
+
+Model Information:
+- Model Name: knn_optimized
+- Model Type: K-Nearest Neighbors Classifier (Optimized)
+- Model File: ../Data\model_metrics\models\knn_optimized.pkl
+- Scaler File: ../Data\model_metrics\models\knn_optimized_scaler.pkl
+
+⚠️  CRITICAL: KNN requires feature scaling! Always use the saved scaler.
+
+LOADING THE MODEL:
+-----------------
+```python
+import joblib
+import pandas as pd
+import numpy as np
+
+# Load the trained model AND scaler
+model = joblib.load('../Data\model_metrics\models\knn_optimized.pkl')
+scaler = joblib.load('../Data\model_metrics\models\knn_optimized_scaler.pkl')
+
+# IMPORTANT: Scale new data before prediction
+X_new_scaled = scaler.transform(X_new)
+predictions = model.predict(X_new_scaled)
+prediction_probabilities = model.predict_proba(X_new_scaled)
+```
+
+BEST HYPERPARAMETERS:
+-------------------
+{
+  "algorithm": "auto",
+  "metric": "euclidean",
+  "n_neighbors": 21,
+  "p": 1,
+  "weights": "uniform"
+}
+
+PERFORMANCE METRICS:
+------------------
+- Test Accuracy: 0.5841
+- Test F1-Weighted: 0.5445
+- Test F1-Macro: 0.4370
+- Best CV Score (f1_weighted): 0.5453
+
+KNN-SPECIFIC INSIGHTS:
+--------------------
+- Optimal k (neighbors): 21
+- Best distance metric: euclidean
+- Weight strategy: uniform
+- Feature scaling: StandardScaler applied
+
+DISTANCE METRICS PERFORMANCE:
+---------------------------
+euclidean: 0.5296
+manhattan: 0.5283
+minkowski: 0.5289
+
+
+K VALUES PERFORMANCE:
+-------------------
+k=3: 0.5041
+k=5: 0.5163
+k=7: 0.5279
+k=9: 0.5319
+k=11: 0.5343
+k=13: 0.5339
+k=15: 0.5339
+k=17: 0.5353
+k=19: 0.5356
+k=21: 0.5360
+
+
+FILES SAVED:
+-----------
+- Model: ../Data\model_metrics\models\knn_optimized.pkl
+- Scaler: ../Data\model_metrics\models\knn_optimized_scaler.pkl
+- Metrics: ../Data\model_metrics\metrics\knn_optimized_metrics.json
+- Classification Report: ../Data\model_metrics\reports\knn_optimized_classification_report.json
+- Usage Instructions: This file
+
+NOTES:
+-----
+- This model was optimized using GridSearchCV
+- Approximate combinations tested: 242
+- Cross-validation: 5-fold
+- Optimization runtime: 23.0 minutes
+- Primary scoring metric: f1_weighted
+- Feature scaling is MANDATORY for KNN - always use the saved scaler!
+
+⚠️  REMEMBER: KNN is sensitive to feature scales. Always apply the same 
+    StandardScaler transformation to new data before making predictions!

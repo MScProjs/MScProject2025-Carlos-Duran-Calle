@@ -26,28 +26,29 @@ prediction_probabilities = model.predict_proba(X_new)
 BEST HYPERPARAMETERS:
 -------------------
 {
+  "bootstrap": true,
   "class_weight": "balanced",
-  "max_depth": 15,
+  "max_depth": 10,
   "max_features": "sqrt",
-  "min_samples_leaf": 5,
+  "min_samples_leaf": 10,
   "min_samples_split": 2,
-  "n_estimators": 300
+  "n_estimators": 200
 }
 
 PERFORMANCE METRICS:
 ------------------
-- Test Accuracy: 0.5493
-- Test F1-Weighted: 0.5509
-- Test F1-Macro: 0.4654
-- Best CV Score (f1_weighted): 0.5522
+- Test Accuracy: 0.5625
+- Test F1-Weighted: 0.5587
+- Test F1-Macro: 0.4728
+- Best CV Score (f1_weighted): 0.5603
 
 TOP 5 IMPORTANT FEATURES:
 -----------------------
-1. imd_band_ord: 0.2171
-2. excellent_Score: 0.1858
-3. student_engagementt: 0.1577
-4. active_in_VLE: 0.1073
-5. highest_education_ord: 0.0948
+1. excellent_Score: 0.2557
+2. student_engagementt: 0.2509
+3. active_in_VLE: 0.1421
+4. imd_band_ord: 0.1090
+5. highest_education_ord: 0.0826
 
 
 FILES SAVED:
@@ -61,7 +62,7 @@ FILES SAVED:
 NOTES:
 -----
 - This model was optimized using GridSearchCV
-- Total combinations tested: 648
+- Total combinations tested: 5120
 - Cross-validation: 3-fold
-- Optimization runtime: 7.5 minutes
+- Optimization runtime: 117.4 minutes
 - Primary scoring metric: f1_weighted

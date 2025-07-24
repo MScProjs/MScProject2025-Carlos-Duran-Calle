@@ -1,0 +1,25 @@
+{
+  "confusion_matrix": [
+    [
+      158,
+      321,
+      580
+    ],
+    [
+      191,
+      448,
+      771
+    ],
+    [
+      132,
+      311,
+      2633
+    ]
+  ],
+  "class_labels": [
+    0,
+    1,
+    2
+  ],
+  "model_name": "knn_optimized"
+}

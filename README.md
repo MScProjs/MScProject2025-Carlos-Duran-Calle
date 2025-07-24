@@ -33,10 +33,14 @@ MScProject/
 │   │   └── y_train.csv	  		  # Y Train data encoded
 │   │
 │   └── model_metrics/            # 🤖 Model outputs and evaluation
-│       ├── models/               # 📁 Trained model files 
+│       ├── models/               # 📁 Trained model files
+│       │   ├── knn_optimized.pkl
+│       │   ├── knn_optimized_scaler.pkl
 │       │   ├── random_forest_optimized.pkl
 │       │   └── multinomial_logistic_regression_optimized.pkl
 │       ├── metrics/              # 📁 Performance metrics and data
+│       │   ├── knn_optimized_metrics.json
+│       │   ├── knn_optimized_confusion_matrix.json
 │       │   ├── random_forest_optimized_metrics.json
 │       │   ├── random_forest_optimized_confusion_matrix.json
 │       │   ├── random_forest_optimized_confusion_matrix.txt
@@ -48,10 +52,12 @@ MScProject/
 │       │   ├── multinomial_logistic_regression_optimized_coefficients.csv
 │       │   └── multinomial_logistic_regression_optimized_coefficients.json
 │       ├── reports/              # 📁 Classification reports
+│       │   ├── knn_optimized_classification_report.json
 │       │   ├── random_forest_optimized_classification_report.json
 │       │   ├── random_forest_optimized_classification_report.txt
 │       │   ├── multinomial_logistic_regression_optimized_classification_report.json
 │       │   └── multinomial_logistic_regression_optimized_classification_report.txt
+│       ├── knn_optimized_USAGE_INSTRUCTIONS.txt
 │       ├── random_forest_optimized_USAGE_INSTRUCTIONS.txt
 │       └── multinomial_logistic_regression_optimized_USAGE_INSTRUCTIONS.txt
 │

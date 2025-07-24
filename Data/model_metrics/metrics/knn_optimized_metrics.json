@@ -1,0 +1,119 @@
+{
+  "model_info": {
+    "model_name": "K-Nearest Neighbors Classifier",
+    "optimization_method": "GridSearchCV",
+    "primary_scoring_metric": "f1_weighted",
+    "total_runtime_minutes": 23.0,
+    "feature_scaling": "StandardScaler applied"
+  },
+  "dataset_info": {
+    "training_samples": 22180,
+    "test_samples": 5545,
+    "n_features": 20,
+    "n_classes": 3,
+    "class_distribution": {
+      "0": 4237,
+      "1": 5634,
+      "2": 12309
+    }
+  },
+  "hyperparameters": {
+    "best_params": {
+      "algorithm": "auto",
+      "metric": "euclidean",
+      "n_neighbors": 21,
+      "p": 1,
+      "weights": "uniform"
+    },
+    "approximate_combinations_tested": 242,
+    "cv_folds": 5
+  },
+  "cross_validation_results": {
+    "best_cv_score": 0.5453400812299761,
+    "cv_scores_by_metric": {
+      "accuracy": {
+        "mean": 0.5860234445446347,
+        "std": 0.0042043438149232705
+      },
+      "f1_weighted": {
+        "mean": 0.5453400812299761,
+        "std": 0.004683615348201467
+      },
+      "f1_macro": {
+        "mean": 0.43745565839336764,
+        "std": 0.006065121862641377
+      },
+      "precision_weighted": {
+        "mean": 0.5360043893181581,
+        "std": 0.005858181764527154
+      },
+      "recall_weighted": {
+        "mean": 0.5860234445446347,
+        "std": 0.0042043438149232705
+      }
+    }
+  },
+  "test_set_performance": {
+    "accuracy": 0.5841298467087466,
+    "f1_weighted": 0.5444616168076554,
+    "f1_macro": 0.4369755046331039
+  },
+  "knn_specific_analysis": {
+    "distance_metrics_performance": {
+      "euclidean": {
+        "mean_score": 0.529576743889287,
+        "std_score": 0.011919400156384707
+      },
+      "manhattan": {
+        "mean_score": 0.5282880976885076,
+        "std_score": 0.011758747587086301
+      },
+      "minkowski": {
+        "mean_score": 0.5289324207888972,
+        "std_score": 0.011856866142033977
+      }
+    },
+    "k_values_performance": {
+      "3": {
+        "mean_score": 0.5041201029100995,
+        "std_score": 0.0027748342903354027
+      },
+      "5": {
+        "mean_score": 0.516308220763867,
+        "std_score": 0.005301605558368003
+      },
+      "7": {
+        "mean_score": 0.5278862198059685,
+        "std_score": 0.005725037813730609
+      },
+      "9": {
+        "mean_score": 0.5318929731471503,
+        "std_score": 0.006803917411873255
+      },
+      "11": {
+        "mean_score": 0.5343182069809788,
+        "std_score": 0.007311473741391918
+      },
+      "13": {
+        "mean_score": 0.5339385240480282,
+        "std_score": 0.0066567173793438345
+      },
+      "15": {
+        "mean_score": 0.5339468177787772,
+        "std_score": 0.006490217303783365
+      },
+      "17": {
+        "mean_score": 0.5353195445682122,
+        "std_score": 0.006886915428351432
+      },
+      "19": {
+        "mean_score": 0.5355783938739723,
+        "std_score": 0.007144144773421754
+      },
+      "21": {
+        "mean_score": 0.5360152040119189,
+        "std_score": 0.007307036897506696
+      }
+    }
+  }
+}

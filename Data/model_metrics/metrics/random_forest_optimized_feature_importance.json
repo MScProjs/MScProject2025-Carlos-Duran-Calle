@@ -3,103 +3,103 @@
   "feature_importance": [
     {
       "rank": 1,
-      "feature": "imd_band_ord",
-      "importance": 0.21706927250712843
+      "feature": "excellent_Score",
+      "importance": 0.255715192894249
     },
     {
       "rank": 2,
-      "feature": "excellent_Score",
-      "importance": 0.18583913991480802
+      "feature": "student_engagementt",
+      "importance": 0.2509231482472147
     },
     {
       "rank": 3,
-      "feature": "student_engagementt",
-      "importance": 0.15774712789649878
+      "feature": "active_in_VLE",
+      "importance": 0.14208380641697613
     },
     {
       "rank": 4,
-      "feature": "active_in_VLE",
-      "importance": 0.10728858666912634
+      "feature": "imd_band_ord",
+      "importance": 0.10899329623901916
     },
     {
       "rank": 5,
       "feature": "highest_education_ord",
-      "importance": 0.09475975252616711
+      "importance": 0.08257226024210597
     },
     {
       "rank": 6,
-      "feature": "age_band_ord",
-      "importance": 0.04084890323690206
+      "feature": "disability_binary",
+      "importance": 0.026303022407350066
     },
     {
       "rank": 7,
-      "feature": "disability_binary",
-      "importance": 0.027324801910806742
+      "feature": "age_band_ord",
+      "importance": 0.02382419443571507
     },
     {
       "rank": 8,
-      "feature": "courses_per_term",
-      "importance": 0.017212766591088117
+      "feature": "region_Wales",
+      "importance": 0.012050436285954723
     },
     {
       "rank": 9,
-      "feature": "region_Scotland",
-      "importance": 0.015786688502898622
+      "feature": "courses_per_term",
+      "importance": 0.011448391041071766
     },
     {
       "rank": 10,
-      "feature": "region_London Region",
-      "importance": 0.014467756411686456
+      "feature": "region_Scotland",
+      "importance": 0.010243417178227878
     },
     {
       "rank": 11,
-      "feature": "region_Wales",
-      "importance": 0.014405396041371178
+      "feature": "region_South Region",
+      "importance": 0.009670804741427773
     },
     {
       "rank": 12,
-      "feature": "region_South Region",
-      "importance": 0.014112536852600768
+      "feature": "region_London Region",
+      "importance": 0.009125410006025712
     },
     {
       "rank": 13,
       "feature": "region_East Midlands Region",
-      "importance": 0.013859012433686016
+      "importance": 0.008577318252796362
     },
     {
       "rank": 14,
       "feature": "region_South West Region",
-      "importance": 0.012623688125913421
+      "importance": 0.008429612580965064
     },
     {
       "rank": 15,
-      "feature": "region_North Western Region",
-      "importance": 0.012317357687733892
+      "feature": "region_South East Region",
+      "importance": 0.007626802761031648
     },
     {
       "rank": 16,
-      "feature": "region_West Midlands Region",
-      "importance": 0.012288027520753232
+      "feature": "region_North Western Region",
+      "importance": 0.00740426093873244
     },
     {
       "rank": 17,
-      "feature": "region_South East Region",
-      "importance": 0.011753697418410163
+      "feature": "region_North Region",
+      "importance": 0.006699241942767685
     },
     {
       "rank": 18,
-      "feature": "region_Yorkshire Region",
-      "importance": 0.01081873806329581
+      "feature": "region_West Midlands Region",
+      "importance": 0.006510331493603912
     },
     {
       "rank": 19,
-      "feature": "region_North Region",
-      "importance": 0.01001053266425982
+      "feature": "region_Yorkshire Region",
+      "importance": 0.006312983127573395
     },
     {
       "rank": 20,
       "feature": "region_Ireland",
-      "importance": 0.009466217024865055
+      "importance": 0.00548606876719173
     }
   ]
 }
