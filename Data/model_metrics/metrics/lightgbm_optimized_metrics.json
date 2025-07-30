@@ -1,0 +1,128 @@
+{
+  "model_info": {
+    "model_name": "LightGBM Classifier",
+    "optimization_method": "GridSearchCV",
+    "primary_scoring_metric": "f1_weighted",
+    "total_runtime_minutes": 108.67,
+    "feature_scaling": "Not required (tree-based model)"
+  },
+  "dataset_info": {
+    "training_samples": 22180,
+    "test_samples": 5545,
+    "n_features": 20,
+    "n_classes": 3,
+    "class_distribution": {
+      "0": 4237,
+      "1": 5634,
+      "2": 12309
+    }
+  },
+  "hyperparameters": {
+    "best_params": {
+      "class_weight": "balanced",
+      "colsample_bytree": 1.0,
+      "learning_rate": 0.05,
+      "max_depth": 10,
+      "min_child_samples": 20,
+      "n_estimators": 100,
+      "num_leaves": 31,
+      "subsample": 0.8
+    },
+    "total_combinations_tested": 864,
+    "cv_folds": 5
+  },
+  "cross_validation_results": {
+    "best_cv_score": 0.5508881372957989,
+    "cv_scores_by_metric": {
+      "accuracy": {
+        "mean": 0.5465734896302975,
+        "std": 0.0042164134953068385
+      },
+      "f1_weighted": {
+        "mean": 0.5508881372957989,
+        "std": 0.005636018438694558
+      },
+      "f1_macro": {
+        "mean": 0.46640921362949295,
+        "std": 0.00791388446277076
+      },
+      "precision_weighted": {
+        "mean": 0.5560538883360152,
+        "std": 0.00795200806041447
+      },
+      "recall_weighted": {
+        "mean": 0.5465734896302975,
+        "std": 0.0042164134953068385
+      }
+    }
+  },
+  "test_set_performance": {
+    "accuracy": 0.5415689810640216,
+    "f1_weighted": 0.547043077712426,
+    "f1_macro": 0.46580714962187314
+  },
+  "lightgbm_specific_analysis": {
+    "feature_importance_top_10": [
+      {
+        "feature": "imd_band_ord",
+        "importance": 2450.0,
+        "rank": 1
+      },
+      {
+        "feature": "highest_education_ord",
+        "importance": 1170.0,
+        "rank": 2
+      },
+      {
+        "feature": "age_band_ord",
+        "importance": 700.0,
+        "rank": 3
+      },
+      {
+        "feature": "courses_per_term",
+        "importance": 478.0,
+        "rank": 4
+      },
+      {
+        "feature": "active_in_VLE",
+        "importance": 472.0,
+        "rank": 5
+      },
+      {
+        "feature": "excellent_Score",
+        "importance": 375.0,
+        "rank": 6
+      },
+      {
+        "feature": "disability_binary",
+        "importance": 373.0,
+        "rank": 7
+      },
+      {
+        "feature": "region_Scotland",
+        "importance": 338.0,
+        "rank": 8
+      },
+      {
+        "feature": "region_Wales",
+        "importance": 268.0,
+        "rank": 9
+      },
+      {
+        "feature": "region_South Region",
+        "importance": 263.0,
+        "rank": 10
+      }
+    ],
+    "class_balance_handling": {
+      "method": "class_weight='balanced'",
+      "imbalance_ratio": 2.905121548265282
+    },
+    "tree_parameters": {
+      "n_estimators": 100,
+      "max_depth": 10,
+      "num_leaves": 31,
+      "learning_rate": 0.05
+    }
+  }
+}

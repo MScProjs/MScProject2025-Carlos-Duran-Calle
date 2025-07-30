@@ -1,0 +1,25 @@
+{
+  "confusion_matrix": [
+    [
+      353,
+      259,
+      447
+    ],
+    [
+      408,
+      381,
+      621
+    ],
+    [
+      384,
+      257,
+      2435
+    ]
+  ],
+  "class_labels": [
+    0,
+    1,
+    2
+  ],
+  "model_name": "svm_optimized"
+}

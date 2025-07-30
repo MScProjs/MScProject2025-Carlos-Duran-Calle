@@ -1,0 +1,96 @@
+
+LIGHTGBM MODEL USAGE INSTRUCTIONS
+=================================
+
+Model Information:
+- Model Name: lightgbm_optimized
+- Model Type: LightGBM Classifier (Optimized)
+- Model File: ../Data\model_metrics\models\lightgbm_optimized.pkl
+
+✅ ADVANTAGE: LightGBM does NOT require feature scaling!
+
+LOADING THE MODEL:
+-----------------
+```python
+import joblib
+import pandas as pd
+import numpy as np
+
+# Load the trained model (no scaler needed!)
+model = joblib.load('../Data\model_metrics\models\lightgbm_optimized.pkl')
+
+# Make predictions directly on raw features
+predictions = model.predict(X_new)
+prediction_probabilities = model.predict_proba(X_new)
+```
+
+BEST HYPERPARAMETERS:
+-------------------
+{
+  "class_weight": "balanced",
+  "colsample_bytree": 1.0,
+  "learning_rate": 0.05,
+  "max_depth": 10,
+  "min_child_samples": 20,
+  "n_estimators": 100,
+  "num_leaves": 31,
+  "subsample": 0.8
+}
+
+PERFORMANCE METRICS:
+------------------
+- Test Accuracy: 0.5416
+- Test F1-Weighted: 0.5470
+- Test F1-Macro: 0.4658
+- Best CV Score (f1_weighted): 0.5509
+
+LIGHTGBM-SPECIFIC INSIGHTS:
+--------------------------
+- Number of trees (n_estimators): 100
+- Tree depth (max_depth): 10
+- Learning rate: 0.05
+- Number of leaves: 31
+- Class balancing: Applied
+
+TOP 5 MOST IMPORTANT FEATURES:
+-----------------------------
+1. imd_band_ord: 2450.0
+2. highest_education_ord: 1170.0
+3. age_band_ord: 700.0
+4. courses_per_term: 478.0
+5. active_in_VLE: 472.0
+
+
+CLASS DISTRIBUTION:
+------------------
+Class 0: 4,237 samples (19.1%)
+Class 1: 5,634 samples (25.4%)
+Class 2: 12,309 samples (55.5%)
+
+
+FILES SAVED:
+-----------
+- Model: ../Data\model_metrics\models\lightgbm_optimized.pkl
+- Metrics: ../Data\model_metrics\metrics\lightgbm_optimized_metrics.json
+- Classification Report: ../Data\model_metrics\reports\lightgbm_optimized_classification_report.json
+- Confusion Matrix: ../Data\model_metrics\metrics\lightgbm_optimized_confusion_matrix.json
+- Feature Importance: ../Data\model_metrics\metrics\lightgbm_optimized_feature_importance.csv
+- Usage Instructions: This file
+
+NOTES:
+-----
+- This model was optimized using GridSearchCV
+- Total combinations tested: 864
+- Cross-validation: 5-fold
+- Optimization runtime: 108.7 minutes
+- Primary scoring metric: f1_weighted
+- Class imbalance ratio: 2.91:1
+
+✅ ADVANTAGE: Unlike KNN, LightGBM does NOT require feature scaling!
+   You can use the model directly on raw features.
+
+🌳 TREE-BASED MODEL BENEFITS:
+   - Handles mixed data types well
+   - Built-in feature selection via importance
+   - Robust to outliers
+   - No need for feature preprocessing

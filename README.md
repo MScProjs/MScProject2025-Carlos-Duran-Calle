@@ -37,7 +37,10 @@ MScProject/
 │       │   ├── knn_optimized.pkl
 │       │   ├── knn_optimized_scaler.pkl
 │       │   ├── random_forest_optimized.pkl
-│       │   └── multinomial_logistic_regression_optimized.pkl
+│       │   ├── multinomial_logistic_regression_optimized.pkl
+│       │   ├── lightgbm_optimized.pkl                    # 🌳 LightGBM model
+│       │   ├── svm_optimized.pkl                         # 🎯 SVM model
+│       │   └── svm_optimized_scaler.pkl                  # 🔧 SVM scaler (required)
 │       ├── metrics/              # 📁 Performance metrics and data
 │       │   ├── knn_optimized_metrics.json
 │       │   ├── knn_optimized_confusion_matrix.json
@@ -50,16 +53,25 @@ MScProject/
 │       │   ├── multinomial_logistic_regression_optimized_confusion_matrix.json
 │       │   ├── multinomial_logistic_regression_optimized_confusion_matrix.txt
 │       │   ├── multinomial_logistic_regression_optimized_coefficients.csv
-│       │   └── multinomial_logistic_regression_optimized_coefficients.json
+│       │   ├── multinomial_logistic_regression_optimized_coefficients.json
+│       │   ├── lightgbm_optimized_metrics.json           # 🌳 LightGBM metrics
+│       │   ├── lightgbm_optimized_confusion_matrix.json  # 🌳 LightGBM confusion matrix
+│       │   ├── lightgbm_optimized_feature_importance.csv # 🌳 LightGBM feature importance
+│       │   ├── svm_optimized_metrics.json                # 🎯 SVM metrics
+│       │   └── svm_optimized_confusion_matrix.json       # 🎯 SVM confusion matrix
 │       ├── reports/              # 📁 Classification reports
 │       │   ├── knn_optimized_classification_report.json
 │       │   ├── random_forest_optimized_classification_report.json
 │       │   ├── random_forest_optimized_classification_report.txt
 │       │   ├── multinomial_logistic_regression_optimized_classification_report.json
-│       │   └── multinomial_logistic_regression_optimized_classification_report.txt
+│       │   ├── multinomial_logistic_regression_optimized_classification_report.txt
+│       │   ├── lightgbm_optimized_classification_report.json      # 🌳 LightGBM report
+│       │   └── svm_optimized_classification_report.json           # 🎯 SVM report
 │       ├── knn_optimized_USAGE_INSTRUCTIONS.txt
 │       ├── random_forest_optimized_USAGE_INSTRUCTIONS.txt
-│       └── multinomial_logistic_regression_optimized_USAGE_INSTRUCTIONS.txt
+│       ├── multinomial_logistic_regression_optimized_USAGE_INSTRUCTIONS.txt
+│       ├── lightgbm_optimized_USAGE_INSTRUCTIONS.txt              # 🌳 LightGBM instructions
+│       └── svm_optimized_USAGE_INSTRUCTIONS.txt                   # 🎯 SVM instructions
 │
 ├── Python_files/                 # 🐍 Core analysis modules
 │   ├── config.py                 # Configuration and constants
@@ -73,7 +85,11 @@ MScProject/
     ├── 02_visual_analysis.ipynb                   # Visualisation of the data
     ├── 03_data_stratification_encoding.ipynb      # Data stratification and encoding
     ├── 04_model_random_forest.ipynb               # Random Forest model optimization
-    └── 05_model_multi_logistic_regression.ipynb   # Logistic Regression model optimization
+    ├── 05_model_multi_logistic_regression.ipynb   # Logistic Regression model optimization
+    ├── 06_model_knn.ipynb                         # K-Nearest Neighbors model optimization
+    ├── 07_model_lightGBM.ipynb                    # 🌳 LightGBM model optimization
+    ├── 08_model_SVM.ipynb                         # SVM model optimization
+    └── X0_model_comparison_analysis.ipynb         # Model Comparison
 
 ```
 

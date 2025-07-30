@@ -1,0 +1,119 @@
+
+SUPPORT VECTOR MACHINE (SVM) MODEL USAGE INSTRUCTIONS
+====================================================
+
+Model Information:
+- Model Name: svm_optimized
+- Model Type: Support Vector Machine (Optimized)
+- Model File: ../Data\model_metrics\models\svm_optimized.pkl
+- Scaler File: ../Data\model_metrics\models\svm_optimized_scaler.pkl
+
+⚠️  CRITICAL: SVM REQUIRES FEATURE SCALING!
+
+LOADING THE MODEL:
+-----------------
+```python
+import joblib
+import pandas as pd
+import numpy as np
+
+# Load BOTH the trained model AND the scaler
+model = joblib.load('../Data\model_metrics\models\svm_optimized.pkl')
+scaler = joblib.load('../Data\model_metrics\models\svm_optimized_scaler.pkl')
+
+# MANDATORY: Scale new data using the SAME scaler
+X_new_scaled = scaler.transform(X_new)
+
+# Make predictions on scaled data
+predictions = model.predict(X_new_scaled)
+prediction_probabilities = model.predict_proba(X_new_scaled)
+```
+
+⚠️  NEVER skip feature scaling! SVM will give incorrect results on unscaled data.
+
+BEST HYPERPARAMETERS:
+-------------------
+{
+  "C": 0.1,
+  "class_weight": "balanced",
+  "gamma": "scale",
+  "kernel": "rbf"
+}
+
+PERFORMANCE METRICS:
+------------------
+- Test Accuracy: 0.5715
+- Test F1-Weighted: 0.5558
+- Test F1-Macro: 0.4636
+- Best CV Score (f1_weighted): 0.5596
+
+SVM-SPECIFIC INSIGHTS:
+---------------------
+- Kernel type: rbf
+- Regularization parameter (C): 0.1
+- Gamma parameter: scale
+- Total support vectors: 19,327
+- Support vector percentage: 87.1%
+- Class balancing: Applied
+
+SUPPORT VECTORS BY CLASS:
+------------------------
+Class 0: 4,196 support vectors
+Class 1: 5,486 support vectors
+Class 2: 9,645 support vectors
+
+
+FEATURE IMPORTANCE:
+------------------
+Feature importance analysis not available for rbf kernel.
+Linear SVM provides coefficient-based importance.
+For non-linear kernels, consider permutation importance.
+
+
+CLASS DISTRIBUTION:
+------------------
+Class 0: 4,237 samples (19.1%)
+Class 1: 5,634 samples (25.4%)
+Class 2: 12,309 samples (55.5%)
+
+
+FILES SAVED:
+-----------
+- Model: ../Data\model_metrics\models\svm_optimized.pkl
+- Scaler: ../Data\model_metrics\models\svm_optimized_scaler.pkl
+- Metrics: ../Data\model_metrics\metrics\svm_optimized_metrics.json
+- Classification Report: ../Data\model_metrics\reports\svm_optimized_classification_report.json
+- Confusion Matrix: ../Data\model_metrics\metrics\svm_optimized_confusion_matrix.json
+- Usage Instructions: This file
+
+PREPROCESSING PIPELINE:
+---------------------
+1. Load your scaler: scaler = joblib.load('../Data\model_metrics\models\svm_optimized_scaler.pkl')
+2. Scale features: X_scaled = scaler.transform(X_raw)
+3. Make predictions: predictions = model.predict(X_scaled)
+
+NOTES:
+-----
+- This model was optimized using GridSearchCV
+- Total combinations tested: 24
+- Cross-validation: 5-fold
+- Optimization runtime: 75.1 minutes
+- Primary scoring metric: f1_weighted
+- Class imbalance ratio: 2.91:1
+
+⚠️  CRITICAL SVM REQUIREMENTS:
+   - Feature scaling is MANDATORY
+   - Both model AND scaler files are required
+   - Apply scaler to ALL new data before prediction
+
+🎯 SVM ADVANTAGES:
+   - Excellent for high-dimensional data
+   - Memory efficient (uses support vectors only)
+   - Versatile kernels for different data patterns
+   - Strong theoretical foundation
+
+⚠️  SVM CONSIDERATIONS:
+   - Slower training than tree-based models
+   - Requires careful hyperparameter tuning
+   - Sensitive to feature scaling
+   - Can be memory intensive for large datasets
