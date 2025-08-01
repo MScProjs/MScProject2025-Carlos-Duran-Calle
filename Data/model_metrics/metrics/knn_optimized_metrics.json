@@ -25,7 +25,7 @@
       "p": 1,
       "weights": "uniform"
     },
-    "approximate_combinations_tested": 242,
+    "total_combinations_tested": 242,
     "cv_folds": 5
   },
   "cross_validation_results": {

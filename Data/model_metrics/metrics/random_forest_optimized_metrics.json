@@ -27,7 +27,7 @@
       "n_estimators": 200
     },
     "total_combinations_tested": 5120,
-    "cv_folds": 3
+    "cv_folds": 5
   },
   "cross_validation_results": {
     "best_cv_score": 0.5602645056605339,

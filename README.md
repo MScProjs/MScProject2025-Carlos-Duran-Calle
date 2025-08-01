@@ -18,78 +18,91 @@ This project analyzes student performance data to identify factors affecting aca
 MScProject/
 ├── README.md                     # This comprehensive guide
 ├── Data/                         # 📊 Data files and outputs
-│   ├── assessments.csv           # Assessment information
-│   ├── courses.csv               # Course details
-│   ├── studentAssessment.csv     # Student assessment scores
-│   ├── studentInfo.csv           # Student demographics
-│   ├── studentRegistration.csv   # Registration records
-│   ├── studentVle.csv            # VLE interaction data
-│   ├── vle.csv                   # VLE resource information
+│   ├── assessments.csv           # Assessment information and metadata
+│   ├── courses.csv               # Course details and specifications
+│   ├── studentAssessment.csv     # Student assessment scores and results
+│   ├── studentInfo.csv           # Student demographics and background
+│   ├── studentRegistration.csv   # Student course registration records
+│   ├── studentVle.csv            # VLE interaction data and engagement metrics
+│   ├── vle.csv                   # VLE resource information and activity types
 │   ├── output/                   # 📁 Generated output files
-│   │   ├── processed_data.csv    # Processed dataset
-│   │   ├── X_test_encoded.csv    # X Test data encoded
-│   │   ├── X_train_encoded.csv   # X Train data encoded
-│   │   ├── y_test.csv   		  # Y Test data encoded
-│   │   └── y_train.csv	  		  # Y Train data encoded
+│   │   ├── processed_data.csv    # Cleaned and preprocessed dataset
+│   │   ├── X_test_encoded.csv    # Encoded feature test dataset
+│   │   ├── X_train_encoded.csv   # Encoded feature training dataset
+│   │   ├── y_test.csv   		  # Target variable test labels
+│   │   └── y_train.csv	  		  # Target variable training labels
 │   │
 │   └── model_metrics/            # 🤖 Model outputs and evaluation
 │       ├── models/               # 📁 Trained model files
-│       │   ├── knn_optimized.pkl
-│       │   ├── knn_optimized_scaler.pkl
-│       │   ├── random_forest_optimized.pkl
-│       │   ├── multinomial_logistic_regression_optimized.pkl
-│       │   ├── lightgbm_optimized.pkl                    # 🌳 LightGBM model
-│       │   ├── svm_optimized.pkl                         # 🎯 SVM model
-│       │   └── svm_optimized_scaler.pkl                  # 🔧 SVM scaler (required)
+│       │   ├── knn_optimized.pkl                             # 🔍 K-Nearest Neighbors model
+│       │   ├── knn_optimized_scaler.pkl                      # 🔧 KNN feature scaler
+│       │   ├── random_forest_optimized.pkl                   # 🌲 Random Forest model
+│       │   ├── multinomial_logistic_regression_optimized.pkl # 📊 Logistic Regression model
+│       │   ├── neural_network_optimized.pkl                  # 🧠 Neural Network model
+│       │   ├── neural_network_optimized_scaler.pkl           # 🔧 Neural Network scaler
+│       │   ├── lightgbm_optimized.pkl                        # 🌳 LightGBM model
+│       │   ├── svm_optimized.pkl                             # 🎯 SVM model
+│       │   └── svm_optimized_scaler.pkl                      # 🔧 SVM feature scaler
 │       ├── metrics/              # 📁 Performance metrics and data
-│       │   ├── knn_optimized_metrics.json
-│       │   ├── knn_optimized_confusion_matrix.json
-│       │   ├── random_forest_optimized_metrics.json
-│       │   ├── random_forest_optimized_confusion_matrix.json
-│       │   ├── random_forest_optimized_confusion_matrix.txt
-│       │   ├── random_forest_optimized_feature_importance.csv
-│       │   ├── random_forest_optimized_feature_importance.json
-│       │   ├── multinomial_logistic_regression_optimized_metrics.json
-│       │   ├── multinomial_logistic_regression_optimized_confusion_matrix.json
-│       │   ├── multinomial_logistic_regression_optimized_confusion_matrix.txt
-│       │   ├── multinomial_logistic_regression_optimized_coefficients.csv
-│       │   ├── multinomial_logistic_regression_optimized_coefficients.json
+│       │   ├── knn_optimized_metrics.json                        # 🔍 KNN performance metrics
+│       │   ├── knn_optimized_confusion_matrix.json               # 🔍 KNN confusion matrix
+│       │   ├── random_forest_optimized_metrics.json              # 🌲 Random Forest metrics
+│       │   ├── random_forest_optimized_confusion_matrix.json     # 🌲 Random Forest confusion matrix
+│       │   ├── random_forest_optimized_confusion_matrix.txt      # 🌲 Random Forest confusion matrix (text)
+│       │   ├── random_forest_optimized_feature_importance.csv    # 🌲 Random Forest feature rankings
+│       │   ├── random_forest_optimized_feature_importance.json   # 🌲 Random Forest feature importance
+│       │   ├── multinomial_logistic_regression_optimized_metrics.json          # 📊 Logistic Regression metrics
+│       │   ├── multinomial_logistic_regression_optimized_confusion_matrix.json # 📊 Logistic Regression confusion matrix
+│       │   ├── multinomial_logistic_regression_optimized_confusion_matrix.txt  # 📊 Logistic Regression confusion matrix (text)
+│       │   ├── multinomial_logistic_regression_optimized_coefficients.csv      # 📊 Logistic Regression coefficients
+│       │   ├── multinomial_logistic_regression_optimized_coefficients.json     # 📊 Logistic Regression coefficients
 │       │   ├── lightgbm_optimized_metrics.json           # 🌳 LightGBM metrics
 │       │   ├── lightgbm_optimized_confusion_matrix.json  # 🌳 LightGBM confusion matrix
 │       │   ├── lightgbm_optimized_feature_importance.csv # 🌳 LightGBM feature importance
+│       │   ├── neural_network_metrics.json           	  # 🧠 Neural Network performance metrics
+│       │   ├── neural_network_confusion_matrix.json      # 🧠 Neural Network confusion matrix
 │       │   ├── svm_optimized_metrics.json                # 🎯 SVM metrics
 │       │   └── svm_optimized_confusion_matrix.json       # 🎯 SVM confusion matrix
 │       ├── reports/              # 📁 Classification reports
-│       │   ├── knn_optimized_classification_report.json
-│       │   ├── random_forest_optimized_classification_report.json
-│       │   ├── random_forest_optimized_classification_report.txt
-│       │   ├── multinomial_logistic_regression_optimized_classification_report.json
-│       │   ├── multinomial_logistic_regression_optimized_classification_report.txt
+│       │   ├── knn_optimized_classification_report.json                       # 🔍 KNN detailed classification report
+│       │   ├── random_forest_optimized_classification_report.json             # 🌲 Random Forest classification report
+│       │   ├── random_forest_optimized_classification_report.txt              # 🌲 Random Forest report (text format)
+│       │   ├── neural_network_optimized_classification_report.txt             # 🧠 Neural Network classification report
+│       │   ├── multinomial_logistic_regression_optimized_classification_report.json # 📊 Logistic Regression report
+│       │   ├── multinomial_logistic_regression_optimized_classification_report.txt  # 📊 Logistic Regression report (text)
 │       │   ├── lightgbm_optimized_classification_report.json      # 🌳 LightGBM report
 │       │   └── svm_optimized_classification_report.json           # 🎯 SVM report
-│       ├── knn_optimized_USAGE_INSTRUCTIONS.txt
-│       ├── random_forest_optimized_USAGE_INSTRUCTIONS.txt
-│       ├── multinomial_logistic_regression_optimized_USAGE_INSTRUCTIONS.txt
-│       ├── lightgbm_optimized_USAGE_INSTRUCTIONS.txt              # 🌳 LightGBM instructions
-│       └── svm_optimized_USAGE_INSTRUCTIONS.txt                   # 🎯 SVM instructions
+│       ├── knn_optimized_USAGE_INSTRUCTIONS.txt                        # 🔍 KNN model usage guide
+│       ├── random_forest_optimized_USAGE_INSTRUCTIONS.txt              # 🌲 Random Forest usage guide
+│       ├── multinomial_logistic_regression_optimized_USAGE_INSTRUCTIONS.txt # 📊 Logistic Regression usage guide
+│       ├── neural_network_optimized_USAGE_INSTRUCTIONS.txt             # 🧠 Neural Network usage guide
+│       ├── lightgbm_optimized_USAGE_INSTRUCTIONS.txt               	# 🌳 LightGBM instructions
+│       └── svm_optimized_USAGE_INSTRUCTIONS.txt                   		# 🎯 SVM instructions
+│
+├── Visualizations/               # 📈 Generated visualization outputs
+│   └── Model_comparison/         # 📁 Model comparison visualizations
+│       ├── 01_class_distribution.png      # Class distribution pie chart
+│       ├── 02_model_comparison.png        # Model performance comparison charts
+│       ├── 03_class_level_performance.png # Class-level performance heatmaps
+│       └── 04_confusion_matrices.png      # Confusion matrices grid
 │
 ├── Python_files/                 # 🐍 Core analysis modules
-│   ├── config.py                 # Configuration and constants
-│   ├── data_loader.py            # Data loading and validation
-│   ├── data_processor.py         # Data processing pipeline
-│   ├── analysis_engine.py        # Statistical analysis functions
-│   ├── encoding_utils.py         # Encoding for the training and test data
-│   └── visualization.py          # Interactive plotting
+│   ├── config.py                 # Configuration settings and constants
+│   ├── data_loader.py            # Data loading and validation utilities
+│   ├── data_processor.py         # Data cleaning and processing pipeline
+│   ├── analysis_engine.py        # Statistical analysis and computation functions
+│   ├── encoding_utils.py         # Feature encoding for training and test data
+│   └── visualization.py          # Interactive plotting and chart generation
 └── Notebooks/                    # 📓 Analysis interfaces
-    ├── 01_data_ingest_cleaning.ipynb              # Complete analysis workflow
-    ├── 02_visual_analysis.ipynb                   # Visualisation of the data
-    ├── 03_data_stratification_encoding.ipynb      # Data stratification and encoding
-    ├── 04_model_random_forest.ipynb               # Random Forest model optimization
-    ├── 05_model_multi_logistic_regression.ipynb   # Logistic Regression model optimization
-    ├── 06_model_knn.ipynb                         # K-Nearest Neighbors model optimization
-    ├── 07_model_lightGBM.ipynb                    # 🌳 LightGBM model optimization
-    ├── 08_model_SVM.ipynb                         # SVM model optimization
-    └── X0_model_comparison_analysis.ipynb         # Model Comparison
+    ├── 01_data_ingest_cleaning.ipynb              # Data ingestion and cleaning workflow
+    ├── 02_visual_analysis.ipynb                   # Exploratory data visualization and analysis
+    ├── 03_data_stratification_encoding.ipynb      # Data stratification and feature encoding
+    ├── 04_model_random_forest.ipynb               # Random Forest model training and optimization
+    ├── 05_model_multi_logistic_regression.ipynb   # Multinomial Logistic Regression model optimization
+    ├── 06_model_knn.ipynb                         # K-Nearest Neighbors model training and optimization
+    ├── 07_model_lightGBM.ipynb                    # 🌳 LightGBM model training and optimization
+    ├── 08_model_SVM.ipynb                         # 🎯 Support Vector Machine model optimization
+    └── X1_model_comparison_analysis.ipynb         # Comprehensive 6-model performance comparison
 
 ```
 

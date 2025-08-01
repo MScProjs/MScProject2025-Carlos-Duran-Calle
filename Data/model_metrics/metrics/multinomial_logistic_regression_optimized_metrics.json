@@ -26,7 +26,7 @@
       "solver": "lbfgs"
     },
     "total_combinations_tested": 450,
-    "cv_folds": 3
+    "cv_folds": 5
   },
   "cross_validation_results": {
     "best_cv_score": 0.5622825286265002,

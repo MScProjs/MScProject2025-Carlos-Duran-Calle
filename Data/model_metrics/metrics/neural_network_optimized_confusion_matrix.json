@@ -1,0 +1,25 @@
+{
+  "confusion_matrix": [
+    [
+      68,
+      400,
+      591
+    ],
+    [
+      61,
+      557,
+      792
+    ],
+    [
+      56,
+      340,
+      2680
+    ]
+  ],
+  "class_labels": [
+    0,
+    1,
+    2
+  ],
+  "model_name": "neural_network_optimized"
+}

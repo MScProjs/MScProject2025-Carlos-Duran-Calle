@@ -1,0 +1,123 @@
+
+NEURAL NETWORK (MULTI-LAYER PERCEPTRON) MODEL USAGE INSTRUCTIONS
+===============================================================
+
+Model Information:
+- Model Name: neural_network_optimized
+- Model Type: Neural Network (Multi-Layer Perceptron) - Optimized
+- Model File: ../Data\model_metrics\models\neural_network_optimized.pkl
+- Scaler File: ../Data\model_metrics\models\neural_network_optimized_scaler.pkl
+
+⚠️  IMPORTANT: Neural Networks work best with feature scaling!
+
+LOADING THE MODEL:
+-----------------
+```python
+import joblib
+import pandas as pd
+import numpy as np
+
+# Load BOTH the trained model AND the scaler
+model = joblib.load('../Data\model_metrics\models\neural_network_optimized.pkl')
+scaler = joblib.load('../Data\model_metrics\models\neural_network_optimized_scaler.pkl')
+
+# RECOMMENDED: Scale new data using the SAME scaler
+X_new_scaled = scaler.transform(X_new)
+
+# Make predictions on scaled data
+predictions = model.predict(X_new_scaled)
+prediction_probabilities = model.predict_proba(X_new_scaled)
+```
+
+💡 While Neural Networks can work with unscaled data, scaling significantly improves performance.
+
+BEST HYPERPARAMETERS:
+-------------------
+{
+  "activation": "relu",
+  "alpha": 0.1,
+  "hidden_layer_sizes": [
+    50,
+    25
+  ],
+  "learning_rate_init": 0.001,
+  "max_iter": 500,
+  "solver": "adam"
+}
+
+PERFORMANCE METRICS:
+------------------
+- Test Accuracy: 0.5960
+- Test F1-Weighted: 0.5420
+- Test F1-Macro: 0.4239
+- Best CV Score (f1_weighted): 0.5476
+
+NEURAL NETWORK-SPECIFIC INSIGHTS:
+--------------------------------
+- Architecture: (50, 25) hidden layer(s)
+- Total parameters: 2,403
+- Activation function: relu
+- Optimization solver: adam
+- Learning rate: 0.001
+- Regularization (alpha): 0.1
+- Training iterations: 23
+- Early stopping: Used
+
+NETWORK ARCHITECTURE DETAILS:
+----------------------------
+- Input layer: 20 features
+- Hidden layer(s): (50, 25)
+- Output layer: 3 classes
+- Total layers: 4
+- Complexity level: High
+
+CLASS DISTRIBUTION:
+------------------
+Class 0: 4,237 samples (19.1%)
+Class 1: 5,634 samples (25.4%)
+Class 2: 12,309 samples (55.5%)
+
+
+FILES SAVED:
+-----------
+- Model: ../Data\model_metrics\models\neural_network_optimized.pkl
+- Scaler: ../Data\model_metrics\models\neural_network_optimized_scaler.pkl
+- Metrics: ../Data\model_metrics\metrics\neural_network_optimized_metrics.json
+- Classification Report: ../Data\model_metrics\reports\neural_network_optimized_classification_report.json
+- Confusion Matrix: ../Data\model_metrics\metrics\neural_network_optimized_confusion_matrix.json
+- Usage Instructions: This file
+
+PREPROCESSING PIPELINE:
+---------------------
+1. Load your scaler: scaler = joblib.load('../Data\model_metrics\models\neural_network_optimized_scaler.pkl')
+2. Scale features: X_scaled = scaler.transform(X_raw)
+3. Make predictions: predictions = model.predict(X_scaled)
+
+NOTES:
+-----
+- This model was optimized using GridSearchCV
+- Total combinations tested: 120
+- Cross-validation: 5-fold
+- Optimization runtime: 48.8 minutes
+- Primary scoring metric: f1_weighted
+- Class imbalance ratio: 2.91:1
+
+🧠 NEURAL NETWORK ADVANTAGES:
+   - Learns complex non-linear patterns automatically
+   - Can capture feature interactions
+   - Flexible architecture for different problems
+   - Good performance on high-dimensional data
+   - Universal approximation capability
+
+⚠️  NEURAL NETWORK CONSIDERATIONS:
+   - "Black box" model - difficult to interpret
+   - May require more data to avoid overfitting
+   - Results can vary due to random initialization
+   - Sensitive to hyperparameter choices
+   - Computationally more intensive than linear models
+
+💡 TIPS FOR USING THIS MODEL:
+   - Always use the same preprocessing pipeline
+   - Feature scaling is highly recommended
+   - Monitor for overfitting on new datasets
+   - Consider ensemble methods for better robustness

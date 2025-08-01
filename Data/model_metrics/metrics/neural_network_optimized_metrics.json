@@ -1,0 +1,98 @@
+{
+  "model_info": {
+    "model_name": "Neural Network (Multi-Layer Perceptron)",
+    "optimization_method": "GridSearchCV",
+    "primary_scoring_metric": "f1_weighted",
+    "total_runtime_minutes": 48.79,
+    "feature_scaling": "StandardScaler (HIGHLY RECOMMENDED for Neural Networks)"
+  },
+  "dataset_info": {
+    "training_samples": 22180,
+    "test_samples": 5545,
+    "n_features": 20,
+    "n_classes": 3,
+    "class_distribution": {
+      "0": 4237,
+      "1": 5634,
+      "2": 12309
+    }
+  },
+  "hyperparameters": {
+    "best_params": {
+      "activation": "relu",
+      "alpha": 0.1,
+      "hidden_layer_sizes": [
+        50,
+        25
+      ],
+      "learning_rate_init": 0.001,
+      "max_iter": 500,
+      "solver": "adam"
+    },
+    "total_combinations_tested": 120,
+    "cv_folds": 5
+  },
+  "cross_validation_results": {
+    "best_cv_score": 0.5475939796261383,
+    "cv_scores_by_metric": {
+      "accuracy": {
+        "mean": 0.6002705139765554,
+        "std": 0.0057867935538271145
+      },
+      "f1_weighted": {
+        "mean": 0.5475939796261383,
+        "std": 0.005078345391152396
+      },
+      "f1_macro": {
+        "mean": 0.4312347344662574,
+        "std": 0.006697915586764737
+      },
+      "precision_weighted": {
+        "mean": 0.5495470818378347,
+        "std": 0.013652994861885679
+      },
+      "recall_weighted": {
+        "mean": 0.6002705139765554,
+        "std": 0.0057867935538271145
+      }
+    }
+  },
+  "test_set_performance": {
+    "accuracy": 0.5960324616771867,
+    "f1_weighted": 0.5420204937898743,
+    "f1_macro": 0.4238852893184551
+  },
+  "neural_network_specific_analysis": {
+    "architecture": {
+      "hidden_layer_sizes": [
+        50,
+        25
+      ],
+      "total_layers": 4,
+      "input_features": 20,
+      "output_classes": 3,
+      "total_parameters": 2403
+    },
+    "training_details": {
+      "solver": "adam",
+      "activation_function": "relu",
+      "learning_rate_init": 0.001,
+      "alpha_regularization": 0.1,
+      "iterations_completed": 23,
+      "max_iterations_allowed": 500,
+      "early_stopping_used": true
+    },
+    "model_complexity": {
+      "parameter_count": 2403,
+      "complexity_level": "High"
+    },
+    "class_balance_handling": {
+      "imbalance_ratio": 2.905121548265282,
+      "strategy": "Built-in handling through appropriate loss function"
+    },
+    "preprocessing_requirements": {
+      "feature_scaling": "HIGHLY RECOMMENDED - StandardScaler applied",
+      "scaler_file": "../Data\\model_metrics\\models\\neural_network_optimized_scaler.pkl"
+    }
+  }
+}
