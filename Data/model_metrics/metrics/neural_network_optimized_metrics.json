@@ -2,8 +2,8 @@
   "model_info": {
     "model_name": "Neural Network (Multi-Layer Perceptron)",
     "optimization_method": "GridSearchCV",
-    "primary_scoring_metric": "f1_weighted",
-    "total_runtime_minutes": 48.79,
+    "primary_scoring_metric": "dropout_recall",
+    "total_runtime_minutes": 50.0,
     "feature_scaling": "StandardScaler (HIGHLY RECOMMENDED for Neural Networks)"
   },
   "dataset_info": {
@@ -19,80 +19,171 @@
   },
   "hyperparameters": {
     "best_params": {
-      "activation": "relu",
-      "alpha": 0.1,
+      "activation": "tanh",
+      "alpha": 0.001,
       "hidden_layer_sizes": [
-        50,
-        25
+        100,
+        50
       ],
-      "learning_rate_init": 0.001,
+      "learning_rate_init": 0.01,
       "max_iter": 500,
-      "solver": "adam"
+      "solver": "lbfgs"
     },
     "total_combinations_tested": 120,
     "cv_folds": 5
   },
   "cross_validation_results": {
-    "best_cv_score": 0.5475939796261383,
+    "best_cv_score": 0.18669137466307278,
     "cv_scores_by_metric": {
       "accuracy": {
-        "mean": 0.6002705139765554,
-        "std": 0.0057867935538271145
+        "mean": 0.5518034265103697,
+        "std": 0.008836559868925913
       },
       "f1_weighted": {
-        "mean": 0.5475939796261383,
-        "std": 0.005078345391152396
+        "mean": 0.52970755759908,
+        "std": 0.008507049653831306
       },
       "f1_macro": {
-        "mean": 0.4312347344662574,
-        "std": 0.006697915586764737
+        "mean": 0.4320393422592826,
+        "std": 0.008799869214645194
       },
       "precision_weighted": {
-        "mean": 0.5495470818378347,
-        "std": 0.013652994861885679
+        "mean": 0.5179595874725678,
+        "std": 0.00871245865814768
       },
       "recall_weighted": {
-        "mean": 0.6002705139765554,
-        "std": 0.0057867935538271145
+        "mean": 0.5518034265103697,
+        "std": 0.008836559868925913
+      },
+      "precision_macro": {
+        "mean": 0.4429221858090086,
+        "std": 0.009688602594958571
+      },
+      "recall_macro": {
+        "mean": 0.43256456392932413,
+        "std": 0.0084102232326479
+      },
+      "dropout_recall": {
+        "mean": 0.18669137466307278,
+        "std": 0.010581291437561634
+      },
+      "dropout_precision": {
+        "mean": 0.28375451576000704,
+        "std": 0.011878331940640297
+      },
+      "at_risk_recall": {
+        "mean": 0.26018837158262503,
+        "std": 0.009455718251069216
       }
     }
   },
   "test_set_performance": {
-    "accuracy": 0.5960324616771867,
-    "f1_weighted": 0.5420204937898743,
-    "f1_macro": 0.4238852893184551
+    "accuracy": 0.5666366095581605,
+    "f1_weighted": 0.538495907743347,
+    "f1_macro": 0.4398812817766589
   },
   "neural_network_specific_analysis": {
     "architecture": {
       "hidden_layer_sizes": [
-        50,
-        25
+        100,
+        50
       ],
       "total_layers": 4,
       "input_features": 20,
       "output_classes": 3,
-      "total_parameters": 2403
+      "total_parameters": 7303
     },
     "training_details": {
-      "solver": "adam",
-      "activation_function": "relu",
-      "learning_rate_init": 0.001,
-      "alpha_regularization": 0.1,
-      "iterations_completed": 23,
+      "solver": "lbfgs",
+      "activation_function": "tanh",
+      "learning_rate_init": 0.01,
+      "alpha_regularization": 0.001,
+      "iterations_completed": 500,
       "max_iterations_allowed": 500,
-      "early_stopping_used": true
+      "early_stopping_used": false
     },
     "model_complexity": {
-      "parameter_count": 2403,
+      "parameter_count": 7303,
       "complexity_level": "High"
     },
     "class_balance_handling": {
       "imbalance_ratio": 2.905121548265282,
-      "strategy": "Built-in handling through appropriate loss function"
+      "strategy": "Dropout-focused scoring metrics during GridSearchCV optimization",
+      "custom_scoring_metrics": [
+        "dropout_recall",
+        "dropout_precision",
+        "at_risk_recall"
+      ]
     },
     "preprocessing_requirements": {
       "feature_scaling": "HIGHLY RECOMMENDED - StandardScaler applied",
-      "scaler_file": "../Data\\model_metrics\\models\\neural_network_optimized_scaler.pkl"
+      "note": "Feature scaling is critical for neural network performance"
     }
+  },
+  "feature_importance_analysis": {
+    "method": "Permutation Feature Importance",
+    "description": "Neural networks don't have direct coefficients. Permutation importance measures feature contribution.",
+    "top_10_features": [
+      {
+        "rank": 1,
+        "feature": "excellent_Score",
+        "importance": 0.04488306302804083,
+        "std": 0.015789988461338545
+      },
+      {
+        "rank": 2,
+        "feature": "region_North Region",
+        "importance": 0.024108366485234078,
+        "std": 0.0019141465003883185
+      },
+      {
+        "rank": 3,
+        "feature": "region_Wales",
+        "importance": 0.017876589159630397,
+        "std": 0.0065706238608462504
+      },
+      {
+        "rank": 4,
+        "feature": "student_engagementt",
+        "importance": 0.015286509219021815,
+        "std": 0.004996359023764711
+      },
+      {
+        "rank": 5,
+        "feature": "active_in_VLE",
+        "importance": 0.012564939875044978,
+        "std": 0.007888610104489026
+      },
+      {
+        "rank": 6,
+        "feature": "courses_per_term",
+        "importance": 0.011802703091233036,
+        "std": 0.007689721326176515
+      },
+      {
+        "rank": 7,
+        "feature": "region_South East Region",
+        "importance": 0.010777876297477451,
+        "std": 0.006413124438176338
+      },
+      {
+        "rank": 8,
+        "feature": "region_North Western Region",
+        "importance": 0.009317087450933237,
+        "std": 0.010626841461106446
+      },
+      {
+        "rank": 9,
+        "feature": "region_Scotland",
+        "importance": 0.008311247802873966,
+        "std": 0.00596594353213863
+      },
+      {
+        "rank": 10,
+        "feature": "imd_band_ord",
+        "importance": 0.004237602749602776,
+        "std": 0.01658396021792162
+      }
+    ]
   }
 }

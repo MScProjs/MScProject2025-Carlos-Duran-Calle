@@ -2,8 +2,8 @@
   "model_info": {
     "model_name": "Multinomial Logistic Regression",
     "optimization_method": "GridSearchCV",
-    "primary_scoring_metric": "f1_weighted",
-    "total_runtime_minutes": 1.64
+    "primary_scoring_metric": "dropout_recall",
+    "total_runtime_minutes": 4.05
   },
   "dataset_info": {
     "training_samples": 22180,
@@ -19,86 +19,110 @@
   "hyperparameters": {
     "best_params": {
       "C": 0.01,
-      "class_weight": "balanced",
+      "class_weight": {
+        "0": 2.0939343875383525,
+        "1": 1.312270737190865,
+        "2": 0.48051561188290415
+      },
       "l1_ratio": 0.5,
       "max_iter": 1000,
-      "penalty": "l2",
-      "solver": "lbfgs"
+      "penalty": "l1",
+      "solver": "saga"
     },
     "total_combinations_tested": 450,
     "cv_folds": 5
   },
   "cross_validation_results": {
-    "best_cv_score": 0.5622825286265002,
+    "best_cv_score": 0.6683906573700742,
     "cv_scores_by_metric": {
       "accuracy": {
-        "mean": 0.563570784490532,
-        "std": 0.007285206964524231
+        "mean": 0.46920649233543726,
+        "std": 0.0065375765660442295
       },
       "f1_weighted": {
-        "mean": 0.5622825286265002,
-        "std": 0.006639347611465386
+        "mean": 0.47378544190950816,
+        "std": 0.006363685112251258
       },
       "f1_macro": {
-        "mean": 0.4788037172320737,
-        "std": 0.00828937626389559
+        "mean": 0.39804391144730655,
+        "std": 0.005014661998427188
       },
       "precision_weighted": {
-        "mean": 0.5613576739472969,
-        "std": 0.006167595080529579
+        "mean": 0.5721329846783716,
+        "std": 0.013286110578781596
       },
       "recall_weighted": {
-        "mean": 0.563570784490532,
-        "std": 0.007285206964524231
+        "mean": 0.46920649233543726,
+        "std": 0.0065375765660442295
+      },
+      "precision_macro": {
+        "mean": 0.47304857767083125,
+        "std": 0.017912270128766384
+      },
+      "recall_macro": {
+        "mean": 0.4502288755868162,
+        "std": 0.00563928871128977
+      },
+      "dropout_recall": {
+        "mean": 0.6683906573700742,
+        "std": 0.03079231356655426
+      },
+      "dropout_precision": {
+        "mean": 0.24951778001928746,
+        "std": 0.006024858583354676
+      },
+      "at_risk_recall": {
+        "mean": 0.3958735608706444,
+        "std": 0.008275468895717345
       }
     }
   },
   "test_set_performance": {
-    "accuracy": 0.5601442741208296,
-    "f1_weighted": 0.5597902658271003,
-    "f1_macro": 0.47538240790245584
+    "accuracy": 0.4807935076645627,
+    "f1_weighted": 0.4880195136328192,
+    "f1_macro": 0.4157164491812388
   },
   "coefficient_analysis": {
     "top_10_features": [
       {
         "feature": "excellent_Score",
-        "importance": 0.4232217554189555
+        "importance": 0.32934755055368187
       },
       {
         "feature": "active_in_VLE",
-        "importance": 0.2879644098237613
+        "importance": 0.23626687186538842
       },
       {
         "feature": "student_engagementt",
-        "importance": 0.22231108162295246
-      },
-      {
-        "feature": "disability_binary",
-        "importance": 0.1732133691240573
+        "importance": 0.13901512749671036
       },
       {
         "feature": "highest_education_ord",
-        "importance": 0.12466897102124243
+        "importance": 0.08978483677857856
+      },
+      {
+        "feature": "disability_binary",
+        "importance": 0.07903196649119075
+      },
+      {
+        "feature": "imd_band_ord",
+        "importance": 0.023389523923547515
+      },
+      {
+        "feature": "age_band_ord",
+        "importance": 0.0034596250634160997
       },
       {
         "feature": "region_Wales",
-        "importance": 0.11049595799437029
+        "importance": 0.0004303115526467542
       },
       {
         "feature": "region_Scotland",
-        "importance": 0.11043435290151944
+        "importance": 0.0003278835410086395
       },
       {
-        "feature": "courses_per_term",
-        "importance": 0.10740070715765933
-      },
-      {
-        "feature": "region_South East Region",
-        "importance": 0.06118539884556564
-      },
-      {
-        "feature": "region_South Region",
-        "importance": 0.059396831631176907
+        "feature": "region_Ireland",
+        "importance": 0.0
       }
     ]
   }

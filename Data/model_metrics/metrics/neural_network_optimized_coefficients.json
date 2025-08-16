@@ -1,0 +1,143 @@
+{
+  "model_name": "neural_network_optimized",
+  "model_type": "Neural Network (Multi-Layer Perceptron)",
+  "coefficient_method": "Permutation Feature Importance",
+  "explanation": "Neural networks don't have directly interpretable coefficients. Using permutation importance as proxy.",
+  "coefficient_analysis": [
+    {
+      "rank": 1,
+      "feature": "excellent_Score",
+      "importance": 0.038919777919031256,
+      "std": 0.009002111208469915
+    },
+    {
+      "rank": 2,
+      "feature": "active_in_VLE",
+      "importance": 0.020133040513466573,
+      "std": 0.006877373415947897
+    },
+    {
+      "rank": 3,
+      "feature": "student_engagementt",
+      "importance": 0.014382961162358926,
+      "std": 0.006707969823443483
+    },
+    {
+      "rank": 4,
+      "feature": "imd_band_ord",
+      "importance": 0.012762066578674503,
+      "std": 0.00688205376573654
+    },
+    {
+      "rank": 5,
+      "feature": "region_East Midlands Region",
+      "importance": 0.010593905492683442,
+      "std": 0.004598461355780946
+    },
+    {
+      "rank": 6,
+      "feature": "region_South East Region",
+      "importance": 0.009454939459095636,
+      "std": 0.0034371919008575943
+    },
+    {
+      "rank": 7,
+      "feature": "disability_binary",
+      "importance": 0.009194761203303842,
+      "std": 0.005513617642756244
+    },
+    {
+      "rank": 8,
+      "feature": "region_West Midlands Region",
+      "importance": 0.009064266022857903,
+      "std": 0.0028178119177116804
+    },
+    {
+      "rank": 9,
+      "feature": "courses_per_term",
+      "importance": 0.008708911114673123,
+      "std": 0.003125781551584397
+    },
+    {
+      "rank": 10,
+      "feature": "region_South Region",
+      "importance": 0.008267893650460035,
+      "std": 0.004471070400115316
+    },
+    {
+      "rank": 11,
+      "feature": "highest_education_ord",
+      "importance": 0.007515728814001354,
+      "std": 0.008910637740742086
+    },
+    {
+      "rank": 12,
+      "feature": "region_London Region",
+      "importance": 0.006998112797749201,
+      "std": 0.004715240380033337
+    },
+    {
+      "rank": 13,
+      "feature": "age_band_ord",
+      "importance": 0.00634012410297583,
+      "std": 0.005614865183383465
+    },
+    {
+      "rank": 14,
+      "feature": "region_Wales",
+      "importance": 0.006187616201510237,
+      "std": 0.0049352991254833015
+    },
+    {
+      "rank": 15,
+      "feature": "region_North Region",
+      "importance": 0.0041524770623947325,
+      "std": 0.003186030641340521
+    },
+    {
+      "rank": 16,
+      "feature": "region_North Western Region",
+      "importance": 0.004130168414142643,
+      "std": 0.007436204036506492
+    },
+    {
+      "rank": 17,
+      "feature": "region_Yorkshire Region",
+      "importance": 0.003855046843353882,
+      "std": 0.0027196547872471457
+    },
+    {
+      "rank": 18,
+      "feature": "region_Scotland",
+      "importance": 0.00293990888775133,
+      "std": 0.002912046047162667
+    },
+    {
+      "rank": 19,
+      "feature": "region_Ireland",
+      "importance": 0.0026110718364283692,
+      "std": 0.004318901513908088
+    },
+    {
+      "rank": 20,
+      "feature": "region_South West Region",
+      "importance": 0.001753590630340518,
+      "std": 0.004217526522669213
+    }
+  ],
+  "class_specific_coefficients": {
+    "note": "Neural networks learn complex non-linear transformations across layers",
+    "interpretation": "Individual weights are not directly interpretable due to activation functions and layer interactions",
+    "alternative": "Use permutation importance (above) for feature importance analysis"
+  },
+  "network_architecture": {
+    "input_features": 20,
+    "hidden_layers": [
+      100,
+      50
+    ],
+    "output_classes": 3,
+    "total_parameters": 7303,
+    "activation_function": "tanh"
+  }
+}

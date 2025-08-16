@@ -5,68 +5,44 @@ NEURAL NETWORK (MULTI-LAYER PERCEPTRON) MODEL USAGE INSTRUCTIONS
 Model Information:
 - Model Name: neural_network_optimized
 - Model Type: Neural Network (Multi-Layer Perceptron) - Optimized
-- Model File: ../Data\model_metrics\models\neural_network_optimized.pkl
-- Scaler File: ../Data\model_metrics\models\neural_network_optimized_scaler.pkl
-
-⚠️  IMPORTANT: Neural Networks work best with feature scaling!
-
-LOADING THE MODEL:
------------------
-```python
-import joblib
-import pandas as pd
-import numpy as np
-
-# Load BOTH the trained model AND the scaler
-model = joblib.load('../Data\model_metrics\models\neural_network_optimized.pkl')
-scaler = joblib.load('../Data\model_metrics\models\neural_network_optimized_scaler.pkl')
-
-# RECOMMENDED: Scale new data using the SAME scaler
-X_new_scaled = scaler.transform(X_new)
-
-# Make predictions on scaled data
-predictions = model.predict(X_new_scaled)
-prediction_probabilities = model.predict_proba(X_new_scaled)
-```
-
-💡 While Neural Networks can work with unscaled data, scaling significantly improves performance.
+- Optimization Method: GridSearchCV with dropout-focused scoring
 
 BEST HYPERPARAMETERS:
 -------------------
 {
-  "activation": "relu",
-  "alpha": 0.1,
+  "activation": "tanh",
+  "alpha": 0.001,
   "hidden_layer_sizes": [
-    50,
-    25
+    100,
+    50
   ],
-  "learning_rate_init": 0.001,
+  "learning_rate_init": 0.01,
   "max_iter": 500,
-  "solver": "adam"
+  "solver": "lbfgs"
 }
 
 PERFORMANCE METRICS:
 ------------------
-- Test Accuracy: 0.5960
-- Test F1-Weighted: 0.5420
-- Test F1-Macro: 0.4239
-- Best CV Score (f1_weighted): 0.5476
+- Test Accuracy: 0.5666
+- Test F1-Weighted: 0.5385
+- Test F1-Macro: 0.4399
+- Best CV Score (dropout_recall): 0.1867
 
 NEURAL NETWORK-SPECIFIC INSIGHTS:
 --------------------------------
-- Architecture: (50, 25) hidden layer(s)
-- Total parameters: 2,403
-- Activation function: relu
-- Optimization solver: adam
-- Learning rate: 0.001
-- Regularization (alpha): 0.1
-- Training iterations: 23
-- Early stopping: Used
+- Architecture: (100, 50) hidden layer(s)
+- Total parameters: 7,303
+- Activation function: tanh
+- Optimization solver: lbfgs
+- Learning rate: 0.01
+- Regularization (alpha): 0.001
+- Training iterations: 500
+- Early stopping: Not triggered
 
 NETWORK ARCHITECTURE DETAILS:
 ----------------------------
 - Input layer: 20 features
-- Hidden layer(s): (50, 25)
+- Hidden layer(s): (100, 50)
 - Output layer: 3 classes
 - Total layers: 4
 - Complexity level: High
@@ -78,28 +54,29 @@ Class 1: 5,634 samples (25.4%)
 Class 2: 12,309 samples (55.5%)
 
 
+DROPOUT-FOCUSED OPTIMIZATION:
+---------------------------
+Class imbalance handled through custom scoring metrics:
+- dropout_recall: PRIMARY METRIC - Prioritizes catching dropout students (class 0)
+- dropout_precision: Ensures quality of dropout predictions
+- at_risk_recall: Targets both dropout and at-risk students
+- f1_weighted: Secondary metric balancing all classes
+
 FILES SAVED:
 -----------
-- Model: ../Data\model_metrics\models\neural_network_optimized.pkl
-- Scaler: ../Data\model_metrics\models\neural_network_optimized_scaler.pkl
 - Metrics: ../Data\model_metrics\metrics\neural_network_optimized_metrics.json
 - Classification Report: ../Data\model_metrics\reports\neural_network_optimized_classification_report.json
 - Confusion Matrix: ../Data\model_metrics\metrics\neural_network_optimized_confusion_matrix.json
+- Coefficients (Permutation Importance): ../Data\model_metrics\metrics\neural_network_optimized_coefficients.json
 - Usage Instructions: This file
-
-PREPROCESSING PIPELINE:
----------------------
-1. Load your scaler: scaler = joblib.load('../Data\model_metrics\models\neural_network_optimized_scaler.pkl')
-2. Scale features: X_scaled = scaler.transform(X_raw)
-3. Make predictions: predictions = model.predict(X_scaled)
 
 NOTES:
 -----
-- This model was optimized using GridSearchCV
+- This model was optimized using GridSearchCV with dropout-focused scoring
 - Total combinations tested: 120
 - Cross-validation: 5-fold
-- Optimization runtime: 48.8 minutes
-- Primary scoring metric: f1_weighted
+- Optimization runtime: 50.0 minutes
+- Primary scoring metric: dropout_recall
 - Class imbalance ratio: 2.91:1
 
 🧠 NEURAL NETWORK ADVANTAGES:
@@ -116,8 +93,17 @@ NOTES:
    - Sensitive to hyperparameter choices
    - Computationally more intensive than linear models
 
+💡 FEATURE IMPORTANCE:
+   Top 5 most important features (via permutation importance):
+   1. excellent_Score: 0.0389 ± 0.0090
+   2. active_in_VLE: 0.0201 ± 0.0069
+   3. student_engagementt: 0.0144 ± 0.0067
+   4. imd_band_ord: 0.0128 ± 0.0069
+   5. region_East Midlands Region: 0.0106 ± 0.0046
+
+
 💡 TIPS FOR USING THIS MODEL:
-   - Always use the same preprocessing pipeline
-   - Feature scaling is highly recommended
+   - Feature scaling is highly recommended for neural networks
    - Monitor for overfitting on new datasets
    - Consider ensemble methods for better robustness
+   - Use permutation importance for feature interpretation

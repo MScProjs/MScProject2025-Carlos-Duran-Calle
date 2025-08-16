@@ -5,10 +5,8 @@ K-NEAREST NEIGHBORS MODEL USAGE INSTRUCTIONS
 Model Information:
 - Model Name: knn_optimized
 - Model Type: K-Nearest Neighbors Classifier (Optimized)
-- Model File: ../Data\model_metrics\models\knn_optimized.pkl
-- Scaler File: ../Data\model_metrics\models\knn_optimized_scaler.pkl
-
-⚠️  CRITICAL: KNN requires feature scaling! Always use the saved scaler.
+- File Location: ../Data\model_metrics\models\knn_optimized.pkl
+- Scaler Location: ../Data\model_metrics\models\knn_optimized_scaler.pkl
 
 LOADING THE MODEL:
 -----------------
@@ -25,52 +23,51 @@ scaler = joblib.load('../Data\model_metrics\models\knn_optimized_scaler.pkl')
 X_new_scaled = scaler.transform(X_new)
 predictions = model.predict(X_new_scaled)
 prediction_probabilities = model.predict_proba(X_new_scaled)
+
+# Get feature importance (if needed)
+# Note: KNN doesn't have built-in feature importance
+# Refer to the coefficients JSON for feature analysis
 ```
 
 BEST HYPERPARAMETERS:
 -------------------
 {
-  "algorithm": "auto",
-  "metric": "euclidean",
-  "n_neighbors": 21,
+  "algorithm": "ball_tree",
+  "metric": "manhattan",
+  "n_neighbors": 3,
   "p": 1,
   "weights": "uniform"
 }
 
 PERFORMANCE METRICS:
 ------------------
-- Test Accuracy: 0.5841
-- Test F1-Weighted: 0.5445
-- Test F1-Macro: 0.4370
-- Best CV Score (f1_weighted): 0.5453
+- Test Accuracy: 0.5078
+- Test F1-Weighted: 0.5051
+- Test F1-Macro: 0.4195
+- Best CV Score (dropout_recall): 0.3127
 
-KNN-SPECIFIC INSIGHTS:
---------------------
-- Optimal k (neighbors): 21
-- Best distance metric: euclidean
+TOP 5 IMPORTANT FEATURES:
+-----------------------
+1. student_engagementt: 0.6347 (separation: 0.17)
+2. excellent_Score: 0.5839 (separation: 0.15)
+3. imd_band_ord: 0.4709 (separation: 0.02)
+4. active_in_VLE: 0.2854 (separation: 0.07)
+5. highest_education_ord: 0.1461 (separation: 0.02)
+
+
+KNN-SPECIFIC NOTES:
+-----------------
+- Optimal k (neighbors): 3
+- Best distance metric: manhattan
 - Weight strategy: uniform
-- Feature scaling: StandardScaler applied
+- Feature scaling: StandardScaler applied (MANDATORY!)
 
-DISTANCE METRICS PERFORMANCE:
----------------------------
-euclidean: 0.5296
-manhattan: 0.5283
-minkowski: 0.5289
-
-
-K VALUES PERFORMANCE:
--------------------
-k=3: 0.5041
-k=5: 0.5163
-k=7: 0.5279
-k=9: 0.5319
-k=11: 0.5343
-k=13: 0.5339
-k=15: 0.5339
-k=17: 0.5353
-k=19: 0.5356
-k=21: 0.5360
-
+FEATURE IMPORTANCE METHOD:
+------------------------
+- Analysis Method: Class Separation + Original Variance Analysis
+- Combined Score: 60% class separation + 40% original feature variance
+- Class Separation: F-ratio (between_class_var / within_class_var)
+- Original Variance: Standard deviation from unscaled data
 
 FILES SAVED:
 -----------
@@ -78,16 +75,26 @@ FILES SAVED:
 - Scaler: ../Data\model_metrics\models\knn_optimized_scaler.pkl
 - Metrics: ../Data\model_metrics\metrics\knn_optimized_metrics.json
 - Classification Report: ../Data\model_metrics\reports\knn_optimized_classification_report.json
+- Confusion Matrix: ../Data\model_metrics\metrics\knn_optimized_confusion_matrix.json
+- Feature Importance: ../Data\model_metrics\metrics\knn_optimized_coefficients.json
 - Usage Instructions: This file
 
 NOTES:
 -----
 - This model was optimized using GridSearchCV
-- Approximate combinations tested: 242
+- Total combinations tested: 242
 - Cross-validation: 5-fold
-- Optimization runtime: 23.0 minutes
-- Primary scoring metric: f1_weighted
+- Optimization runtime: 95.9 minutes
+- Primary scoring metric: dropout_recall
 - Feature scaling is MANDATORY for KNN - always use the saved scaler!
 
-⚠️  REMEMBER: KNN is sensitive to feature scales. Always apply the same 
-    StandardScaler transformation to new data before making predictions!
+⚠️  CRITICAL REMINDER: 
+KNN is sensitive to feature scales. Always apply the same StandardScaler 
+transformation to new data before making predictions!
+
+TROUBLESHOOTING:
+--------------
+- If predictions seem wrong, check that you scaled the input data
+- If loading fails, ensure all files are in the correct directory
+- For feature importance, refer to the coefficients JSON file
+- The model requires exactly 20 features in the correct order

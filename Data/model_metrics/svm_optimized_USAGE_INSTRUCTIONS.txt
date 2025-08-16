@@ -35,32 +35,36 @@ BEST HYPERPARAMETERS:
 -------------------
 {
   "C": 0.1,
-  "class_weight": "balanced",
+  "class_weight": {
+    "0": 2.0939343875383525,
+    "1": 1.312270737190865,
+    "2": 0.48051561188290415
+  },
   "gamma": "scale",
   "kernel": "rbf"
 }
 
 PERFORMANCE METRICS:
 ------------------
-- Test Accuracy: 0.5715
-- Test F1-Weighted: 0.5558
-- Test F1-Macro: 0.4636
-- Best CV Score (f1_weighted): 0.5596
+- Test Accuracy: 0.4821
+- Test F1-Weighted: 0.4881
+- Test F1-Macro: 0.4126
+- Best CV Score (dropout_recall): 0.6309
 
 SVM-SPECIFIC INSIGHTS:
 ---------------------
 - Kernel type: rbf
 - Regularization parameter (C): 0.1
 - Gamma parameter: scale
-- Total support vectors: 19,327
-- Support vector percentage: 87.1%
-- Class balancing: Applied
+- Total support vectors: 20,569
+- Support vector percentage: 92.7%
+- Class balancing: Not applied
 
 SUPPORT VECTORS BY CLASS:
 ------------------------
-Class 0: 4,196 support vectors
-Class 1: 5,486 support vectors
-Class 2: 9,645 support vectors
+Class 0: 4,008 support vectors
+Class 1: 5,601 support vectors
+Class 2: 10,960 support vectors
 
 
 FEATURE IMPORTANCE:
@@ -84,6 +88,7 @@ FILES SAVED:
 - Metrics: ../Data\model_metrics\metrics\svm_optimized_metrics.json
 - Classification Report: ../Data\model_metrics\reports\svm_optimized_classification_report.json
 - Confusion Matrix: ../Data\model_metrics\metrics\svm_optimized_confusion_matrix.json
+- Coefficients: ../Data\model_metrics\metrics\svm_optimized_coefficients.json
 - Usage Instructions: This file
 
 PREPROCESSING PIPELINE:
@@ -97,8 +102,8 @@ NOTES:
 - This model was optimized using GridSearchCV
 - Total combinations tested: 24
 - Cross-validation: 5-fold
-- Optimization runtime: 75.1 minutes
-- Primary scoring metric: f1_weighted
+- Optimization runtime: 80.4 minutes
+- Primary scoring metric: dropout_recall
 - Class imbalance ratio: 2.91:1
 
 ⚠️  CRITICAL SVM REQUIREMENTS:

@@ -21,34 +21,41 @@ model = joblib.load('../Data\model_metrics\models\random_forest_optimized.pkl')
 # Ensure your new data has the same features as training data
 predictions = model.predict(X_new)
 prediction_probabilities = model.predict_proba(X_new)
+
+# Get feature importance
+feature_importance = model.feature_importances_
 ```
 
 BEST HYPERPARAMETERS:
 -------------------
 {
-  "bootstrap": true,
-  "class_weight": "balanced",
+  "bootstrap": false,
+  "class_weight": {
+    "0": 2.0939343875383525,
+    "1": 1.312270737190865,
+    "2": 0.48051561188290415
+  },
   "max_depth": 10,
   "max_features": "sqrt",
   "min_samples_leaf": 10,
   "min_samples_split": 2,
-  "n_estimators": 200
+  "n_estimators": 100
 }
 
 PERFORMANCE METRICS:
 ------------------
-- Test Accuracy: 0.5625
-- Test F1-Weighted: 0.5587
-- Test F1-Macro: 0.4728
-- Best CV Score (f1_weighted): 0.5603
+- Test Accuracy: 0.4994
+- Test F1-Weighted: 0.5064
+- Test F1-Macro: 0.4290
+- Best CV Score (dropout_recall): 0.5896
 
 TOP 5 IMPORTANT FEATURES:
 -----------------------
-1. excellent_Score: 0.2557
-2. student_engagementt: 0.2509
-3. active_in_VLE: 0.1421
-4. imd_band_ord: 0.1090
-5. highest_education_ord: 0.0826
+1. excellent_Score: 0.3215
+2. student_engagementt: 0.1863
+3. active_in_VLE: 0.1503
+4. imd_band_ord: 0.1075
+5. highest_education_ord: 0.0828
 
 
 FILES SAVED:
@@ -56,13 +63,15 @@ FILES SAVED:
 - Model: ../Data\model_metrics\models\random_forest_optimized.pkl
 - Metrics: ../Data\model_metrics\metrics\random_forest_optimized_metrics.json
 - Classification Report: ../Data\model_metrics\reports\random_forest_optimized_classification_report.json
-- Feature Importance: ../Data\model_metrics\metrics\random_forest_optimized_feature_importance.csv
+- Confusion Matrix: ../Data\model_metrics\metrics\random_forest_optimized_confusion_matrix.json
+- Coefficients: ../Data\model_metrics\metrics\random_forest_optimized_coefficients.json
 - Usage Instructions: This file
 
 NOTES:
 -----
 - This model was optimized using GridSearchCV
 - Total combinations tested: 5120
-- Cross-validation: 3-fold
-- Optimization runtime: 117.4 minutes
-- Primary scoring metric: f1_weighted
+- Cross-validation: 5-fold
+- Optimization runtime: 187.6 minutes
+- Primary scoring metric: dropout_recall
+- Model type: Random Forest (ensemble of decision trees)

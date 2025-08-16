@@ -2,9 +2,8 @@
   "model_info": {
     "model_name": "K-Nearest Neighbors Classifier",
     "optimization_method": "GridSearchCV",
-    "primary_scoring_metric": "f1_weighted",
-    "total_runtime_minutes": 23.0,
-    "feature_scaling": "StandardScaler applied"
+    "primary_scoring_metric": "dropout_recall",
+    "total_runtime_minutes": 95.94
   },
   "dataset_info": {
     "training_samples": 22180,
@@ -19,101 +18,107 @@
   },
   "hyperparameters": {
     "best_params": {
-      "algorithm": "auto",
-      "metric": "euclidean",
-      "n_neighbors": 21,
+      "algorithm": "ball_tree",
+      "metric": "manhattan",
+      "n_neighbors": 3,
       "p": 1,
       "weights": "uniform"
     },
-    "total_combinations_tested": 242,
+    "total_combinations_tested": 480,
     "cv_folds": 5
   },
   "cross_validation_results": {
-    "best_cv_score": 0.5453400812299761,
+    "best_cv_score": 0.31272164799180235,
     "cv_scores_by_metric": {
       "accuracy": {
-        "mean": 0.5860234445446347,
-        "std": 0.0042043438149232705
+        "mean": 0.5090622182146078,
+        "std": 0.009883328491272325
       },
       "f1_weighted": {
-        "mean": 0.5453400812299761,
-        "std": 0.004683615348201467
+        "mean": 0.5074469653807375,
+        "std": 0.008646709659225966
       },
       "f1_macro": {
-        "mean": 0.43745565839336764,
-        "std": 0.006065121862641377
+        "mean": 0.42267522916633,
+        "std": 0.009259894119430873
       },
       "precision_weighted": {
-        "mean": 0.5360043893181581,
-        "std": 0.005858181764527154
+        "mean": 0.5101270044457185,
+        "std": 0.007599388028017595
       },
       "recall_weighted": {
-        "mean": 0.5860234445446347,
-        "std": 0.0042043438149232705
+        "mean": 0.5090622182146078,
+        "std": 0.009883328491272325
+      },
+      "precision_macro": {
+        "mean": 0.4271311390538094,
+        "std": 0.009560572427995519
+      },
+      "recall_macro": {
+        "mean": 0.4243038794353554,
+        "std": 0.009058698196889302
+      },
+      "dropout_recall": {
+        "mean": 0.31272164799180235,
+        "std": 0.009601873392602416
+      },
+      "dropout_precision": {
+        "mean": 0.2522544655305386,
+        "std": 0.011796576864782159
+      },
+      "at_risk_recall": {
+        "mean": 0.2951600536267449,
+        "std": 0.008009876563793001
       }
     }
   },
   "test_set_performance": {
-    "accuracy": 0.5841298467087466,
-    "f1_weighted": 0.5444616168076554,
-    "f1_macro": 0.4369755046331039
+    "accuracy": 0.5078449053201082,
+    "f1_weighted": 0.5051451791370637,
+    "f1_macro": 0.4194749694749695
   },
-  "knn_specific_analysis": {
-    "distance_metrics_performance": {
-      "euclidean": {
-        "mean_score": 0.529576743889287,
-        "std_score": 0.011919400156384707
+  "feature_importance_analysis": {
+    "top_10_features": [
+      {
+        "feature": "student_engagementt",
+        "importance": 0.6346881980968229
       },
-      "manhattan": {
-        "mean_score": 0.5282880976885076,
-        "std_score": 0.011758747587086301
+      {
+        "feature": "excellent_Score",
+        "importance": 0.5838693399541074
       },
-      "minkowski": {
-        "mean_score": 0.5289324207888972,
-        "std_score": 0.011856866142033977
+      {
+        "feature": "imd_band_ord",
+        "importance": 0.4708903169634756
+      },
+      {
+        "feature": "active_in_VLE",
+        "importance": 0.28543907542008523
+      },
+      {
+        "feature": "highest_education_ord",
+        "importance": 0.146114023002629
+      },
+      {
+        "feature": "age_band_ord",
+        "importance": 0.050425973199877495
+      },
+      {
+        "feature": "disability_binary",
+        "importance": 0.03256469533157899
+      },
+      {
+        "feature": "region_South Region",
+        "importance": 0.018111683276367294
+      },
+      {
+        "feature": "region_Scotland",
+        "importance": 0.016909879258209075
+      },
+      {
+        "feature": "region_North Western Region",
+        "importance": 0.01497739245274625
       }
-    },
-    "k_values_performance": {
-      "3": {
-        "mean_score": 0.5041201029100995,
-        "std_score": 0.0027748342903354027
-      },
-      "5": {
-        "mean_score": 0.516308220763867,
-        "std_score": 0.005301605558368003
-      },
-      "7": {
-        "mean_score": 0.5278862198059685,
-        "std_score": 0.005725037813730609
-      },
-      "9": {
-        "mean_score": 0.5318929731471503,
-        "std_score": 0.006803917411873255
-      },
-      "11": {
-        "mean_score": 0.5343182069809788,
-        "std_score": 0.007311473741391918
-      },
-      "13": {
-        "mean_score": 0.5339385240480282,
-        "std_score": 0.0066567173793438345
-      },
-      "15": {
-        "mean_score": 0.5339468177787772,
-        "std_score": 0.006490217303783365
-      },
-      "17": {
-        "mean_score": 0.5353195445682122,
-        "std_score": 0.006886915428351432
-      },
-      "19": {
-        "mean_score": 0.5355783938739723,
-        "std_score": 0.007144144773421754
-      },
-      "21": {
-        "mean_score": 0.5360152040119189,
-        "std_score": 0.007307036897506696
-      }
-    }
+    ]
   }
 }
