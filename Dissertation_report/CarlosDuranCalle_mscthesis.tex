@@ -344,15 +344,14 @@ Earlier studies that used OULAD data, such as those by Tomasevic et al. \cite{to
 \section{Significance and Contributions}
 The importance of this project extends beyond academic curiosity; it has practical implications for educators, administrators, and policymakers. By accurately predicting student dropout, institutions can implement timely interventions, tailor support services, and improve course designs, ultimately leading to higher retention rates and better educational outcomes \cite{kahu_student_engagement_2013}. Additionally, the insights gained from this research will benefit data scientists and educational technologists by providing a framework for developing predictive tools that can be applied across various educational contexts.
 
-This project builds on existing literature that has explored student engagement and dropout prediction using machine learning techniques \cite{tomasevic_comparison_supervised_data_2020, hussain_student_engagement_prediction_2018}. However, it seeks to fill a critical gap by integrating demographic variables and engagement metrics into a comprehensive predictive model. The selected approach is significant as it not only addresses the immediate problem of dropout prediction but also contributes to the broader discourse on enhancing student engagement in online learning environments.
+This project builds on existing literature that has explored student engagement and dropout prediction using machine learning techniques \cite{tomasevic_comparison_supervised_data_2020, hussain_student_engagement_prediction_2018}. However, it seeks to fill a critical gap by integrating demographic variables and engagement metrics into a comprehensive predictive model. The selected approach is significant as it not only addresses the immediate problem of dropout prediction but also contributes to the broader discourse on enhancing student engagement in VLEs.
 
 \section{Challenges}
 Central challenges in this endeavour include ensuring the accuracy and reliability of the predictive models, addressing potential biases in the data, and effectively measuring student engagement at various stages of the learning process. These challenges are significant as they directly impact the validity of the predictions and the effectiveness of subsequent interventions. By tackling these issues, this project aims to provide valuable insights that can inform future research and practice in the field of online education.
 
 \paragraph{}
 %\noindent
-In summary, this project focuses on performing and comparing six machine learning models to identify the best-performing model for detecting students who have withdrawn from online courses. By emphasizing recall for the 'Withdrawn' class and incorporating engagement and socio-economic factors, the study aims to provide actionable insights that support timely interventions and improve student retention in virtual learning environments.
- 
+In summary, this project focuses on performing and comparing six machine learning models to identify the best-performing model for detecting students who have withdrawn from online courses. By emphasizing recall for the 'Withdrawn' class and incorporating engagement and socio-economic factors, the study aims to provide actionable insights that support timely interventions and improve student retention in virtual learning environments. 
 %The chapter should conclude with a concise bullet point list that 
 %summarises the aims, objectives, {\bf and achievements}\/ of your work. 
 
@@ -361,49 +360,102 @@ In summary, this project focuses on performing and comparing six machine learnin
 \chapter{Technical Background}
 \label{chap:background}
 
-{\bf A compulsory chapter, roughly 20\% of the total page-count}
+%{\bf A compulsory chapter, roughly 20\% of the total page-count}
 \vspace{1cm} 
 
 \noindent
-This chapter is intended to describe the technical basis on which execution
-of the project depends.  The goal is to provide a detailed explanation of
-the specific problem at hand, and existing work that is relevant such as an
-existing algorithm that you use, alternative solutions proposed, supporting
-technologies, and relevant literature. The literature you include should cover 
-appropriate peer-reviewed academic publications and books, and maybe also 
-news and current-affairs articles published in reputable sources such as 
-{\em The Economist} magazine or {\em The Financial Times} newspaper. 
+This chapter contains the technical background for the comparison of machine learning models in terms of student dropout predictions. It offers critical concepts, such as educational data mining, the class imbalance problem, and the conceptual principles that underlie classic algorithms, such as ensemble methods, linear classifiers, and neural networks. The chapter ends with brief discussions about important model evaluation and feature engineering methods.
 
-Your thesis should include complete set of references/bibliography: everything that you cite should be in there, in full. This means including the publisher's name for anything that is a book; the editors and title of books that a paper appears in as one item in a larger collection (e.g. proceedings volumes and/or thematic edited collections) and the relevant page-numbers; and so on. Put most simply, we require and expect your references to look like the references in a published peer-reviewed academic paper, so you can work out whether you still have work to do by comparing your references to the reference-list on the publications that you're working from. 
+\section{Educational Data Mining in VLEs}
+Educational Data Mining in VLEs explores the wealth of behavioural data produced by students (ie, clickstream patterns and resource access statistics) for the purpose of gaining knowledge on how they learn \cite{romero_data_2013}. Browsing and resource navigation behaviour have been shown to be strong predictors of academic performance, such as course completion \cite{gasevic_learning_2016}. Combining this behavioural data with a learners' demographics and assessment results substantially enhances prediction accuracy of dropout models \cite{viberg_current_2018}.
 
-Note there is a subtle difference from
-this and a full-blown literature {\em survey}.  The latter might try
-to capture and organise (e.g., categorise somehow) {\em all}\/ related work,
-potentially offering meta-analysis, whereas here the goal is simply to
-ensure that your thesis is self-contained.  Put another way, after reading 
-this chapter an intelligent non-expert reader with no prior knowledge of your project should have obtained enough background to 
-understand what {\em you}\/ have done (by reading subsequent sections), and then 
-accurately assess your work.  You might view an additional goal as giving 
-the reader confidence that you are able to absorb, understand and clearly 
-communicate highly technical material.
+The temporal nature of this data is important. Early warning signs of at-risk students can be well-predicted from early-stage behaviour patterns \cite{conijn_predicting_2017}. The high-frequency of VLE data streams on the other hand requires advanced preprocessing to deal with missing values, irregular sampling intervals, and varying engagement patterns across different student populations \cite{sclater_learning_2016}. In addition, integrating VLE interaction data with socio-economic features improves model stability and classification performance, and paves the way for a more systematic feature engineering in educational prediction systems \cite{hlosta_modellingVLE_2018}.
 
-Just as there is no single ideal structure for an MSc thesis, there is no one correct name for this chapter. You could just call it {\em Background}\/ if you wish, or {\em Technical Background}. Or if you feel you have a lot to say you could split this chapter into two: you might have your first three chapters being:
-\begin{enumerate}
-\item Introduction
-\item Context
-\item Related Work
-\end{enumerate}
-\noindent
-But if you prefer to use a more concise structure, you could instead use:
-\begin{enumerate}
-\item Introduction: Contextual Background
-\item Technical Background
-\end{enumerate}
-\noindent
-The choice is yours. 
+\section{Multi-Class Classification}
+In education, multi-class classification is complicated since the standard binary techniques are not effective in modelling the interactions among various performance levels, which leads to specialized algorithms \cite{fernandez_learning_2018}. Model collection is in turn influencing the ordinal nature of effects (e.g., from “Pass to Fail”) might need attentive attention at some stage in model training \cite{liu_exploratory_2009}. Standard decomposition methods may bias such type of ordered data, which validate why it is useful to apply native multi-class algorithms in order to predict student performances accurately \cite{krawczyk_learning_2016}.
+
+Class imbalance is a critical challenge in educational data, as traditional accuracy metrics can be misleading by failing to reflect poor performance on key minority classes, such as "Withdrawn" students \cite{haixiang_learning_2017}. Proper evaluation of these models requires specialized metrics, such as class-specific recall and macro-averaged F1 scores, to ensure a balanced assessment \cite{luque_impact_2019}. Advanced techniques, including strategic oversampling combined with ensemble methods, have been shown to significantly improve the identification of these at-risk students \cite{galar_review_2012}.
+
+\section{Multi-Class Evaluation Metrics}
+The class-specific performance metrics can offer valuable insights on how a model performs and work well for imbalanced data. Among these, precision and recall are core indicators for assessment of classification effectiveness. For a given class $i$, precision is defined as the ratio of true positive predictions to all positive predictions, as shown in Equation 2.1. This concept is introduced in \cite{sokolova_classification_tasks_2009}.
+\begin{equation}
+	\text{Precision}_{i} = \frac{TP_{i}}{TP_{i} + FP_{i}}
+	\tag{2.1}
+\end{equation}
+\begin{center}
+	where $TP_{i}$ represents true positives and $FP_{i}$ represents false positives for class $i$.
+\end{center}
+
+On the other hand, recall is defined as the ratio of the actual positive instances that are classified as positive which is given in Equation 2.2 \cite{sokolova_classification_tasks_2009}. In educational applications, recall for the "Withdrawn" class is especially important as it measures the model's capacity to detect students who need early support, while having high recall rates ensures that such at-risk students are not missed out even with elevated false positive rates \cite{grandini_metrics_2020}.
+\begin{equation}
+	\text{Recall}_{i} = \frac{TP_{i}}{TP_{i} + FN_{i}}
+	\tag{2.2}
+\end{equation}
+\begin{center}
+	where $TP_{i}$ represents true positives and $FN_{i}$ denotes false negatives for class $i$.
+\end{center}
+
+Weighted metrics compensate for the class imbalance by incorporating the relative frequency of each class contributing to the overall performance measure and deliver a model effectiveness evaluation that is more representative of how well it generalizes to all categories \cite{jeni_facing_2013}. Weighted recall is calculated according to the Equation 2.3 \cite{tantisripreecha_novel_2022}.
+\begin{equation}
+	\text{Weighted Recall} = \sum_{i} w_{i} \times \text{Recall}_{i}
+	\tag{2.3}
+\end{equation}
+\begin{center}
+	where $w_{i}$ is the weight for class $i$, usually based on its frequency in the dataset.
+\end{center}
+
+Weighted F1-score is the harmonic mean of precision and recall for each class $i$ \cite{tantisripreecha_novel_2022} \cite{opitz_closer_2024} as in the Equation 2.4. These balanced metrics allow us to measure the performance level for all categories of evaluation indicators while still being sensitive to the practical important of minority class detection in the educational intervention systems \cite{krawczyk_learning_2016}.
+\begin{equation}
+	\text{Weighted F1} = \sum_{i} w_{i} \times F1_{i}
+	\tag{2.4}
+\end{equation}
+\begin{center}
+	where $F1_{i} = 2 \times \frac{\text{Precision}_{i} \times \text{Recall}_{i}}{\text{Precision}_{i} + \text{Recall}_{i}}$ 
+	and $w_{i}$ represents the weight assigned to class $i$.
+\end{center}
+
+\section{Strategies for Imbalanced Data}
+Balanced class weight is one of the basic approaches to address the imbalance of the dataset where the importance of each class is adjusted automatically and inversely proportional to the frequency of that class and the mathematical foundation is given as it is written in the Equation 2.5 \cite{akor_hierarchical_2025}.
+\begin{equation}
+	w_{i} = \frac{n_{\text{samples}}}{n_{\text{classes}} \times n_{\text{samples}_{i}}}
+	\tag{2.5}
+\end{equation}
+\begin{center}
+	where $w_{i}$ denotes the weight for class $i$, $n_{\text{samples}}$ represents the total number of samples, 
+	$n_{\text{classes}}$ indicates the number of classes, and $n_{\text{samples}_{i}}$ represents the number of samples in class $i$.
+\end{center}
+
+Customized scoring metrics deepen this approach by considering domain-specific preferences, by dropout-specific optimization forcing the maximization of the recall for withdrawal detection via biasing the learning criterion in favour of at-risk students and focusing less on false negatives \cite{orooji_predicting_2019}.
+
+Early warning signs do exist to prevent high-risk youngsters and to intervene early. In the context of dropout prediction, the imbalance class is the minority dropout class, which results in heavy emphasize on recall to detect the dropout students for timely intervention \cite{lee_machine_2019}. Unbalanced-learning techniques (e.g., resampling or class weighting) generally improve recall for the rare class (dropout) at the expense of precision \cite{orooji_predicting_2019}, which is the same precision-recall trade-off this work aims to find the best level of.
+
+In the area of dropout early-detection, balancing the class distribution among minority and majority instances should be considered desirably by using class weights, which disadvantage the majority and advantage the minority class, e.g., the weight of the minority class being higher than $1$ and the weight of the majority class being equal to $1$ is common \cite{hlosta_ouroboros_2017}. More recent losses, e.g., the Class-Balanced Loss, have tried to provide a more principled re-weighting beyond naïve inverses only when classes are long-tailed \cite{cui_class-balanced_2019}. For the current study it is beneficial as we would like to investigate alternative to ad-hoc multipliers, used for balanced weighting, like x$1.2$ for the minority class “Withdrawn” and x$0.8$ for the majority class “Pass”. The multipliers are domain specific choices of the experimentations: there is one setting that uses no multipliers (balanced weighting), and one that applies the multipliers. Lastly, note that overall accuracy may be deceptive of imbalanced data, as Precision and Recall can better assess minority-class detection quality \cite{saito_precision-recall_2015}.
+
+\section{ML Algorithms for SDP}
+Ensemble learning exploits multiple models to reduce variance and improve generalization; in Random Forests, bootstrap aggregation (bagging) draws resamples of the training set and averages randomized decision trees, providing robustness and out‑of‑bag error estimation \cite{breiman_bagging_1996} \cite{breiman_rf_2001}. Feature importance in RF is commonly derived from impurity decreases or permutation‑based accuracy drops, enabling screening of influential predictors in heterogeneous educational data \cite{breiman_rf_2001}. Gradient‑boosting frameworks fit weak learners sequentially under an additive model to minimize a differentiable loss, while LightGBM accelerates this process using histogram‑based splits, leaf‑wise growth, and gradient‑based one‑side sampling for scalability on high‑dimensional, large cohorts \cite{friedman_gbm_2001} \cite{ke_lightgbm_2017}. Logistic Regression models the log‑odds of class membership and estimates coefficients by maximum likelihood, yielding interpretable effects as odds ratios and supporting regularization for stability when features are correlated \cite{cox_regression_1958} \cite{nelder_generalized_1972}. Support Vector Machines maximize the geometric margin via convex quadratic programming and use kernel mappings to induce flexible non‑linear decision boundaries while controlling capacity through the margin and kernel parameters \cite{cortes_svm_1995}. 
+
+Instance‑based learning with K‑Nearest Neighbors classifies by a majority (plurality) vote among the K closest samples, so decision boundaries are local and sensitive to the choice of distance metric and K, with common metrics including Euclidean, Manhattan, and Mahalanobis distances \cite{cover_nearest_1967} \cite{aha_instance-based_1991}. Multi‑layer perceptrons compose affine transformations with non‑linear activations and are trained end‑to‑end by backpropagation to minimize a supervised loss, with universal approximation guaranteeing expressive capacity under sufficient width or depth \cite{rumelhart_learning_1986} \cite{hornik_multilayer_1989}. These foundations motivate comparing Random Forests, LightGBM, Logistic Regression, SVMs, KNN, and MLPs for dropout prediction, balancing interpretability, non‑linear modeling power, and computational efficiency under class imbalance typical of at‑risk cohorts \cite{krawczyk_learning_2016}.
+
+\section{Model Evaluation and Comparison Methodologies}
+Performance was estimated with stratified 5‑fold cross‑validation \cite{kohavi_study_1995} on the training split to preserve class proportions and reduce variance in imbalanced data, with a fixed stratified train–test split reused for all models to ensure comparability \cite{luque_impact_2019}. Hyperparameter search was executed within cross‑validation (GridSearchCV) and final metrics were computed once on the untouched test split to limit selection bias \cite{varma_bias_2006}. All models were evaluated on identical folds and scoring rules to enable fair, paired comparisons across the pipeline \cite{demsar_statistical_2006}. Hyperparameters were optimized via exhaustive GridSearchCV with five folds, parallel execution, dropout‑recall as the objective, and class‑weighting to emphasize minority cases \cite{kohavi_study_1995} \cite{krawczyk_learning_2016}.
+
+Regularisation and early stopping are treated as crucial mechanisms to curb over‑fitting and stabilise learning dynamics \cite{prechelt_early_2012}. In LR, the strength of regularisation is controlled by the inverse‑penalty parameter $C$, with $L1/L2$ penalties shaping sparsity and shrinkage behaviour \cite{ng_feature_2004}. For SVM, the soft‑margin constant $C$ and kernel scale gamma are tuned to balance margin violations and function smoothness \cite{cortes_svm_1995}. In decision trees and ensemble methods, maximum depth and the number of estimators are adjusted to limit variance and improve robustness \cite{breiman_rf_2001}. In gradient boosting, the learning rate and number of boosting rounds jointly govern additive model capacity and error reduction \cite{friedman_gbm_2001}. For KNN, the neighbourhood size $k$ and the choice of distance metric determine locality and boundary smoothness \cite{cover_nearest_1967}. In multilayer perceptrons, hidden‑layer size and weight decay are set under backpropagation to control capacity and enhance generalisation \cite{krogh_simple_1991}. 
 
 
-The key thing is that by the end of these first two or three chapters you have told the reader everything they need to know so that they can understand the rest of your thesis. This is particularly important because at least one of the people who actually examines your thesis will be a UoB academic, one of our lecturers or professors, who you can assume knows almost nothing about the specifics of what work you have done, and who is given a copy of your thesis to mark. So what you write has to adequately explain things to that examiner. You can safely assume that whoever examines your thesis is numerate, intelligent, understands programming and data analytics etc, but you cannot safely assume that their specific individual expertise is a perfect match to the topic of your thesis (it's in that sense that the examiner is a {\em non-expert}). So, the person you write for, your {\em audience}, should be that undefined group of academics who might possibly examine your thesis: if you write for that audience and do a good job, your thesis should be understandable by a wide range of people, including potential employers and colleagues in the world of work.
+
+
+
+
+%\noindent
+%But if you prefer to use a more concise structure, you could instead use:
+%\begin{enumerate}
+%\item Introduction: Contextual Background
+%\item Technical Background
+%\end{enumerate}
+%\noindent
+
+
+%The key thing is that by the end of these first two or three chapters you have told the reader everything they need to know so that they can understand the rest of your thesis. This is particularly important because at least one of the people who actually examines your thesis will be a UoB academic, one of our lecturers or professors, who you can assume knows almost nothing about the specifics of what work you have done, and who is given a copy of your thesis to mark. So what you write has to adequately explain things to that examiner. You can safely assume that whoever examines your thesis is numerate, intelligent, understands programming and data analytics etc, but you cannot safely assume that their specific individual expertise is a perfect match to the topic of your thesis (it's in that sense that the examiner is a {\em non-expert}). So, the person you write for, your {\em audience}, should be that undefined group of academics who might possibly examine your thesis: if you write for that audience and do a good job, your thesis should be understandable by a wide range of people, including potential employers and colleagues in the world of work.
 
 % -----------------------------------------------------------------------------
 
