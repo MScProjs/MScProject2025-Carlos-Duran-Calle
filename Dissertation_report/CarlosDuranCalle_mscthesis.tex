@@ -233,16 +233,17 @@ dissertation''); an example is as follows:
 \begin{tabular}{lcl}
 SDP                 &:     & Student Dropout Predictor	\\
 MOOCs               &:     & Massive Open Online Courses	\\
-VLEs                &:     & Virtual Learning Environments	\\
+VLE                 &:     & Virtual Learning Environments	\\
 OULAD               &:     & Open University Learning Analytics Dataset	\\
+OU                  &:     & Open University	\\
 ML                  &:     & Machine Learning	\\
 RF                  &:     & Random Forest	\\
 LG                  &:     & Logistic Regression	\\
 LightGBM            &:     & Light Gradient-Boosting Machine	\\
-NNs                 &:     & Neural Networks	\\
+NN                  &:     & Neural Networks	\\
 SE                  &:     & Student Engagement	\\
-KNN                 &:     & K-Nearest Neighbors	\\
-KNN                 &:     & K-Nearest Neighbors	\\
+IMD                 &:     & Index of Multiple Deprivation	\\
+TMA                 &:     & Tutor Marked Assessment	\\
 KNN                 &:     & K-Nearest Neighbors	\\
 KNN                 &:     & K-Nearest Neighbors	\\
 KNN                 &:     & K-Nearest Neighbors	\\
@@ -297,41 +298,22 @@ Dave Cliff writes here to say huge thanks to his colleague Dr Dan Page for shari
 
 % putting a \noindent before the first para in each chapter looks nicer.
 \noindent
-%This chapter should describe the project context, and motivate each of
-%the proposed aims and objectives.  Ideally, it is written at a fairly 
-%high-level, and easily understood by a reader who is technically 
-%competent but not an expert in the topic itself.
-%
-%In short, the goal is to answer three questions for the reader.  First, 
-%what is the project topic, or problem being investigated?  Second, why 
-%is the topic important, or rather why should the reader care about it?  
-%For example, why there is a need for this project, who will benefit from the 
-%project and in what way (e.g., clients/end-users who needed some analysis
-%done, or other data scientists who might need the tools you have developed), what 
-%work does the project build on and why is the selected approach either
-%important and/or interesting (e.g., fills a gap in literature, applies
-%results from another field to a new problem).  Finally, what are the 
-%central challenges involved and why are they significant? 
-The rise of online learning environments, such as Massive Open Online Courses (MOOCs) and Virtual Learning Environments (VLEs), has transformed the educational landscape, providing unprecedented access to education for diverse populations \cite{maiz_olazabalaga_research_2016}. However, despite these advancements, a significant challenge persists: a high dropout rate among students. Research indicates that approximately $78\%$ of students enrolled in online courses do not complete their studies, primarily due to a lack of face-to-face interaction \cite{simpson_can_we_do_better}. Another study states that the main reason for withdrawal from VLEs is the lack of student engagement, followed by the inability to locate materials or activities for assessments \cite{kuzilek_ou_2015}. Therefore, student engagement is a key area of research, as low engagement negatively impacts final grades, knowledge retention, and dropout rates \cite{staikopoulos_SE_2015}. In VLEs, the more students engage in meaningful activities, the higher the probability that they will enjoy the course, perform well, and complete it \cite{jung_learning_2018}.
+Education is now more widely accessible thanks to online learning.  However, high attrition has continued.  The median completion rate for massive open online courses (MOOCs) is close to $12.6\%$, which has frequently remained low \cite{jordan_massive_2015}.  Large-scale attrition has also been documented in open-university environments.  A study from the Open University (UK) indicates that course-level dropout rates can reach as high as $78\%$ \cite{simpson_can_we_do_better}.  These numbers have inspired timely assistance and predictive systems.
 
-This project aims to address the problem by applying machine learning (ML) models, comparing them, and selecting the best one as part of the Student Dropout Predictor (SDP). For this purpose, data from the Open University Learning Analytics Dataset (OULAD) is used \cite{kuzilek_OULAD_2017}. The Open University, the largest in the UK, offers over a thousand online courses and provides full online degree programs \cite{hlosta_modellingVLE_2018}.
+The Open University Learning Analytics Dataset (OULAD) is a popular public dataset for learning analytics research that was made available by the Open University (OU).  Data from $32,593$ registered students and 22 module presentations are included in OULAD. These data include demographics, assessments, and daily click-log summaries from the Virtual Learning Environment (VLE) \cite{kuzilek_OULAD_2017}.  Due to its size and documentation, it is now considered the de facto standard for feature engineering and early-warning models in distance learning \cite{kuzilek_OULAD_2017}.  To check, Hussain et al. \cite{hussain_student_engagement_prediction_2018} found that engagement signals are consistently predictive of outcomes across platforms.  Building on this evidence, the current work uses OULAD to predict engagement-aware early intervention in the OU context.
 
-This alarming statistic underscores the urgent need to develop effective strategies for early prediction and mitigation of student dropout, enabling timely support that can help learners stay engaged and successfully complete their courses.
+Machine learning (ML) provides a potential solution to this problem. With ML algorithms, large amounts of student data can be analysed to recognize patterns that may be overlooked by human observers \cite{holland_ML_1992}. Through analysing data on student behaviours within the VLE, like clicking behaviour, submission of assessment and accessing resources, these algorithms have the capacity to predict which students are most at risk of early exit \cite{baker_educational_2014}. This predictive ability changes dropout prevention from reactionary to predictive.
 
-\section{ML Models for Predictions}
-ML, a part of artificial intelligence, allows computer programs to automatically find complex patterns in features taken from existing data. This helps in making smart decisions about new data \cite{holland_ML_1992}. ML algorithms are trained on sample data and later evaluated with unseen data \cite{kotsiantis_2004}. This type of ML, where the algorithm learns a mapping function from input variables (features) to an output variable (label) using labelled training data, is known as Supervised Learning \cite{murphy_ml_2012}. ML algorithms can provide instructors with real-time insights about students, enabling early interventions during the course \cite{kai_2017}. ML is widely applied to develop predictive models from student data, handling both numerical and categorical variables to effectively model student behaviours and outcomes \cite{baker_educational_2014}. 
+\section{Problem Statement}
+The prediction task is structured as a three-class classification: Pass, Fail, and Withdrawn.  This framing supports targeted responses (e.g., academic support for likely fail; re-engagement for likely withdrawn) and reflects OULAD's $final\_result$ taxonomy.  This outcome schema and its connection to registration and assessment tables are described in detail in the OULAD documentation \cite{kuzilek_OULAD_2017}. 
 
-This project conducts a comparative evaluation of six ML models: Random Forest (RF), Logistic Regression (LR), K-Nearest Neighbors (KNN), LightGBM, Support Vector Machine (SVM), and Neural Networks (NNs). Each model is assessed on its ability to classify student outcomes into the discrete labels ‘Withdrawn’ (0), ‘Fail’ (1), or ‘Pass’ (2), with particular emphasis on accurately identifying the ‘Withdrawn’ class. For example, RF is known for its robustness and ability to handle large datasets with high dimensionality \cite{breiman_rf_2001}, while LightGBM is optimized for speed and efficiency, making it suitable for large-scale applications \cite{friedman_gbm_2001}. LR offers interpretable results \cite{harrell_LR_2015}, KNN captures local data patterns, SVM performs well in high-dimensional spaces \cite{cortes_svm_1995}, and NNs can model complex relationships \cite{lecun_nn_gradient-applied_1998}. Supervised learning algorithms can be divided into classifiers and regressors, where the previously ML models mentioned, when used as classifiers, serve to predict discrete class labels \cite{geron_oreilly_2019}.
+There is a noticeable disparity in class.  The Withdrawn class made up $19.1\%$ of the records in the project's processed dataset, making it the minority class for the three-way target. The other classes had $55.5\%$ Pass and $25.4\%$ Fail.  In line with earlier findings that OULAD results are unequally distributed across Pass/Fail/Withdrawn categories, this imbalance makes model training and evaluation more difficult, particularly for recall on the minority class \cite{le_quy_survey_2022}.
 
-The primary evaluation metric will be recall for the 'Withdrawn' class (0), as this reflects the model’s ability to correctly identify students who have dropped out. Maximizing recall for this minority class is critical to ensure timely support and intervention. Given the imbalanced nature of the classification problem, focusing on dropout recall helps prevent overlooking students who need immediate assistance \cite{sokolova_classification_tasks_2009}. The comparative analysis aims to identify which model achieves the highest recall for the 'Withdrawn' class, thereby determining the most effective approach for dropout detection.
+Early detection is also necessary.  Delivering interventions before disengagement solidifies has a greater impact.  The importance of early-phase risk detection in reducing withdrawal has been highlighted by previous work in open online courses \cite{martinez-carrascal_using_2023}.  As a result, the objective is to provide actionable, early warning in addition to final outcome prediction.
 
 \section{Research Objectives}
-Using data from the Open University Learning Analytics Dataset (OULAD), the study will evaluate how well each model detects withdrawal cases, with a focus on maximizing recall for this class. Additionally, the project incorporates a 'Student Engagement' variable \cite{hussain_student_engagement_prediction_2018} and socio-economic factors such as the deprivation index to enrich the analysis of factors influencing student withdrawal.
+According to earlier studies, student engagement is a significant predictor of both academic success and dropout, and engagement proxies that are derived from VLE activity traces have shown especially good results \cite{hussain_student_engagement_prediction_2018}.  Similarly, when examined alongside engagement patterns, sociodemographic factors like age, region, disability, and prior education have been demonstrated to correlate with withdrawal \cite{kuzilek_OULAD_2017}.
 
-Student engagement will be measured as a simple yes/no (binary) variable, following the method described by Mushtaq et al. \cite{hussain_student_engagement_prediction_2018}. This variable will be calculated using information such as scores on course assignments, whether the student passed or failed the course, and how active the student was in the virtual learning environment (VLE).
-
-%\paragraph{}
-\noindent
 The specific objectives of this project are:
 \begin{itemize}
 	\item To incorporate the student engagement feature as a meaningful predictor for the machine learning models.
@@ -339,22 +321,32 @@ The specific objectives of this project are:
 	\item To select a predictive model capable of identifying students likely to withdraw at early stages of their course.
 \end{itemize}
 
-Earlier studies that used OULAD data, such as those by Tomasevic et al. \cite{tomasevic_comparison_supervised_data_2020} and Hussain et al. \cite{hussain_student_engagement_prediction_2018}, have looked at student engagement and predicted student dropout. However, these studies did not fully examine which demographic variables showed stronger connections with dropout. The main reason for this project is to provide useful insights into the importance of demographic variables by improving the student dropout model with the addition of student engagement data. Additionally, this project will include the timing of assessments to help make predictions at an early stage of the course. Adding this analysis aims to offer another way to improve models that predict student dropout. For this project, the prediction results will be grouped into three classes: 'Withdrawal' (0), 'Fail' (1), or 'Pass' (2).
+The accomplishment is meaningful beyond the technical achievement. Accurate identification of dropout can also help institutions to determine the best investment of their support resources, develop more effective interventions and enhance the retention of students \cite{kahu_student_engagement_2013}. For students, that support can be the difference between meeting educational goals and falling among the dropout numbers.
 
-\section{Significance and Contributions}
-The importance of this project extends beyond academic curiosity; it has practical implications for educators, administrators, and policymakers. By accurately predicting student dropout, institutions can implement timely interventions, tailor support services, and improve course designs, ultimately leading to higher retention rates and better educational outcomes \cite{kahu_student_engagement_2013}. Additionally, the insights gained from this research will benefit data scientists and educational technologists by providing a framework for developing predictive tools that can be applied across various educational contexts.
+\section{Machine Learning Approach}
+This project uses and compares six widely used machine learning models with complementary advantages for dropout prediction: Random Forest (RF), an ensemble method known to be robust to high-dimensional data \cite{breiman_rf_2001}; Logistic Regression (LR), to interpret the results for risk factor analysis \cite{harrell_LR_2015}; K-Nearest Neighbors (KNN), to capture local data patterns based on instance-based learning \cite{cover_nearest_1967}; LightGBM, optimized gradient boosting to handle large datasets efficiently \cite{ke_lightgbm_2017}; Support Vector Machine (SVM), capable of dealing with high-dimensional spaces via kernel-based transformations \cite{cortes_svm_1995}; and Neural Networks (NN), to model complex non-linear data relationships \cite{lecun_nn_gradient-applied_1998}.
 
-This project builds on existing literature that has explored student engagement and dropout prediction using machine learning techniques \cite{tomasevic_comparison_supervised_data_2020, hussain_student_engagement_prediction_2018}. However, it seeks to fill a critical gap by integrating demographic variables and engagement metrics into a comprehensive predictive model. The selected approach is significant as it not only addresses the immediate problem of dropout prediction but also contributes to the broader discourse on enhancing student engagement in VLEs.
+Every model will be tuned with respect to hyperparameters by GridSearchCV with 5-fold cross-validation. The main evaluation metric is recall of the "Withdrawn" class, as we attempt to identify all at risk students. This emphasis on minority class recall is paramount as missing out a student that requires assistance has higher stakes than sometimes offering help even if it may not be necessary \cite{sokolova_classification_tasks_2009}.
 
-\section{Challenges}
-Central challenges in this endeavour include ensuring the accuracy and reliability of the predictive models, addressing potential biases in the data, and effectively measuring student engagement at various stages of the learning process. These challenges are significant as they directly impact the validity of the predictions and the effectiveness of subsequent interventions. By tackling these issues, this project aims to provide valuable insights that can inform future research and practice in the field of online education.
+\section{Contributions}
+The present study builds upon existing research with three important advances. First, new engagement features are developed to model students' behaviour before their first attempt at the assessment. The $Student Engagement$ (SE) variable is precipitated with academic status along with VLE logs, similar to the approach of Hussain et al. \cite{hussain_student_engagement_prediction_2018}. It is demonstrated in this study that this composite measure allows better capturing student engagement than single traditional measures.
+
+Second, socio-economic variables, in particular the Index of Multiple Deprivation (IMD), are added to explore to what extent dropout risk is influenced by exogenous factors. As compared with the other OULAD studies of Tomasevic et al. \cite{tomasevic_comparison_supervised_data_2020} and Hussain et al. \cite{hussain_student_engagement_prediction_2018} indicated demography, these relations were not further investigated, in contrast socio-economical aspects came out as some of the strongest drop-out predictors.
+
+Third, it was developed a thorough model comparison framework with a unified evaluation schema. All models are trained on the same data split with data-specific class-weighting (Withdrawn: 2.51, Fail: 1.57, Pass: 0.57) to account for class imbalance, therefore fairly comparable and giving insights into a best approach for deployment.
+
+\section{Challenges and Scope}
+This research is faced with many challenges. Attention to class imbalance is required so that models do not ignore the minority dropout class. These temporal characteristics require careful feature engineering to generate predictions early enough to allow for interventions. In addition, stakeholders need to be able to understand why students are being flagged as at-risk, which necessitates a balance between model complexity and interpretability.
+
+The complete methodology is presented in this dissertation, covering the process from data preparation through model deployment. Chapter 2 provides technical background on educational data mining and machine learning algorithms. Chapter 3 outlines the implementation pipeline and feature engineering approach. Chapter 4 reports the results and model comparisons in detail. Chapter 5 offers a critical evaluation of the findings, and Chapter 6 concludes with practical recommendations and directions for future research.
+
+Through systematic comparison and optimization, Logistic Regression is shown to achieve a $66.84\%$ dropout recall, crossing the $60\%$ threshold while keeping interpretability. Such result provides the educational institution with a useful instrument to identify and support at-risk students, thus contributing to the general objective of successful online education.
 
 \paragraph{}
 %\noindent
 In summary, this project focuses on performing and comparing six machine learning models to identify the best-performing model for detecting students who have withdrawn from online courses. By emphasizing recall for the 'Withdrawn' class and incorporating engagement and socio-economic factors, the study aims to provide actionable insights that support timely interventions and improve student retention in virtual learning environments. 
 %The chapter should conclude with a concise bullet point list that 
 %summarises the aims, objectives, {\bf and achievements}\/ of your work. 
-
 % -----------------------------------------------------------------------------
 
 \chapter{Technical Background}
@@ -364,12 +356,83 @@ In summary, this project focuses on performing and comparing six machine learnin
 \vspace{1cm} 
 
 \noindent
-This chapter contains the technical background for the comparison of machine learning models in terms of student dropout predictions. It offers critical concepts, such as educational data mining, the class imbalance problem, and the conceptual principles that underlie classic algorithms, such as ensemble methods, linear classifiers, and neural networks. The chapter ends with brief discussions about important model evaluation and feature engineering methods.
+This chapter offers a theory based on student dropout prediction in VLEs. Key concepts that comprise educational data mining, multi-class classification problems, and machine learning algorithms are discussed. The discussion is the technical basis for a comparison among dropout prediction models.
 
 \section{Educational Data Mining in VLEs}
 Educational Data Mining in VLEs explores the wealth of behavioural data produced by students (ie, clickstream patterns and resource access statistics) for the purpose of gaining knowledge on how they learn \cite{romero_data_2013}. Browsing and resource navigation behaviour have been shown to be strong predictors of academic performance, such as course completion \cite{gasevic_learning_2016}. Combining this behavioural data with a learners' demographics and assessment results substantially enhances prediction accuracy of dropout models \cite{viberg_current_2018}.
 
 The temporal nature of this data is important. Early warning signs of at-risk students can be well-predicted from early-stage behaviour patterns \cite{conijn_predicting_2017}. The high-frequency of VLE data streams on the other hand requires advanced preprocessing to deal with missing values, irregular sampling intervals, and varying engagement patterns across different student populations \cite{sclater_learning_2016}. In addition, integrating VLE interaction data with socio-economic features improves model stability and classification performance, and paves the way for a more systematic feature engineering in educational prediction systems \cite{hlosta_modellingVLE_2018}.
+
+\section{The OULAD Dataset Architecture}
+OULAD is released as a set of CSV tables that can be joined through surrogate keys, enabling a student‑centric relational view across demographics, registrations, assessments, learning materials, and VLE interactions \cite{kuzilek_OULAD_2017}, the database schema can be appreciated in the Figure~\ref{database_scheme} \cite{nafea_enhancing_2023}. The public release contains $22$ module‑presentations, $32,593$ students, and $10,655,280$ daily click summaries, supporting at‑scale analyses of behaviour and outcomes. All dates are stored as offsets relative to the module‑presentation start, which simplifies time‑window filters such as “before the first assessment”.
+
+\subsection{Table Descriptions}
+Summaries below follow the official data descriptor for OULAD \cite{kuzilek_OULAD_2017}.
+\begin{itemize}
+	\item Demographics and final result per student‑module presentation (e.g., gender, age band, prior education, credits, disability, and $final\_result$).
+	\item Registration and unregistration days for each student in each presentation; empty unregistration implies completion.
+	\item Submission day and score (0–100) for each assessment attempted.
+	\item Per‑assessment metadata: type (TMA/CMA/Exam), cut‑off day, and weight; non‑exam assessments sum to $100$ and exams are treated separately.
+	\item Daily counts of interactions ($sum\_click$) by student with specific learning materials ($id\_site$).
+	\item The catalog of VLE materials with activity type and planned availability windows ($week\_from$, $week\_to$).
+	\item Module and presentation identifiers with presentation length in days.
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/2_1_database_scheme.png}
+	\caption[Database schema of OULAD dataset]{Database schema of OULAD dataset (reproduced from \cite{nafea_enhancing_2023}).}
+	\label{database_scheme}
+\end{figure}
+
+\section{Student Engagement Indicators}
+Simple, interpretable flags were engineered to capture early excellence and activity in ways that align with common early‑warning practices in learning analytics \cite{macfadyen_mining_2010}.
+Mathematical notations are added no understand following equations.
+
+\begin{itemize}
+	\item Let $\mathbf{1}[\cdot]$ be the indicator function (1 if the condition is true, else 0).
+	\item Let the first graded assessment in a presentation be indexed by $a_1$
+	\item Let score $a_1$ be the student’s first‑assessment score (0–100).
+	\item Let $date(a_1)$ be its cut‑off day.
+	\item Let $C_{pre}$ be the student’s total $sum\_click$ with $studentVle.date < date(a_1)$.
+	\item Let $\mu_{pre}$ be the mean of $C_{pre}$ within the same ($code\_module$, $code\_presentation$).
+	\item These columns and date conventions are defined in OULAD.
+\end{itemize}
+
+\subsection{Excellent Score Indicator}
+A binary indicator for early academic excellence was defined as:
+\begin{equation}
+	\text{excellent\_Score} = \mathbf{1}\!\left[ \, \text{score}(a_1) \geq 70 \, \right]
+	\tag{2.1}
+\end{equation}
+According to the Scholaro database, The Open University awards a “Merit” scale when is higher than $70\%$ \cite{open_university_grading}. This threshold marks, where is categorised as distinction mark for OU, clearly high performance while keeping the rule easy to interpret; early assessment performance has been shown to be informative for final outcomes and targeted support.
+
+\subsection{Active in VLE Indicator}
+A binary indicator for above‑average pre‑assessment activity was defined as:
+\begin{equation}
+	\text{active\_in\_VLE} = \mathbf{1}\!\left[ \, C_{\text{pre}} > \mu_{\text{pre}} \, \right]
+	\tag{2.2}
+\end{equation}
+Clicks prior to the first assessment are counted and compared with the cohort’s mean for the same module‑presentation; VLE click behaviours have repeatedly shown predictive value for course performance, including in OULAD‑based studies \cite{liu_predicting_2023}.
+
+\subsection{Student Engagement Indicator}
+A composite engagement flag was defined with a logical OR:
+\begin{equation}
+	\text{student\_engagement} = \mathbf{1}\!\left[ \, \text{excellent\_Score} = 1 \, \lor \, \text{active\_in\_VLE} = 1 \, \right]
+	\tag{2.3}
+\end{equation}
+This rule fires if either early excellence or above‑average activity is observed, a common, conservative design for early‑warning heuristics that favours recall of potentially successful or engaged students \cite{macfadyen_mining_2010}.
+
+\paragraph{Why these signals}
+The pair (grade-based, behaviour-based) captures complementary facets of engagement and aligns with evidence that clickstream engagement and formative performance jointly inform later achievement \cite{baker_benefits_2020}.
+
+\section{Stratification and Encoding}
+\subsection{Cohort‑Outcome Stratification}
+A stratified hold‑out split was performed per cohort so each module–presentation kept its original class mix, and the target values (withdrawn/fail/pass) was included in the strata to preserve outcome prevalence within every cohort. Class‑imbalance concerns motivated stratification to reduce variance and avoid misleading metrics on under‑represented outcomes \cite{he_learning_2009}. The split was executed before any encoding to prevent information leakage from validation/test back into training \cite{kaufman_leakage_2012}. The implementation relied on scikit‑learn splitters with a fixed random state for reproducibility \cite{pedregosa_scikit-learn_2011}. In the project, three alternatives were examined and Strategy 2 (cohort + outcome) was retained due to its better distribution in comparison with the Strategy 1 (cohort); a triple‑key variant Strategy 3 what include “courses per term” was discarded due to tiny cells that break stratified sampling.
+
+\subsection{Feature Encoding}
+Encoding was intentionally minimal and applied only to a selected set of categorical variables that it was found relevant for the SDP: $region$, $highest\_education$, $imd\_band$, $age\_band$, and $disability$; numerical and binary features were left unchanged to keep the signal simple. Nominal fields were one‑hot encoded to avoid imposing order, while ordered bands ($imd\_band$, $age\_band$) were ordinal‑encoded to preserve ranks in a compact form \cite{scikit_encoding}. Encoders were fit only on the training split and then applied to test dataset, with unseen categories mapped safely to an “Unknown” bucket to avoid runtime errors and leakage \cite{scikit_encoding}. The steps were orchestrated with $scikit‑learn$ library and the encoded matrices for the train and test dataset, and labels were persisted for downstream modelling.
+
 
 \section{Multi-Class Classification}
 In education, multi-class classification is complicated since the standard binary techniques are not effective in modelling the interactions among various performance levels, which leads to specialized algorithms \cite{fernandez_learning_2018}. Model collection is in turn influencing the ordinal nature of effects (e.g., from “Pass to Fail”) might need attentive attention at some stage in model training \cite{liu_exploratory_2009}. Standard decomposition methods may bias such type of ordered data, which validate why it is useful to apply native multi-class algorithms in order to predict student performances accurately \cite{krawczyk_learning_2016}.
@@ -441,62 +504,72 @@ Performance was estimated with stratified 5‑fold cross‑validation \cite{koha
 
 Regularisation and early stopping are treated as crucial mechanisms to curb over‑fitting and stabilise learning dynamics \cite{prechelt_early_2012}. In LR, the strength of regularisation is controlled by the inverse‑penalty parameter $C$, with $L1/L2$ penalties shaping sparsity and shrinkage behaviour \cite{ng_feature_2004}. For SVM, the soft‑margin constant $C$ and kernel scale gamma are tuned to balance margin violations and function smoothness \cite{cortes_svm_1995}. In decision trees and ensemble methods, maximum depth and the number of estimators are adjusted to limit variance and improve robustness \cite{breiman_rf_2001}. In gradient boosting, the learning rate and number of boosting rounds jointly govern additive model capacity and error reduction \cite{friedman_gbm_2001}. For KNN, the neighbourhood size $k$ and the choice of distance metric determine locality and boundary smoothness \cite{cover_nearest_1967}. In multilayer perceptrons, hidden‑layer size and weight decay are set under backpropagation to control capacity and enhance generalisation \cite{krogh_simple_1991}. 
 
-
-
-
-
-
-%\noindent
-%But if you prefer to use a more concise structure, you could instead use:
-%\begin{enumerate}
-%\item Introduction: Contextual Background
-%\item Technical Background
-%\end{enumerate}
-%\noindent
-
-
-%The key thing is that by the end of these first two or three chapters you have told the reader everything they need to know so that they can understand the rest of your thesis. This is particularly important because at least one of the people who actually examines your thesis will be a UoB academic, one of our lecturers or professors, who you can assume knows almost nothing about the specifics of what work you have done, and who is given a copy of your thesis to mark. So what you write has to adequately explain things to that examiner. You can safely assume that whoever examines your thesis is numerate, intelligent, understands programming and data analytics etc, but you cannot safely assume that their specific individual expertise is a perfect match to the topic of your thesis (it's in that sense that the examiner is a {\em non-expert}). So, the person you write for, your {\em audience}, should be that undefined group of academics who might possibly examine your thesis: if you write for that audience and do a good job, your thesis should be understandable by a wide range of people, including potential employers and colleagues in the world of work.
-
 % -----------------------------------------------------------------------------
 
-\chapter{Execution}
+\chapter{Methodology and Implementation}
 \label{chap:execution}
 
-{\bf A topic-specific chapter, roughly 30\% of the total page-count}
 \vspace{1cm} 
-
 \noindent
-This chapter is intended to describe what you did: the goal is to explain
-the main activity or activities, of any type, which constituted your work 
-during the project.  The content is highly topic-specific. For some 
-projects it will make sense to split the content into two main sections, or maybe even into two separate chapters: one 
-will discuss the design of something, including any rationale or decisions made, 
-and the other will discuss how this design was realised via some form of 
-implementation.  You could instead give this chapter the title ``Design and Implementation"; or you might split this content into two chapters, one titled ``Design" and the other ``Implementation" .
+This chapter describes the methodical process used to create and assess machine learning models for student dropout prediction, covering everything from data preprocessing to model deployment and validation.
 
-Note that it is common to include evidence of ``best practice'' project 
-management (e.g., use of version control, choice of programming language 
-and so on).  Rather than simply a rote list, make sure any such content 
-is useful and/or informative in some way: for example, if there was a 
-decision to be made then explain the trade-offs and implications 
-involved.
+\section{Overview and Research Design}
+With an emphasis on early intervention capabilities, this study applies a machine learning pipeline intended to forecast the likelihood of student dropout in online learning environments. By creating predictive models that can identify at-risk students before they drop out of their courses, the study tackles the crucial problem of student retention in higher education.
+
+\subsection{Research Methodology Framework}
+The approach uses supervised learning and compares six different machine learning algorithms in a methodical manner: Random Forest, Multinomial LR, KNN, LightGBM Gradient Boosting, SVM, and NN.  Robust evaluation across various learning paradigms, ranging from distance-based and deep learning approaches to ensemble methods and linear models, is ensured by this thorough algorithmic comparison.
+
+From data intake to model winning selection, the research framework uses a structured pipeline (Figure~\ref{project_pipeline}), integrating modular Python architecture for scalability and reproducibility.  Each algorithm undergoes rigorous hyperparameter optimisation using GridSearchCV with 5-fold cross-validation to guarantee fair comparison and optimal performance extraction.
+
+\subsection{Dropout Optimization}
+To enable successful early intervention systems, the main goal is to maximise dropout recall $\geq60\%$. Since false negatives, or missing at-risk students, have more serious repercussions than false positives, or failing students who might succeed, in educational intervention contexts, this metric gives priority to identifying students who will drop out. In order to balance practical resource constraints with effective early intervention capabilities, the $60\%$ threshold was set especially for this project. This ensures that roughly two-thirds of at-risk students are identified while maintaining manageable caseloads for institutional support services.
+
+\subsection{Class Imbalance Challenge}
+With $19.1\%$ dropout students (minority class), $25.4\%$ failing students, and $55.5\%$ passing students (majority class), the dataset represents a serious class imbalance issue. Specific optimisation techniques, such as unique class weighting schemes and dropout-focused evaluation metrics, are needed to address this imbalance. By using class weights of roughly $2.51$x for dropouts, $1.57$x for failures, and $0.57$x for passes across various algorithms, the research employs customised strategies to make sure minority class detection is not overpowered by majority class dominance.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/3_1_project_pipeline.png}
+	\caption{Project pipeline}
+	\label{project_pipeline}
+\end{figure}
+
+\section{Data Architecture and Modular Design}
+As shown in Figure~\ref{project_pipeline}, the implementation uses a methodical seven-phase pipeline architecture intended for comprehensive SDP. From the intake of raw data to the deployment of models, this modular design guarantees repeatable processes while preserving data integrity across the machine learning pipeline.
+
+\subsection{Phase 1: Data Ingestion and Validation}
+Seven CSV files containing learning analytics data are automatically loaded at the start of the pipeline. Validation protocols check column structures and data integrity.
+
+\subsection{Phase 2: Data Preprocessing}
+Predictive modelling is based on core data transformations. By determining the earliest TMA (Tutor Marked Assessment) dates for each course-presentation combination, assessment filtering establishes standardised prediction windows for early intervention. Consistency across diverse data sources is ensured by data type conversions and missing value handling. Only participants who are actively participating during assessment periods are kept by student filtering protocols, which eliminate inactive participants.
+
+\subsection{Phase 3: Feature Engineering}
+From raw learning analytics, sophisticated feature creation algorithms produce predictive indicators. Before assessment deadlines, click-stream data is compiled by VLE engagement metrics to identify patterns in behaviour. Academic performance indicators establish engagement thresholds and binary flags for excellence (scores $\geq70$). The $courses\_per\_term$ feature provides context for student capacity analysis by quantifying the distribution of academic load.
+
+\subsection{Phase 4: Stratification and Encoding}
+Advanced stratification techniques preserve demographic representation while maintaining class proportions across cohort boundaries. With $19.1\%$ dropout representation, the chosen cohort+outcome strategy guarantees balanced train-test splits. The specific transformations used in categorical encoding are binary encoding for dichotomous variables, ordinal encoding for hierarchical relationships, and one-hot encoding for nominal variables.
+
+\subsection{Phase 5: Model Optimization}
+Using thorough hyperparameter optimisation, a systematic algorithm comparison assesses six different machine learning techniques. 5-fold cross-validation in GridSearchCV guarantees equitable comparison across various learning paradigms. Custom scoring metrics use specific weighting strategies to manage class imbalance while giving priority to dropout recall optimisation.
+
+\subsection{Phase 6: Comparative Evaluation}
+A thorough model evaluation analyses performance across six algorithms using a variety of visualisation techniques. Direct performance comparison is made possible by horizontal bar charts that compare key metrics (dropout recall, dropout precision, at-risk recall, weighted F1). Multi-metric performance profiles for each model are displayed using five-dimensional radar plots, which also highlight the models' advantages and disadvantages. Runtime efficiency scatter plots determine the best algorithms for various deployment scenarios by analysing trade-offs between computational cost and performance. With comprehensive confusion matrices for every algorithm, three-panel performance dashboards categorise models into three performance tiers: Excellent $\geq60\%$, Good $40-60\%$, and Needs Work $<40\%$.
+
+\subsection{Phase 7: Model Selection}
+The comparative analysis in Phase 6 is the source of the systematic evaluation criteria used in evidence-based model selection. Dropout recall performance ($\geq60\%$ threshold), computational efficiency, and deployment feasibility are given top priority during the selection process. With a $66.84\%$ dropout recall, superior efficiency (4-minute training time), and interpretability advantages, LR is the best option. Runtime efficiency analysis, practical deployment considerations, and performance tier classification (Excellent, Good, Needs Work) are among the selection criteria. While underperforming algorithms (NN at $18.67\%$ recall) are not taken into consideration for production, runner-up models (SVM with $63.09\%$ recall) offer backup options. The final choice strikes a balance between operational needs for actual educational intervention systems and predictive performance.
 
 \section{Example Section}
 
-This is an example section; 
-the following content is auto-generated dummy text.
-\lipsum
-
 \subsection{Example Sub-section}
 
-\begin{figure}[t]
+\begin{figure}[h]
 \centering
 foo
 \caption{This is an example figure.}
 \label{fig}
 \end{figure}
 
-\begin{table}[t]
+\begin{table}[h]
 \centering
 \begin{tabular}{|cc|c|}
 \hline
@@ -512,7 +585,7 @@ $9     $ & $9     $ & $9     $ \\
 \label{tab}
 \end{table}
 
-\begin{algorithm}[t]
+\begin{algorithm}[h]
 \For{$i=0$ {\bf upto} $n$}{
   $t_i \leftarrow 0$\;
 }
@@ -530,13 +603,11 @@ This is an example sub-section;
 the following content is auto-generated dummy text.
 Notice the examples in Figure~\ref{fig}, Table~\ref{tab}, Algorithm~\ref{alg}
 and Listing~\ref{lst}.
-\lipsum
 
 \subsubsection{Example Sub-sub-section}
 
 This is an example sub-sub-section;
 the following content is auto-generated dummy text.
-\lipsum
 
 \paragraph{Example paragraph.}
 

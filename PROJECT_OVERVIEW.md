@@ -20,13 +20,60 @@ This dissertation implements a comprehensive machine learning pipeline for **stu
 ### **Data Processing & Exploration**
 
 #### **01_data_ingest_cleaning.ipynb**
-- **Purpose**: Data loading, validation, and preprocessing pipeline
-- **Key Components**:
-  - Loads 7 CSV files (assessments, courses, studentInfo, studentRegistration, studentAssessment, studentVle, vle)
-  - Implements modular Python functions from `Python_files/` directory
-  - Creates derived features like `courses_per_term` for academic load analysis
-  - Validates data integrity and handles missing values
-  - Exports cleaned datasets for downstream analysis
+- **Purpose**: Data loading, validation, and preprocessing pipeline using modular Python architecture
+- **Key Workflow**: 
+  - ?? Loads 7 CSV files (assessments, courses, studentInfo, studentRegistration, studentAssessment, studentVle, vle)
+  - ?? **Python Module Integration**: Seamlessly connects with custom modules from `Python_files/`:
+    * **data_loader.py** ? `load_and_validate()` handles all data loading and validation
+    * **data_processor.py** ? `process_all_data()` executes the complete processing pipeline
+    * **config_file.py** ? Provides configuration constants and file mappings
+    * **analysis_engine.py** ? `run_complete_analysis()` generates statistical summaries
+  - ?? Creates derived features like `courses_per_term` for academic load analysis
+  - ? Validates data integrity and handles missing values automatically
+  - ?? Exports cleaned datasets ready for machine learning experiments
+
+**Modular Architecture**: This notebook leverages 6 custom Python modules for robust data processing:
+
+1. **data_loader.py** (180 lines)
+   - `load_and_validate()`: Main entry point for data loading pipeline
+   - `load_all_data()`: Loads 7 CSV files with error handling
+   - `validate_data()`: Comprehensive data integrity checks and validation
+   - `get_data_info()`: Generates summary statistics and data profiling
+
+2. **data_processor.py** (400+ lines)
+   - `process_all_data()`: Comprehensive processing pipeline
+   - `find_first_assessments()`: Identifies earliest TMA assessments per course-presentation by:
+     * Filtering assessments to only TMA (Tutor Marked Assessment) type
+     * Finding minimum date for each course-presentation combination
+     * Extracting assessment details (ID, date, weight) for first assessments
+   - `filter_active_students()`: Removes inactive students by:
+     * Merging registration data with first assessment dates
+     * Filtering out students who withdrew before their first assessment
+     * Retaining only students active during the prediction window (first assessment)
+   - `merge_assessment_scores()`: Combines assessment data with student records by:
+     * Merging student registrations with their first assessment scores
+     * Handling missing scores (assigns 0 for non-submissions)
+     * Adding assessment metadata (submission date, banking status)
+   - `calculate_vle_engagement()`: Computes VLE interaction metrics by:
+     * Merging student data with VLE click records
+     * Filtering clicks to only those before/at first assessment date
+     * Calculating `total_click_vle`: Sum of all VLE clicks per student
+     * Computing `average_click_vle`: Course-presentation specific average clicks
+   - `create_engagement_features()`: Engineers 3 key engagement indicators:
+     * `excellent_Score`: Binary (1/0) - Students scoring 70 (merit threshold)
+     * `active_in_VLE`: Binary (1/0) - Students with above-average VLE clicks before first assessment
+     * `student_engagement`: Binary (1/0) - Students meeting either excellence OR VLE activity criteria
+
+3. **config_file.py** (Configuration Management)
+   - `DATA_FILES`: File path mappings for all CSV datasets
+   - `MERIT_SCORE = 70`: Academic performance threshold definition
+   - `STUDENT_INFO_COLUMNS`: Standardized column specifications
+   - `FINAL_RESULT_MAP`: Outcome classification mappings
+
+4. **analysis_engine.py** (Statistical Analysis)
+   - `run_complete_analysis()`: Comprehensive statistical analysis pipeline
+   - `create_cross_tables()`: Cross-tabulation analysis for categorical variables
+   - `calculate_linear_regression()`: Regression analysis for trend identification
 
 #### **02_visual_analysis.ipynb**
 - **Purpose**: Exploratory Data Analysis (EDA) and cross-tabulation visualization
@@ -40,10 +87,15 @@ This dissertation implements a comprehensive machine learning pipeline for **stu
 #### **03_data_stratification_encoding.ipynb**
 - **Purpose**: Data splitting, categorical encoding, and initial model comparison
 - **Key Operations**:
-  - Stratified train-test split maintaining class proportions across cohorts
-  - Categorical encoding using custom `encoding_utils` module
-  - **6-model comparison framework**: Random Forest, Logistic Regression, Naive Bayes, SVM, XGBoost, LightGBM
-  - Saves encoded datasets (`X_train_encoded.csv`, `X_test_encoded.csv`, `y_train.csv`, `y_test.csv`) for individual model optimization
+  - **Stratified Train-Test Split**: Maintains class proportions across cohorts (preserves 19.1% dropout representation)
+  - **Sophisticated Categorical Encoding**: Uses custom `encoding_utils` module with tailored strategies:
+    * **Region** (Nominal) ? **One-Hot Encoding**: Creates binary columns (region_Wales, region_Scotland, etc.)
+    * **Highest Education** (Ordinal) ? **Ordinal Encoding**: Maps education levels to numerical hierarchy
+    * **IMD Band** (Ordinal) ? **Ordinal Encoding**: Preserves socioeconomic deprivation ranking
+    * **Age Band** (Ordinal) ? **Ordinal Encoding**: Maintains age group progression
+    * **Disability** (Binary) ? **Binary Encoding**: Simple 0/1 transformation
+  - **Dataset Export**: Saves encoded datasets (`X_train_encoded.csv`, `X_test_encoded.csv`, `y_train.csv`, `y_test.csv`) for individual model optimization
+  - **Encoding Validation**: Comprehensive summary showing feature transformations and new column creation
 
 ---
 
@@ -115,11 +167,24 @@ This dissertation implements a comprehensive machine learning pipeline for **stu
 
 #### **X1_model_comparison_analysis.ipynb**
 - **Purpose**: Final model evaluation, comparison, and deployment recommendations
-- **Key Analyses**:
-  - **Performance Dashboard**: Radar plots, efficiency analysis, confusion matrices
-  - **Normalized Feature Importance**: Fair comparison across different model types
-  - **Winner Analysis**: Deep dive into Logistic Regression's superior performance
-  - **Academic-Ready Visualizations**: Professional charts for stakeholder presentation
+- **Key Analyses & Visualizations**:
+  - **?? Performance Dashboard**: 
+    * **Radar plots**: Multi-dimensional performance comparison showing dropout recall, precision, F1-scores, and efficiency across all 6 models
+    * **Efficiency analysis**: Runtime vs. performance scatter plots to identify optimal trade-offs
+    * **Confusion matrices**: Detailed breakdown of prediction accuracy for each class (Pass/Fail/Dropout)
+    * *Relevance*: Provides stakeholders with comprehensive performance overview for informed decision-making
+  - **?? Normalized Feature Importance**: 
+    * **Cross-model importance comparison**: Standardized feature rankings across different algorithm types
+    * **Top 10 predictive features**: Unified importance scores combining tree-based, coefficient-based, and permutation importance
+    * *Relevance*: Ensures fair comparison between algorithms and identifies universally important predictors for intervention strategies
+  - **?? Winner Analysis**: 
+    * **Logistic Regression deep dive**: Coefficient interpretation, class-specific analysis, and decision boundary visualization
+    * **Performance breakdown**: Detailed metrics showing why Logistic Regression achieved superior dropout recall
+    * *Relevance*: Provides actionable insights for understanding model predictions and building trust with educators
+  - **?? Academic-Ready Visualizations**: 
+    * **Publication-quality charts**: Professional formatting suitable for research papers and presentations
+    * **Stakeholder dashboards**: Executive summaries with clear performance tiers and deployment recommendations
+    * *Relevance*: Facilitates knowledge transfer and supports evidence-based decision making at institutional level
 
 ---
 
