@@ -7,6 +7,8 @@
 
 \RequirePackage{pgfkeys}
 \RequirePackage{pgfopts}
+\RequirePackage{makecell}
+
 
 \pgfkeys{/dissertation/.cd,
 %     author = string

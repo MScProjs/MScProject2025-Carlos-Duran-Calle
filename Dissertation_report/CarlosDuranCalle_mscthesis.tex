@@ -300,9 +300,9 @@ Dave Cliff writes here to say huge thanks to his colleague Dr Dan Page for shari
 \noindent
 Education is now more widely accessible thanks to online learning.  However, high attrition has continued.  The median completion rate for massive open online courses (MOOCs) is close to $12.6\%$, which has frequently remained low \cite{jordan_massive_2015}.  Large-scale attrition has also been documented in open-university environments.  A study from the Open University (UK) indicates that course-level dropout rates can reach as high as $78\%$ \cite{simpson_can_we_do_better}.  These numbers have inspired timely assistance and predictive systems.
 
-The Open University Learning Analytics Dataset (OULAD) is a popular public dataset for learning analytics research that was made available by the Open University (OU).  Data from $32,593$ registered students and 22 module presentations are included in OULAD. These data include demographics, assessments, and daily click-log summaries from the Virtual Learning Environment (VLE) \cite{kuzilek_OULAD_2017}.  Due to its size and documentation, it is now considered the de facto standard for feature engineering and early-warning models in distance learning \cite{kuzilek_OULAD_2017}.  To check, Hussain et al. \cite{hussain_student_engagement_prediction_2018} found that engagement signals are consistently predictive of outcomes across platforms.  Building on this evidence, the current work uses OULAD to predict engagement-aware early intervention in the OU context.
+The Open University (OU) released the widely used Open University Learning Analytics Dataset (OULAD), a public dataset for learning analytics research.   OULAD contains information from 22 module presentations and $32,593$ registered students.  Demographics, tests, and daily click-log summaries from the Virtual Learning Environment (VLE) are among these data \cite{kuzilek_OULAD_2017}.   It is currently regarded as the de facto standard for feature engineering and early-warning models in distance learning because of its size and documentation \cite{kuzilek_OULAD_2017}.   For example, Hussain et al. \cite{hussain_student_engagement_prediction_2018} discovered that engagement signals predict outcomes consistently across platforms.   The current study builds on this evidence by predicting engagement-aware early intervention in the OU context using OULAD.
 
-Machine learning (ML) provides a potential solution to this problem. With ML algorithms, large amounts of student data can be analysed to recognize patterns that may be overlooked by human observers \cite{holland_ML_1992}. Through analysing data on student behaviours within the VLE, like clicking behaviour, submission of assessment and accessing resources, these algorithms have the capacity to predict which students are most at risk of early exit \cite{baker_educational_2014}. This predictive ability changes dropout prevention from reactionary to predictive.
+One possible remedy for this issue is machine learning (ML).  Large volumes of student data can be analysed using ML algorithms to find patterns that human observers might miss \cite{holland_ML_1992}.  These algorithms can identify which students are most likely to leave the VLE early by analysing data on their click behaviour, assessment submission, and resource access \cite{baker_educational_2014}.  Dropout prevention becomes predictive rather than reactive as a result of this predictive ability.
 
 \section{Problem Statement}
 The prediction task is structured as a three-class classification: Pass, Fail, and Withdrawn.  This framing supports targeted responses (e.g., academic support for likely fail; re-engagement for likely withdrawn) and reflects OULAD's $final\_result$ taxonomy.  This outcome schema and its connection to registration and assessment tables are described in detail in the OULAD documentation \cite{kuzilek_OULAD_2017}. 
@@ -316,15 +316,15 @@ According to earlier studies, student engagement is a significant predictor of b
 
 The specific objectives of this project are:
 \begin{itemize}
-	\item To incorporate the student engagement feature as a meaningful predictor for the machine learning models.
-	\item To identify which socio-demographic variables are meaningfully linked to student dropout.
-	\item To select a predictive model capable of identifying students likely to withdraw at early stages of their course.
+	\item To incorporate the student engagement feature as a meaningful predictor for the ML models.
+	\item To determine which socio-demographic factors are significantly associated with student dropout..
+	\item To choose a predictive model that can recognise students who are likely to drop out of a course early on.
 \end{itemize}
 
 The accomplishment is meaningful beyond the technical achievement. Accurate identification of dropout can also help institutions to determine the best investment of their support resources, develop more effective interventions and enhance the retention of students \cite{kahu_student_engagement_2013}. For students, that support can be the difference between meeting educational goals and falling among the dropout numbers.
 
-\section{Machine Learning Approach}
-This project uses and compares six widely used machine learning models with complementary advantages for dropout prediction: Random Forest (RF), an ensemble method known to be robust to high-dimensional data \cite{breiman_rf_2001}; Logistic Regression (LR), to interpret the results for risk factor analysis \cite{harrell_LR_2015}; K-Nearest Neighbors (KNN), to capture local data patterns based on instance-based learning \cite{cover_nearest_1967}; LightGBM, optimized gradient boosting to handle large datasets efficiently \cite{ke_lightgbm_2017}; Support Vector Machine (SVM), capable of dealing with high-dimensional spaces via kernel-based transformations \cite{cortes_svm_1995}; and Neural Networks (NN), to model complex non-linear data relationships \cite{lecun_nn_gradient-applied_1998}.
+\section{ML Approach}
+This project uses and compares six widely used ML models with complementary advantages for dropout prediction: Random Forest (RF), an ensemble method known to be robust to high-dimensional data \cite{breiman_rf_2001}; Logistic Regression (LR), to interpret the results for risk factor analysis \cite{harrell_LR_2015}; K-Nearest Neighbors (KNN), to capture local data patterns based on instance-based learning \cite{cover_nearest_1967}; LightGBM, optimized gradient boosting to handle large datasets efficiently \cite{ke_lightgbm_2017}; Support Vector Machine (SVM), capable of dealing with high-dimensional spaces via kernel-based transformations \cite{cortes_svm_1995}; and Neural Networks (NN), to model complex non-linear data relationships \cite{lecun_nn_gradient-applied_1998}.
 
 Every model will be tuned with respect to hyperparameters by GridSearchCV with 5-fold cross-validation. The main evaluation metric is recall of the "Withdrawn" class, as we attempt to identify all at risk students. This emphasis on minority class recall is paramount as missing out a student that requires assistance has higher stakes than sometimes offering help even if it may not be necessary \cite{sokolova_classification_tasks_2009}.
 
@@ -338,13 +338,13 @@ Third, it was developed a thorough model comparison framework with a unified eva
 \section{Challenges and Scope}
 This research is faced with many challenges. Attention to class imbalance is required so that models do not ignore the minority dropout class. These temporal characteristics require careful feature engineering to generate predictions early enough to allow for interventions. In addition, stakeholders need to be able to understand why students are being flagged as at-risk, which necessitates a balance between model complexity and interpretability.
 
-The complete methodology is presented in this dissertation, covering the process from data preparation through model deployment. Chapter 2 provides technical background on educational data mining and machine learning algorithms. Chapter 3 outlines the implementation pipeline and feature engineering approach. Chapter 4 reports the results and model comparisons in detail. Chapter 5 offers a critical evaluation of the findings, and Chapter 6 concludes with practical recommendations and directions for future research.
+The complete methodology is presented in this dissertation, covering the process from data preparation through model deployment. Chapter 2 provides technical background on educational data mining and ML algorithms. Chapter 3 outlines the implementation pipeline and feature engineering approach. Chapter 4 reports the results and model comparisons in detail. Chapter 5 offers a critical evaluation of the findings, and Chapter 6 concludes with practical recommendations and directions for future research.
 
 Through systematic comparison and optimization, Logistic Regression is shown to achieve a $66.84\%$ dropout recall, crossing the $60\%$ threshold while keeping interpretability. Such result provides the educational institution with a useful instrument to identify and support at-risk students, thus contributing to the general objective of successful online education.
 
 \paragraph{}
 %\noindent
-In summary, this project focuses on performing and comparing six machine learning models to identify the best-performing model for detecting students who have withdrawn from online courses. By emphasizing recall for the 'Withdrawn' class and incorporating engagement and socio-economic factors, the study aims to provide actionable insights that support timely interventions and improve student retention in virtual learning environments. 
+In summary, this project focuses on performing and comparing six ML models to identify the best-performing model for detecting students who have withdrawn from online courses. By emphasizing recall for the 'Withdrawn' class and incorporating engagement and socio-economic factors, the study aims to provide actionable insights that support timely interventions and improve student retention in virtual learning environments. 
 %The chapter should conclude with a concise bullet point list that 
 %summarises the aims, objectives, {\bf and achievements}\/ of your work. 
 % -----------------------------------------------------------------------------
@@ -356,10 +356,10 @@ In summary, this project focuses on performing and comparing six machine learnin
 \vspace{1cm} 
 
 \noindent
-This chapter offers a theory based on student dropout prediction in VLEs. Key concepts that comprise educational data mining, multi-class classification problems, and machine learning algorithms are discussed. The discussion is the technical basis for a comparison among dropout prediction models.
+This chapter offers a theory based on student dropout prediction in VLE. Key concepts that comprise educational data mining, multi-class classification problems, and ML algorithms are discussed. The discussion is the technical basis for a comparison among dropout prediction models.
 
-\section{Educational Data Mining in VLEs}
-Educational Data Mining in VLEs explores the wealth of behavioural data produced by students (ie, clickstream patterns and resource access statistics) for the purpose of gaining knowledge on how they learn \cite{romero_data_2013}. Browsing and resource navigation behaviour have been shown to be strong predictors of academic performance, such as course completion \cite{gasevic_learning_2016}. Combining this behavioural data with a learners' demographics and assessment results substantially enhances prediction accuracy of dropout models \cite{viberg_current_2018}.
+\section{Educational Data Mining in VLE}
+Educational Data Mining in VLE explores the wealth of behavioural data produced by students (ie, clickstream patterns and resource access statistics) for the purpose of gaining knowledge on how they learn \cite{romero_data_2013}. Browsing and resource navigation behaviour have been shown to be strong predictors of academic performance, such as course completion \cite{gasevic_learning_2016}. Combining this behavioural data with a learners' demographics and assessment results substantially enhances prediction accuracy of dropout models \cite{viberg_current_2018}.
 
 The temporal nature of this data is important. Early warning signs of at-risk students can be well-predicted from early-stage behaviour patterns \cite{conijn_predicting_2017}. The high-frequency of VLE data streams on the other hand requires advanced preprocessing to deal with missing values, irregular sampling intervals, and varying engagement patterns across different student populations \cite{sclater_learning_2016}. In addition, integrating VLE interaction data with socio-economic features improves model stability and classification performance, and paves the way for a more systematic feature engineering in educational prediction systems \cite{hlosta_modellingVLE_2018}.
 
@@ -495,9 +495,9 @@ Early warning signs do exist to prevent high-risk youngsters and to intervene ea
 In the area of dropout early-detection, balancing the class distribution among minority and majority instances should be considered desirably by using class weights, which disadvantage the majority and advantage the minority class, e.g., the weight of the minority class being higher than $1$ and the weight of the majority class being equal to $1$ is common \cite{hlosta_ouroboros_2017}. More recent losses, e.g., the Class-Balanced Loss, have tried to provide a more principled re-weighting beyond naïve inverses only when classes are long-tailed \cite{cui_class-balanced_2019}. For the current study it is beneficial as we would like to investigate alternative to ad-hoc multipliers, used for balanced weighting, like x$1.2$ for the minority class “Withdrawn” and x$0.8$ for the majority class “Pass”. The multipliers are domain specific choices of the experimentations: there is one setting that uses no multipliers (balanced weighting), and one that applies the multipliers. Lastly, note that overall accuracy may be deceptive of imbalanced data, as Precision and Recall can better assess minority-class detection quality \cite{saito_precision-recall_2015}.
 
 \section{ML Algorithms for SDP}
-Ensemble learning exploits multiple models to reduce variance and improve generalization; in Random Forests, bootstrap aggregation (bagging) draws resamples of the training set and averages randomized decision trees, providing robustness and out‑of‑bag error estimation \cite{breiman_bagging_1996} \cite{breiman_rf_2001}. Feature importance in RF is commonly derived from impurity decreases or permutation‑based accuracy drops, enabling screening of influential predictors in heterogeneous educational data \cite{breiman_rf_2001}. Gradient‑boosting frameworks fit weak learners sequentially under an additive model to minimize a differentiable loss, while LightGBM accelerates this process using histogram‑based splits, leaf‑wise growth, and gradient‑based one‑side sampling for scalability on high‑dimensional, large cohorts \cite{friedman_gbm_2001} \cite{ke_lightgbm_2017}. Logistic Regression models the log‑odds of class membership and estimates coefficients by maximum likelihood, yielding interpretable effects as odds ratios and supporting regularization for stability when features are correlated \cite{cox_regression_1958} \cite{nelder_generalized_1972}. Support Vector Machines maximize the geometric margin via convex quadratic programming and use kernel mappings to induce flexible non‑linear decision boundaries while controlling capacity through the margin and kernel parameters \cite{cortes_svm_1995}. 
+Ensemble learning exploits multiple models to reduce variance and improve generalization; in RF, bootstrap aggregation (bagging) draws resamples of the training set and averages randomized decision trees, providing robustness and out‑of‑bag error estimation \cite{breiman_bagging_1996} \cite{breiman_rf_2001}. Feature importance in RF is commonly derived from impurity decreases or permutation‑based accuracy drops, enabling screening of influential predictors in heterogeneous educational data \cite{breiman_rf_2001}. Gradient‑boosting frameworks fit weak learners sequentially under an additive model to minimize a differentiable loss, while LightGBM accelerates this process using histogram‑based splits, leaf‑wise growth, and gradient‑based one‑side sampling for scalability on high‑dimensional, large cohorts \cite{friedman_gbm_2001} \cite{ke_lightgbm_2017}. LR models the log‑odds of class membership and estimates coefficients by maximum likelihood, yielding interpretable effects as odds ratios and supporting regularization for stability when features are correlated \cite{cox_regression_1958} \cite{nelder_generalized_1972}. SVM maximize the geometric margin via convex quadratic programming and use kernel mappings to induce flexible non‑linear decision boundaries while controlling capacity through the margin and kernel parameters \cite{cortes_svm_1995}. 
 
-Instance‑based learning with K‑Nearest Neighbors classifies by a majority (plurality) vote among the K closest samples, so decision boundaries are local and sensitive to the choice of distance metric and K, with common metrics including Euclidean, Manhattan, and Mahalanobis distances \cite{cover_nearest_1967} \cite{aha_instance-based_1991}. Multi‑layer perceptrons compose affine transformations with non‑linear activations and are trained end‑to‑end by backpropagation to minimize a supervised loss, with universal approximation guaranteeing expressive capacity under sufficient width or depth \cite{rumelhart_learning_1986} \cite{hornik_multilayer_1989}. These foundations motivate comparing Random Forests, LightGBM, Logistic Regression, SVMs, KNN, and MLPs for dropout prediction, balancing interpretability, non‑linear modeling power, and computational efficiency under class imbalance typical of at‑risk cohorts \cite{krawczyk_learning_2016}.
+Instance‑based learning with KNN classifies by a majority (plurality) vote among the K closest samples, so decision boundaries are local and sensitive to the choice of distance metric and K, with common metrics including Euclidean, Manhattan, and Mahalanobis distances \cite{cover_nearest_1967} \cite{aha_instance-based_1991}. Multi‑layer perceptrons (a type of NN) compose affine transformations with non‑linear activations and are trained end‑to‑end by backpropagation to minimize a supervised loss, with universal approximation guaranteeing expressive capacity under sufficient width or depth \cite{rumelhart_learning_1986} \cite{hornik_multilayer_1989}. These foundations motivate comparing RF, LightGBM, LR, SVM, KNN, and NN for dropout prediction, balancing interpretability, non‑linear modelling power, and computational efficiency under class imbalance typical of at‑risk cohorts \cite{krawczyk_learning_2016}.
 
 \section{Model Evaluation and Comparison Methodologies}
 Performance was estimated with stratified 5‑fold cross‑validation \cite{kohavi_study_1995} on the training split to preserve class proportions and reduce variance in imbalanced data, with a fixed stratified train–test split reused for all models to ensure comparability \cite{luque_impact_2019}. Hyperparameter search was executed within cross‑validation (GridSearchCV) and final metrics were computed once on the untouched test split to limit selection bias \cite{varma_bias_2006}. All models were evaluated on identical folds and scoring rules to enable fair, paired comparisons across the pipeline \cite{demsar_statistical_2006}. Hyperparameters were optimized via exhaustive GridSearchCV with five folds, parallel execution, dropout‑recall as the objective, and class‑weighting to emphasize minority cases \cite{kohavi_study_1995} \cite{krawczyk_learning_2016}.
@@ -511,13 +511,13 @@ Regularisation and early stopping are treated as crucial mechanisms to curb over
 
 \vspace{1cm} 
 \noindent
-This chapter describes the methodical process used to create and assess machine learning models for student dropout prediction, covering everything from data preprocessing to model deployment and validation.
+This chapter describes the methodical process used to create and assess ML models for student dropout prediction, covering everything from data preprocessing to model deployment and validation.
 
 \section{Overview and Research Design}
-With an emphasis on early intervention capabilities, this study applies a machine learning pipeline intended to forecast the likelihood of student dropout in online learning environments. By creating predictive models that can identify at-risk students before they drop out of their courses, the study tackles the crucial problem of student retention in higher education.
+With an emphasis on early intervention capabilities, this study applies a ML pipeline intended to forecast the likelihood of student dropout in online learning environments. By creating predictive models that can identify at-risk students before they drop out of their courses, the study tackles the crucial problem of student retention in higher education.
 
 \subsection{Research Methodology Framework}
-The approach uses supervised learning and compares six different machine learning algorithms in a methodical manner: Random Forest, Multinomial LR, KNN, LightGBM Gradient Boosting, SVM, and NN.  Robust evaluation across various learning paradigms, ranging from distance-based and deep learning approaches to ensemble methods and linear models, is ensured by this thorough algorithmic comparison.
+The approach uses supervised learning and compares six different machine ML in a methodical manner: RF, Multinomial LR, KNN, LightGBM Gradient Boosting, SVM, and NN.  Robust evaluation across various learning paradigms, ranging from distance-based and deep learning approaches to ensemble methods and linear models, is ensured by this thorough algorithmic comparison.
 
 From data intake to model winning selection, the research framework uses a structured pipeline (Figure~\ref{project_pipeline}), integrating modular Python architecture for scalability and reproducibility.  Each algorithm undergoes rigorous hyperparameter optimisation using GridSearchCV with 5-fold cross-validation to guarantee fair comparison and optimal performance extraction.
 
@@ -530,12 +530,12 @@ With $19.1\%$ dropout students (minority class), $25.4\%$ failing students, and 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/3_1_project_pipeline.png}
-	\caption{Project pipeline}
+	\caption{The Seven-Phase Project Pipeline}
 	\label{project_pipeline}
 \end{figure}
 
 \section{Data Architecture and Modular Design}
-As shown in Figure~\ref{project_pipeline}, the implementation uses a methodical seven-phase pipeline architecture intended for comprehensive SDP. From the intake of raw data to the deployment of models, this modular design guarantees repeatable processes while preserving data integrity across the machine learning pipeline.
+As shown in Figure~\ref{project_pipeline}, the implementation uses a methodical seven-phase pipeline architecture intended for comprehensive SDP. From the intake of raw data to the deployment of models, this modular design guarantees repeatable processes while preserving data integrity across the ML pipeline.
 
 \subsection{Phase 1: Data Ingestion and Validation}
 Seven CSV files containing learning analytics data are automatically loaded at the start of the pipeline. Validation protocols check column structures and data integrity.
@@ -550,7 +550,7 @@ From raw learning analytics, sophisticated feature creation algorithms produce p
 Advanced stratification techniques preserve demographic representation while maintaining class proportions across cohort boundaries. With $19.1\%$ dropout representation, the chosen cohort+outcome strategy guarantees balanced train-test splits. The specific transformations used in categorical encoding are binary encoding for dichotomous variables, ordinal encoding for hierarchical relationships, and one-hot encoding for nominal variables.
 
 \subsection{Phase 5: Model Optimization}
-Using thorough hyperparameter optimisation, a systematic algorithm comparison assesses six different machine learning techniques. 5-fold cross-validation in GridSearchCV guarantees equitable comparison across various learning paradigms. Custom scoring metrics use specific weighting strategies to manage class imbalance while giving priority to dropout recall optimisation.
+Using thorough hyperparameter optimisation, a systematic algorithm comparison assesses six different ML techniques. 5-fold cross-validation in GridSearchCV guarantees equitable comparison across various learning paradigms. Custom scoring metrics use specific weighting strategies to manage class imbalance while giving priority to dropout recall optimisation.
 
 \subsection{Phase 6: Comparative Evaluation}
 A thorough model evaluation analyses performance across six algorithms using a variety of visualisation techniques. Direct performance comparison is made possible by horizontal bar charts that compare key metrics (dropout recall, dropout precision, at-risk recall, weighted F1). Multi-metric performance profiles for each model are displayed using five-dimensional radar plots, which also highlight the models' advantages and disadvantages. Runtime efficiency scatter plots determine the best algorithms for various deployment scenarios by analysing trade-offs between computational cost and performance. With comprehensive confusion matrices for every algorithm, three-panel performance dashboards categorise models into three performance tiers: Excellent $\geq60\%$, Good $40-60\%$, and Needs Work $<40\%$.
@@ -558,61 +558,223 @@ A thorough model evaluation analyses performance across six algorithms using a v
 \subsection{Phase 7: Model Selection}
 The comparative analysis in Phase 6 is the source of the systematic evaluation criteria used in evidence-based model selection. Dropout recall performance ($\geq60\%$ threshold), computational efficiency, and deployment feasibility are given top priority during the selection process. With a $66.84\%$ dropout recall, superior efficiency (4-minute training time), and interpretability advantages, LR is the best option. Runtime efficiency analysis, practical deployment considerations, and performance tier classification (Excellent, Good, Needs Work) are among the selection criteria. While underperforming algorithms (NN at $18.67\%$ recall) are not taken into consideration for production, runner-up models (SVM with $63.09\%$ recall) offer backup options. The final choice strikes a balance between operational needs for actual educational intervention systems and predictive performance.
 
-\section{Example Section}
+\section{Data Preprocessing and Feature Engineering}
+A systematic six-stage pipeline is implemented by the data preprocessing and feature engineering phases (Phase $2$ and Phase $3$ in Figure~\ref{project_pipeline}), which convert raw learning analytics into predictive features for early intervention systems (Figure~\ref{features_pipeline}). Prior to determining academic outcomes, this creates behavioural indicators and temporal prediction windows that capture patterns of student engagement.
 
-\subsection{Example Sub-section}
+\subsection{Stage 1: Integrating Data Sources}
+The pipeline starts with the thorough integration of five main data sources: student registrations, VLE interaction logs, assessment structure and student assessment metadata, and demographic data. The original dataset includes over $10$ million VLE interactions and $32,593$ student registrations across $22$ courses.
+
+\subsection{Stage 2: Defining the Initial Assessment Period}
+For every course-presentation combination, this stage identifies the first TMA dates. In order to determine the earliest assessment dates for $22$ courses, this processes $106$ TMA assessments. By eliminating participants who withdrawn prior to their initial assessment opportunity, active student filtering guarantees that attention is directed towards students who might profit from intervention. Consequently, $27,725$ students in total match these filters.
+
+\subsection{Stage 3: Extracting Behavioural Features}
+Up until the initial evaluation, this stage shows how three fundamental behavioural dimensions (VLE interaction, academic performance, and course load), were extracted. In order to determine the total and average clicks per student in relation to a course-presentation baseline, VLE interaction analysis analyses $2,587,468$ clicks that took place prior to the first assessment deadlines. Academic performance extraction uses a merit threshold analysis (threshold $70$) and records the initial assessment results. Students taking multiple concurrent courses are identified through course load quantification, which also provides context for their academic capacity. For this data, the maximum number of concurrent courses is $2$; it was not found students with three or more courses at the same presentation time.
+
+\subsection{Stage 4: Creating Indicator}
+The fourth step filters the $27,725$ students and converts continuous behavioural measures into interpretable binary indicators. Merit-level performance ($\geq70$ points) is attained by $16,687$ students ($60.2\%$ of the total) according to the academic excellence classification ($excellent\_Score$). $9,870$ students ($35.6\%$) whose platform engagement surpasses course-specific averages are flagged by the VLE activity classification ($active\_in\_{VLE}$). Additionally, a course load analysis ($courses\_per\_term$) was added to quantify the academic workload of $1,270$ students ($4.6\%$) who are managing multiple concurrent courses.
+
+\subsection{Stage 5: Aggregating an Engagement Indicator}
+In stage five, various pathways to academic success are captured by combining individual indicators into composite measures. By using logical OR operations to combine academic excellence and VLE activity, the unified engagement feature ($student\_engagement$) finds $19,932$ students ($71.9\%$) who are either performing well or showing strong platform engagement. This composite approach acknowledges that various engagement patterns may lead to students' success.
+
+\subsection{Stage 6: Engineering the Final Training Dataset}
+The last step of data preparation creates a validated, ML-ready dataset of $27,725 students$ and $24$ features by combining preprocessed data with engineered behavioural and demographic features. The distribution of classes in this dataset is $55.5\%$ Pass, $25.4\%$ Fail, and $19.1\%$ Withdrawn. With the withdrawn students representing a crucial minority class, it draws attention to the problem of class imbalance. Now that the dataset has been cleaned and optimised, it is ready for the next round of ML pipelines, where specific techniques will be used to predict outcomes for this important minority group.
 
 \begin{figure}[h]
-\centering
-foo
-\caption{This is an example figure.}
-\label{fig}
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/3_2_features_pipeline.png}
+	\caption{The Six-Stage Engineering Feature Pipeline}
+	\label{features_pipeline}
 \end{figure}
 
+\section{Data Stratification and Encoding Strategy}
+
+\subsection{Stratification Analysis and Strategy Selection}
+Three stratification techniques are evaluated methodically to maximise the preservation of class distribution. Using course-presentation combinations, Strategy 1 uses basic cohort-based stratification. Using a combination of cohort and outcome stratification, Strategy 2 maintains the distributions of academic outcomes and demographics. Triple stratification using cohort$+$outcome$+$courseload variables is attempted in Strategy 3.
+
+\paragraph{Strategy Selection:} Comparative analysis shows that Strategy 2 (Cohort + Outcome) is the best course of action. Since many cohort-outcome-courseload combinations contain only one student, triple stratification (Strategy 3) fails because combined groupings have insufficient sample sizes. As shown in Table~\ref{tab:class_distribution}, Strategy 2 effectively preserves the crucial $19.1\%$ dropout representation across train-test splits while maintaining class proportions.
+
+\paragraph{Stratified Sampling Implementation:}  The chosen strategy guarantees equitable representation for both academic results and course cohorts. The train-test split allocation maintains proportional class representation by using a $80\%-20\%$ distribution. This approach ensures sufficient samples for minority class optimisation in later model training stages while maintaining demographic diversity.
+
 \begin{table}[h]
-\centering
-\begin{tabular}{|cc|c|}
-\hline
-foo      & bar      & baz      \\
-\hline
-$0     $ & $0     $ & $0     $ \\
-$1     $ & $1     $ & $1     $ \\
-$\vdots$ & $\vdots$ & $\vdots$ \\
-$9     $ & $9     $ & $9     $ \\
-\hline
-\end{tabular}
-\caption{This is an example table.}
-\label{tab}
+	\centering
+	\begin{tabular}{|l|c|c|c|c|}
+		\hline
+		\textbf{Strategy} & \makecell{\textbf{Withdrawn} \\ \textbf{(Class 0)}} & \makecell{\textbf{Fail} \\ \textbf{(Class 1)}} & \makecell{\textbf{Pass} \\ \textbf{(Class 2)}} & \textbf{Status} \\
+		\hline
+		Original Dataset & 19.1\% & 25.4\% & 55.5\% & Baseline \\
+		\hline
+		Strategy 1: Cohort Only & 19.3\% & 25.0\% & 55.7\% & Acceptable \\
+		\hline
+		Strategy 2: Cohort + Outcome & 19.1\% & 25.4\% & 55.5\% & \textbf{Selected} \\
+		\hline
+		Strategy 3: Cohort + Outcome + Courseload & - & - & - & Failed \\
+		\hline
+	\end{tabular}
+	\caption{Class Distribution Comparison Across Stratification Strategies}
+	\label{tab:class_distribution}
 \end{table}
 
+
+\subsection{Categorical Encoding Methodology}
+Using the $encoding\_utils$ module, tailored encoding techniques handle various categorical variable types. Region variables are treated as nominal categories with no intrinsic ordering through one-hot encoding. Ordinal encoding is used to preserve hierarchical relationships across socioeconomic and demographic dimensions while maintaining ranked sequences for the variables of education, age, and IMD band. For dichotomous classification, disability status uses binary encoding. Maintaining feature alignment and preventing data leakage are achieved by encoding consistency across train-test splits. Table~\ref{tab:encoding_strategy} provides an overview of this.
+
+\paragraph{Dataset Export} Systematic model comparison is made possible by encoded datasets exporting as standardised CSV files ($X\_train\_encoded.csv$, $X\_test\_encoded.csv$, $y\_train.csv$, $y\_test.csv$). The encoding procedure preserves the temporal validity set in earlier preprocessing stages while generating consistent feature matrices appropriate for a range of algorithm requirements.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Variable Type} & \textbf{Variables} & \textbf{Encoding Method} \\
+		\hline
+		Nominal & Region & One-Hot Encoding \\
+		\hline
+		Ordinal & Education, Age, IMD Band & Ordinal Encoding \\
+		\hline
+		Binary & Disability & Binary Encoding \\
+		\hline
+	\end{tabular}
+	\caption{Encoding Strategy Matrix}
+	\label{tab:encoding_strategy}
+\end{table}
+
+\section{Class Weighting Strategy}
+Class imbalance in educational datasets, where withdrawn students make up only $19.1\%$ of the dataset population, requires strategic weighting methods that are implemented through a two-stage calculation process that combines custom multipliers with sklearn's balanced weighting. First, balanced weights are calculated using sklearn's $compute\_class\_weight('balanced')$ function to produce baseline values proportional to inverse class frequencies. Next, strategic multiplier application is applied to improve dropout detection capabilities.  This is demonstrated in Algorithm~\ref{alg:custom_weights}, where the multiplier values ($1.2$x, $1.0$x, $0.8$x) were chosen to reduce majority class dominance by 20\% and increase dropout class sensitivity by 20\%.  With this setup, the class balance is changed from the initial balanced weights $\{0: 1.74, 1: 1.31, 2: 0.60\}$ to the optimised custom weights $\{0: 2.09, 1: 1.31, 2: 0.48\}$.
+
 \begin{algorithm}[h]
-\For{$i=0$ {\bf upto} $n$}{
-  $t_i \leftarrow 0$\;
-}
-\caption{This is an example algorithm.}
-\label{alg}
+	\KwIn{$y\_train$, $classes$}
+	\KwOut{Custom class weights}
+	
+	$balanced\_weights \leftarrow compute\_class\_weight(`balanced', classes, y\_train)$\;
+	
+	$custom\_weights \leftarrow \{ $\;
+	\Indp
+	$0 : balanced\_weights[0] \times 1.2$ \tcp{Dropout class boost}	
+	$1 : balanced\_weights[1] \times 1.0$ \tcp{Fail class unchanged}	
+	$2 : balanced\_weights[2] \times 0.8$ \tcp{Pass class reduction}
+	\Indm
+	$\}$\;
+	
+	Resulting weights: $\{0: 2.09, 1: 1.31, 2: 0.48\}$\;
+	
+	\caption{Computation of custom class weights for ML training.}
+	\label{alg:custom_weights}
 \end{algorithm}
 
-\begin{lstlisting}[float={t},caption={This is an example listing.},label={lst},language=C]
-for( i = 0; i < n; i++ ) {
-  t[ i ] = 0;
-}
-\end{lstlisting}
 
-This is an example sub-section;
-the following content is auto-generated dummy text.
-Notice the examples in Figure~\ref{fig}, Table~\ref{tab}, Algorithm~\ref{alg}
-and Listing~\ref{lst}.
+\subsection{Class Weight implementation}
+Three different categories based on native support capabilities are revealed by class weight implementation across six chosen algorithms, as shown in Table~\ref{tab:class_weight}.  Through built-in $class\_weight$ parameters that automatically modify loss functions and sample importance during training, RF, LG, LightGBM, and SVM offer direct implementation.  Because of its distance-based architecture, KNN has limited implementation capabilities and does not support native class weights. Custom weights can be declared, but they are not successfully integrated during prediction.  With no alternative strategies like weighted sampling or custom loss functions implemented in the examined notebooks, NN ($MLPClassifier$) is still unsupported and expressly lacks class weight functionality.
 
-\subsubsection{Example Sub-sub-section}
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|c|l|l|}
+		\hline
+		\textbf{Algorithm} & \textbf{Native Support} & \textbf{Implementation Method} & \textbf{Usage Status} \\
+		\hline
+		Random Forest           & $\checkmark$ & \texttt{class\_weight} parameter & \textbf{Active} \\
+		\hline
+		Logistic Regression     & $\checkmark$ & \texttt{class\_weight} parameter & \textbf{Active} \\
+		\hline
+		LightGBM                & $\checkmark$ & \texttt{class\_weight} parameter & \textbf{Active} \\
+		\hline
+		Support Vector Machine  & $\checkmark$ & \texttt{class\_weight} parameter & \textbf{Active} \\
+		\hline
+		K-Nearest Neighbors     & $\times$     & Use another type of weighting          & \textbf{Not applied} \\
+		\hline
+		Neural Networks         & $\times$     & Not supported by MLPClassifier   & \textbf{Not applied} \\
+		\hline
+	\end{tabular}
+	\caption{Class Weight Support by Algorithm}
+	\label{tab:class_weight}
+\end{table}
 
-This is an example sub-sub-section;
-the following content is auto-generated dummy text.
+\section{ML Model Selection and Optimization}
+Six ML algorithms were compared methodically and rigorously optimised for student dropout prediction during the model selection phase.
 
-\paragraph{Example paragraph.}
+\subsection{Algorithm Selection and Optimization}
+The following six algorithms are complementary in their ability to handle the complexities of educational data mining: RF for robustness to feature interactions, Multinomial LR for interpretable probabilistic outputs, KNN for local behavioural patterns, LightGBM for advanced gradient boosting, SVM for non-linear boundary detection, and NN for deep learning capabilities. In order to address the crucial importance of accurately identifying at-risk students, each algorithm underwent systematic hyperparameter optimisation using GridSearchCV with 5-fold cross-validation, prioritising dropout recall performance ($\geq60\%$) while maintaining balanced accuracy through custom class weights: dropout class weighted $2.5$x, fail class $1.5$x, and pass class $0.6$x. Each ML model's hyperparameter search space is displayed in Table~\ref{tab:algo_search}. The hyperparameter search encompassed 2,032 total parameter combinations using parallel processing with 4 CPU cores.
 
-This is an example paragraph; note the trailing full-stop in the title,
-which is intended to ensure it does not run into the text.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|l|p{0.4\textwidth}|l|}
+		\hline
+		\textbf{Algorithm} & \textbf{Key Parameters} & \textbf{Search Range} & \textbf{Search Space Size} \\
+		\hline
+		& n\_estimators        & 100--500                       &  \\
+		\textbf{RF} & max\_depth           & 10--25                         & 480 combinations \\
+		& min\_samples\_split  & 2--10                          &  \\
+		& class\_weight        & balanced / custom              &  \\
+		\hline
+		& C (regularization)   & 0.01--100                      &  \\
+		\textbf{LR} & penalty            & L1 / L2 / ElasticNet          & 450 combinations \\
+		& solver               & SAGA / liblinear               &  \\
+		& max\_iter            & 1000--5000                     &  \\
+		\hline
+		& n\_neighbors         & 3--21                          &  \\
+		\textbf{KNN} & metric             & euclidean / manhattan / minkowski & 90 combinations \\
+		& weights              & uniform / distance             &  \\
+		& algorithm            & ball\_tree / kd\_tree / brute  &  \\
+		\hline
+		& n\_estimators        & 100--500                       &  \\
+		\textbf{LightGBM} & learning\_rate      & 0.01--0.2                      & 512 combinations \\
+		& max\_depth           & 3--8                           &  \\
+		& subsample            & 0.7--1.0                       &  \\
+		\hline
+		& C                    & 0.01--100                      &  \\
+		\textbf{SVM} & kernel            & linear / RBF / polynomial     & 180 combinations \\
+		& gamma                & scale / auto / numeric         &  \\
+		& degree               & 2--4 (poly only)               &  \\
+		\hline
+		& hidden\_layer\_sizes & (50)--(150) + multilayer       &  \\
+		\textbf{NN} & alpha (L2 penalty) & 0.0001--1.0                    & 320 combinations \\
+		& learning\_rate\_init & 0.0001--0.1                    &  \\
+		& solver               & adam / lbfgs                   &  \\
+		\hline
+	\end{tabular}
+	\caption{Hyperparameter search spaces and search sizes for each algorithm.}
+	\label{tab:algo_search}
+\end{table}
+
+%\begin{figure}[h]
+%\centering
+%foo
+%\caption{This is an example figure.}
+%\label{fig}
+%\end{figure}
+%
+%\begin{table}[h]
+%\centering
+%\begin{tabular}{|cc|c|}
+%\hline
+%foo      & bar      & baz      \\
+%\hline
+%$0     $ & $0     $ & $0     $ \\
+%$1     $ & $1     $ & $1     $ \\
+%$\vdots$ & $\vdots$ & $\vdots$ \\
+%$9     $ & $9     $ & $9     $ \\
+%\hline
+%\end{tabular}
+%\caption{This is an example table.}
+%\label{tab}
+%\end{table}
+%
+%\begin{algorithm}[h]
+%\For{$i=0$ {\bf upto} $n$}{
+%  $t_i \leftarrow 0$\;
+%}
+%\caption{This is an example algorithm.}
+%\label{alg}
+%\end{algorithm}
+%
+%\begin{lstlisting}[float={t},caption={This is an example listing.},label={lst},language=C]
+%for( i = 0; i < n; i++ ) {
+%  t[ i ] = 0;
+%}
+%\end{lstlisting}
+%
+%This is an example sub-section;
+%the following content is auto-generated dummy text.
+%Notice the examples in Figure~\ref{fig}, Table~\ref{tab}, Algorithm~\ref{alg}
+%and Listing~\ref{lst}.
 
 % -----------------------------------------------------------------------------
 
