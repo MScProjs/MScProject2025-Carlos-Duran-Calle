@@ -333,7 +333,7 @@ The present study builds upon existing research with three important advances. F
 
 Second, socio-economic variables, in particular the Index of Multiple Deprivation (IMD), are added to explore to what extent dropout risk is influenced by exogenous factors. As compared with the other OULAD studies of Tomasevic et al. \cite{tomasevic_comparison_supervised_data_2020} and Hussain et al. \cite{hussain_student_engagement_prediction_2018} indicated demography, these relations were not further investigated, in contrast socio-economical aspects came out as some of the strongest drop-out predictors.
 
-Third, it was developed a thorough model comparison framework with a unified evaluation schema. All models are trained on the same data split with data-specific class-weighting (Withdrawn: 2.51, Fail: 1.57, Pass: 0.57) to account for class imbalance, therefore fairly comparable and giving insights into a best approach for deployment.
+Third, it was developed a thorough model comparison framework with a unified evaluation schema. All models are trained on the same data split with data-specific class-weighting (Withdrawn: $2.09$, Fail: $1.31$, Pass: $0.48$) to account for class imbalance, therefore fairly comparable and giving insights into a best approach for deployment.
 
 \section{Challenges and Scope}
 This research is faced with many challenges. Attention to class imbalance is required so that models do not ignore the minority dropout class. These temporal characteristics require careful feature engineering to generate predictions early enough to allow for interventions. In addition, stakeholders need to be able to understand why students are being flagged as at-risk, which necessitates a balance between model complexity and interpretability.
@@ -516,6 +516,24 @@ This chapter describes the methodical process used to create and assess ML model
 \section{Overview and Research Design}
 With an emphasis on early intervention capabilities, this study applies a ML pipeline intended to forecast the likelihood of student dropout in online learning environments. By creating predictive models that can identify at-risk students before they drop out of their courses, the study tackles the crucial problem of student retention in higher education.
 
+\section{Data Class distribution}
+The class distribution of the cleaned and merged dataset, which comprises three outcome categories, is shown in Table~\ref{tab:class_distribution_merge}. There are $27,725$ records in all in the dataset. There is a glaring class imbalance in the distribution: the frequency of ``Fail'' outcomes is closer to ``Withdrawn'' than to ``Pass'', while the number of ``Withdrawn'' outcomes is much lower than that of ``Pass'' outcomes.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|l|r|r|r|}
+		\hline
+		\textbf{} & \textbf{Withdrawn (Class 0)} & \textbf{Fail (Class 1)} & \textbf{Pass (Class 2)} \\
+		\hline
+		Counts       & 5,296 & 7,044 & 15,385 \\
+		\hline
+		Percentages  & 19.1\% & 25.4\% & 55.5\% \\
+		\hline
+	\end{tabular}
+	\caption{Data Class distribution}
+	\label{tab:class_distribution_merge}
+\end{table}
+
+
 \subsection{Research Methodology Framework}
 The approach uses supervised learning and compares six different machine ML in a methodical manner: RF, Multinomial LR, KNN, LightGBM Gradient Boosting, SVM, and NN.  Robust evaluation across various learning paradigms, ranging from distance-based and deep learning approaches to ensemble methods and linear models, is ensured by this thorough algorithmic comparison.
 
@@ -525,7 +543,7 @@ From data intake to model winning selection, the research framework uses a struc
 To enable successful early intervention systems, the main goal is to maximise dropout recall $\geq60\%$. Since false negatives, or missing at-risk students, have more serious repercussions than false positives, or failing students who might succeed, in educational intervention contexts, this metric gives priority to identifying students who will drop out. In order to balance practical resource constraints with effective early intervention capabilities, the $60\%$ threshold was set especially for this project. This ensures that roughly two-thirds of at-risk students are identified while maintaining manageable caseloads for institutional support services.
 
 \subsection{Class Imbalance Challenge}
-With $19.1\%$ dropout students (minority class), $25.4\%$ failing students, and $55.5\%$ passing students (majority class), the dataset represents a serious class imbalance issue. Specific optimisation techniques, such as unique class weighting schemes and dropout-focused evaluation metrics, are needed to address this imbalance. By using class weights of roughly $2.51$x for dropouts, $1.57$x for failures, and $0.57$x for passes across various algorithms, the research employs customised strategies to make sure minority class detection is not overpowered by majority class dominance.
+With $19.1\%$ dropout students (minority class), $25.4\%$ failing students, and $55.5\%$ passing students (majority class), the dataset represents a serious class imbalance issue. Specific optimisation techniques, such as unique class weighting schemes and dropout-focused evaluation metrics, are needed to address this imbalance. By using class weights of roughly $2.09$x for dropouts, $1.31$x for failures, and $0.48$x for passes across various algorithms, the research employs customised strategies to make sure minority class detection is not overpowered by majority class dominance.
 
 \begin{figure}[t]
 	\centering
@@ -577,7 +595,7 @@ The fourth step filters the $27,725$ students and converts continuous behavioura
 In stage five, various pathways to academic success are captured by combining individual indicators into composite measures. By using logical OR operations to combine academic excellence and VLE activity, the unified engagement feature ($student\_engagement$) finds $19,932$ students ($71.9\%$) who are either performing well or showing strong platform engagement. This composite approach acknowledges that various engagement patterns may lead to students' success.
 
 \subsection{Stage 6: Engineering the Final Training Dataset}
-The last step of data preparation creates a validated, ML-ready dataset of $27,725 students$ and $24$ features by combining preprocessed data with engineered behavioural and demographic features. The distribution of classes in this dataset is $55.5\%$ Pass, $25.4\%$ Fail, and $19.1\%$ Withdrawn. With the withdrawn students representing a crucial minority class, it draws attention to the problem of class imbalance. Now that the dataset has been cleaned and optimised, it is ready for the next round of ML pipelines, where specific techniques will be used to predict outcomes for this important minority group.
+The last step of data preparation creates a validated, ML-ready dataset of $27,725 students$ and $25$ features by combining preprocessed data with engineered behavioural and demographic features. The distribution of classes in this dataset is $55.5\%$ Pass, $25.4\%$ Fail, and $19.1\%$ Withdrawn. With the withdrawn students representing a crucial minority class, it draws attention to the problem of class imbalance. Now that the dataset has been cleaned and optimised, it is ready for the next round of ML pipelines, where specific techniques will be used to predict outcomes for this important minority group.
 
 \begin{figure}[h]
 	\centering
@@ -586,9 +604,7 @@ The last step of data preparation creates a validated, ML-ready dataset of $27,7
 	\label{features_pipeline}
 \end{figure}
 
-\section{Data Stratification and Encoding Strategy}
-
-\subsection{Stratification Analysis and Strategy Selection}
+\section{Data Stratification Strategy}
 Three stratification techniques are evaluated methodically to maximise the preservation of class distribution. Using course-presentation combinations, Strategy 1 uses basic cohort-based stratification. Using a combination of cohort and outcome stratification, Strategy 2 maintains the distributions of academic outcomes and demographics. Triple stratification using cohort$+$outcome$+$courseload variables is attempted in Strategy 3.
 
 \paragraph{Strategy Selection:} Comparative analysis shows that Strategy 2 (Cohort + Outcome) is the best course of action. Since many cohort-outcome-courseload combinations contain only one student, triple stratification (Strategy 3) fails because combined groupings have insufficient sample sizes. As shown in Table~\ref{tab:class_distribution}, Strategy 2 effectively preserves the crucial $19.1\%$ dropout representation across train-test splits while maintaining class proportions.
@@ -614,8 +630,54 @@ Three stratification techniques are evaluated methodically to maximise the prese
 	\label{tab:class_distribution}
 \end{table}
 
+\section{Feature Selection for ML Models}
+In order to find variables with significant predictive relationships for predicting student outcomes, the feature selection process used exploratory data analysis. It also methodically looked at socio-demographic traits and engineered features to maximise model performance while preserving interpretability. Table~\ref{tab:sociodemographic} provides more information on these variables.
 
-\subsection{Categorical Encoding Methodology}
+\begin{table}[h!]
+	\centering	
+	\begin{tabular}{|l|l|p{8cm}|}
+		\hline
+		\textbf{Variable} & \textbf{Type} & \textbf{Categories} \\ \hline
+		\textbf{Gender} & Binary & Female, Male \\ \hline
+		\textbf{Age Band} & Ordinal & 0--35, 35--55, 55+ \\ \hline
+		\textbf{Disability} & Binary & No, Yes \\ \hline
+		\textbf{Highest Education} & Ordinal & No Formal $\rightarrow$ Post Graduate (5 levels) \\ \hline
+		\textbf{IMD Band} & Ordinal & 10 income deprivation percentiles \\ \hline
+		\textbf{Region} & Nominal & 13 UK geographical regions \\ \hline
+	\end{tabular}
+	\caption{Socio-Demographic Variable Characteristics}
+	\label{tab:sociodemographic}
+\end{table}
+
+Six socio-demographic factors were subjected to linear regression analysis in order to measure their associations with student outcomes. Proportional distributions among the three outcome classes (pass, fail, and withdrawn) were examined, and $R^2$ coefficients and slope measurements were used to evaluate the relevance of the variables. Table~\ref{tab:var_selection} displays a summary of the regression's results with $R^2$ and the corresponding slope for each class and variable selection.
+
+Additional visual information about this regression can be found in Appendix~\ref{appx:socio_demographic_plots}, which displays six plots for these socio-demographic variables. A summary of the findings from those plots is included here. The analysis showed that gender had perfect mathematical relationships ($R^2$ $1.000$) but minimal practical differences between female and male students ($18.0\%$ vs $20.0\%$ withdrawal rates, $57.1\%$ vs $54.1\%$ pass rates), which led to its exclusion from model training. Strong correlations were found between Age Band ($R^2$ $0.993-1.000$), with older students exhibiting increasingly better results. Pass rates rose sharply from $53.5\%$ to $68.2\%$, while withdrawal rates dropped from $19.5\%$ ($0-35$ years) to $16.9\%$ ($55+$ years). With pass rates rising from $38.7\%$ to $70.9\%$ and withdrawal rates falling from $25.6\%$ (no qualifications) to $17.3\%$ (post-graduate), the strongest substantive predictor ($R^2$ $0.788-0.984$) was highest education. Strong socioeconomic relationships were found by IMD Band ($R^2$ $0.819-0.948$), with pass rates rising from $43.6\%$ to $65.0\%$ as deprivation decreased and withdrawal rates for students from the most deprived areas being $22.0\%$ compared to $16.3\%$ in the least deprived areas. Disability Status demonstrated perfect mathematical relationships ($R^2$ $1.000$) with significant practical implications; students with disabilities had lower pass rates ($45.8\%$ vs. $56.5\%$) and much higher withdrawal rates ($27.3\%$ vs. $18.2\%$). Although region showed little variation and weak relationships ($R^2$ $0.010-0.040$), it was kept to account for regional differences in educational access that were not represented by other variables.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|l|cc|cc|cc|l|}
+		\hline
+		\multirow{3}{*}{\textbf{Variable}} & \multicolumn{6}{c|}{\textbf{Class}} & \multirow{3}{*}{\shortstack{\textbf{Selection}\\\textbf{Decision}}} \\
+		\cline{2-7}
+		& \multicolumn{2}{c|}{\textbf{Withdrawn}} & \multicolumn{2}{c|}{\textbf{Fail}} & \multicolumn{2}{c|}{\textbf{Pass}} & \\
+		\cline{2-7}
+		& \textbf{R$^2$} & \textbf{Slope} & \textbf{R$^2$} & \textbf{Slope} & \textbf{R$^2$} & \textbf{Slope} & \\
+		\hline
+		\textbf{Gender}            & 1.000 & +0.020 & 1.000 & +0.011 & 1.000 & -0.030 & \textbf{Excluded} \\
+		\textbf{Age Band}          & 1.000 & -0.013 & 0.994 & -0.061 & 0.996 & +0.074 & \textbf{Included} \\
+		\textbf{Disability}        & 1.000 & +0.091 & 1.000 & +0.018 & 1.000 & -0.107 & \textbf{Included} \\
+		\textbf{Highest Education} & 0.788 & -0.021 & 0.984 & -0.060 & 0.966 & +0.081 & \textbf{Included} \\
+		\textbf{IMD Band}          & 0.819 & -0.001 & 0.909 & -0.002 & 0.948 & +0.002 & \textbf{Included} \\
+		\textbf{Region}            & 0.010 & +0.000 & 0.036 & +0.002 & 0.040 & -0.002 & \textbf{Included} \\
+		\hline
+	\end{tabular}
+	\caption{Model fit $R^2$ and slope by variable across outcome classes.}
+	\label{tab:var_selection}
+\end{table}
+
+By identifying behavioural and performance patterns not found in raw demographic data, the six-stage feature engineering pipeline (Figure~\ref{features_pipeline}) produced four key variables that complemented socio-demographic characteristics:  $student\_engagement$ (binary composite engagement that meets either excellence or VLE activity criteria), $active\_in\_VLE$ (binary above-average virtual learning engagement prior to first assessment), $excellent\_Score$ (binary academic merit threshold indicator for $\geq70\%$ performance), and $courses\_per\_term$ (continuous academic load distribution reflecting study intensity patterns).
+
+\section{Categorical Encoding Strategy}
 Using the $encoding\_utils$ module, tailored encoding techniques handle various categorical variable types. Region variables are treated as nominal categories with no intrinsic ordering through one-hot encoding. Ordinal encoding is used to preserve hierarchical relationships across socioeconomic and demographic dimensions while maintaining ranked sequences for the variables of education, age, and IMD band. For dichotomous classification, disability status uses binary encoding. Maintaining feature alignment and preventing data leakage are achieved by encoding consistency across train-test splits. Table~\ref{tab:encoding_strategy} provides an overview of this.
 
 \paragraph{Dataset Export} Systematic model comparison is made possible by encoded datasets exporting as standardised CSV files ($X\_train\_encoded.csv$, $X\_test\_encoded.csv$, $y\_train.csv$, $y\_test.csv$). The encoding procedure preserves the temporal validity set in earlier preprocessing stages while generating consistent feature matrices appropriate for a range of algorithm requirements.
@@ -638,7 +700,8 @@ Using the $encoding\_utils$ module, tailored encoding techniques handle various 
 \end{table}
 
 \section{Class Weighting Strategy}
-Class imbalance in educational datasets, where withdrawn students make up only $19.1\%$ of the dataset population, requires strategic weighting methods that are implemented through a two-stage calculation process that combines custom multipliers with sklearn's balanced weighting. First, balanced weights are calculated using sklearn's $compute\_class\_weight('balanced')$ function to produce baseline values proportional to inverse class frequencies. Next, strategic multiplier application is applied to improve dropout detection capabilities.  This is demonstrated in Algorithm~\ref{alg:custom_weights}, where the multiplier values ($1.2$x, $1.0$x, $0.8$x) were chosen to reduce majority class dominance by 20\% and increase dropout class sensitivity by 20\%.  With this setup, the class balance is changed from the initial balanced weights $\{0: 1.74, 1: 1.31, 2: 0.60\}$ to the optimised custom weights $\{0: 2.09, 1: 1.31, 2: 0.48\}$.
+\label{sec:class-weighting}
+Class imbalance in educational datasets, where withdrawn students make up only $19.1\%$ of the dataset population, requires strategic weighting methods that are implemented through a two-stage calculation process that combines custom multipliers with sklearn's balanced weighting. First, balanced weights are calculated using sklearn's $compute\_class\_weight('balanced')$ function to produce baseline values proportional to inverse class frequencies. Next, strategic multiplier application is applied to improve dropout detection capabilities.  This is demonstrated in Algorithm~\ref{alg:custom_weights}, where the multiplier values ($1.2$x, $1.0$x, $0.8$x) were chosen to reduce majority class dominance by 20\% and increase dropout class sensitivity by 20\%. These multiplier values were selected especially for this project and can be altered to improve the recall metric or other pertinent metrics, depending on the stakeholders' domain expertise. With this setup, the class balance is changed from the initial balanced weights $\{0: 1.74, 1: 1.31, 2: 0.60\}$ to the optimised custom weights $\{0: 2.09, 1: 1.31, 2: 0.48\}$.
 
 \begin{algorithm}[h]
 	\KwIn{$y\_train$, $classes$}
@@ -659,7 +722,6 @@ Class imbalance in educational datasets, where withdrawn students make up only $
 	\caption{Computation of custom class weights for ML training.}
 	\label{alg:custom_weights}
 \end{algorithm}
-
 
 \subsection{Class Weight implementation}
 Three different categories based on native support capabilities are revealed by class weight implementation across six chosen algorithms, as shown in Table~\ref{tab:class_weight}.  Through built-in $class\_weight$ parameters that automatically modify loss functions and sample importance during training, RF, LG, LightGBM, and SVM offer direct implementation.  Because of its distance-based architecture, KNN has limited implementation capabilities and does not support native class weights. Custom weights can be declared, but they are not successfully integrated during prediction.  With no alternative strategies like weighted sampling or custom loss functions implemented in the examined notebooks, NN ($MLPClassifier$) is still unsupported and expressly lacks class weight functionality.
@@ -683,15 +745,73 @@ Three different categories based on native support capabilities are revealed by 
 		Neural Networks         & $\times$     & Not supported by MLPClassifier   & \textbf{Not applied} \\
 		\hline
 	\end{tabular}
-	\caption{Class Weight Support by Algorithm}
+	\caption{Class Weight Support by ML model}
 	\label{tab:class_weight}
 \end{table}
+
+\section{Custom Dropout-Focused Scoring Metrics}
+The three-class imbalanced nature of student outcome prediction necessitates specialised metrics that emphasise early identification of at-risk students. This led to the development of custom dropout-focused scoring functions to supplement a baseline evaluation framework of seven traditional $sklearn$ metrics that provide balanced perspectives on classification performance across precision, recall, and F1-score dimensions. Standard ML evaluation metrics prioritise overall classification accuracy. Table~\ref{tab:std_metrics} provides an appreciation of these standard metrics.
+
+To separate performance measurement for the minority withdrawal class (Class 0) and at-risk student populations in student dropout prediction, three specialised scoring functions were created. Its addition is also visible in the Algorithm~\ref{alg:custom_dropout_scorers}, where the ML model to be used for training is the input estimator.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		\textbf{Metric} & \textbf{Function} & \textbf{Scope} & \textbf{Purpose} \\
+		\hline
+		\texttt{accuracy}            & Overall classification rate & Global      & General performance measure \\
+		\hline
+		\texttt{f1\_weighted}        & Weighted F1-score           & Multi-class & Class-size adjusted F1      \\
+		\hline
+		\texttt{f1\_macro}           & Unweighted F1-score         & Multi-class & Equal class importance      \\
+		\hline
+		\texttt{precision\_weighted} & Weighted precision          & Multi-class & Class-size adjusted precision \\
+		\hline
+		\texttt{recall\_weighted}    & Weighted recall             & Multi-class & Class-size adjusted recall  \\
+		\hline
+		\texttt{precision\_macro}    & Unweighted precision        & Multi-class & Equal class precision       \\
+		\hline
+		\texttt{recall\_macro}       & Unweighted recall           & Multi-class & Equal class recall          \\
+		\hline
+	\end{tabular}
+	\caption{Standard Evaluation Metrics}
+	\label{tab:std_metrics}
+\end{table}
+
+\begin{algorithm}[h]
+	\KwIn{$estimator$, $X$, $y$}
+	\KwOut{Custom scoring functions for dropout and at-risk students}
+	
+	\textbf{Function dropout\_recall}($estimator, X, y$): \\
+	\Indp
+	$y\_pred \leftarrow estimator.predict(X)$\;
+	\Return $recall\_score(y, y\_pred, labels=[0], average=`macro')$ \tcp*{class 0 recall}
+	\Indm
+	
+	\textbf{Function dropout\_precision}($estimator, X, y$): \\
+	\Indp
+	$y\_pred \leftarrow estimator.predict(X)$\;
+	\Return $precision\_score(y, y\_pred, labels=[0], average=`macro')$ \tcp*{class 0 precision}
+	\Indm
+	
+	\textbf{Function at\_risk\_recall}($estimator, X, y$): \\
+	\Indp
+	$y\_pred \leftarrow estimator.predict(X)$\;
+	\Return $recall\_score(y, y\_pred, labels=[0,1], average=`macro')$ \tcp*{classes 0, 1 recall}
+	\Indm
+	
+	\caption{Definition of Custom Dropout and At-Risk Scoring Functions}
+	\label{alg:custom_dropout_scorers}
+\end{algorithm}
+
+\paragraph{Primary Optimisation Metric} Since educational institutions gain more from identifying $60\%$ or more of potential dropouts with false positives than from achieving high precision while missing the majority of at-risk students, the $dropout\_recall$ metric was chosen as the primary scoring function for hyperparameter optimisation across all six algorithms, giving priority to the identification of students likely to withdraw for proactive intervention over prediction accuracy.  By ensuring that models are optimised for student retention rather than general classification accuracy, this custom scoring approach facilitates direct algorithm comparison on the most important prediction task while preserving thorough evaluation across conventional metrics.
 
 \section{ML Model Selection and Optimization}
 Six ML algorithms were compared methodically and rigorously optimised for student dropout prediction during the model selection phase.
 
 \subsection{Algorithm Selection and Optimization}
-The following six algorithms are complementary in their ability to handle the complexities of educational data mining: RF for robustness to feature interactions, Multinomial LR for interpretable probabilistic outputs, KNN for local behavioural patterns, LightGBM for advanced gradient boosting, SVM for non-linear boundary detection, and NN for deep learning capabilities. In order to address the crucial importance of accurately identifying at-risk students, each algorithm underwent systematic hyperparameter optimisation using GridSearchCV with 5-fold cross-validation, prioritising dropout recall performance ($\geq60\%$) while maintaining balanced accuracy through custom class weights: dropout class weighted $2.5$x, fail class $1.5$x, and pass class $0.6$x. Each ML model's hyperparameter search space is displayed in Table~\ref{tab:algo_search}. The hyperparameter search encompassed 2,032 total parameter combinations using parallel processing with 4 CPU cores.
+The following six algorithms are complementary in their ability to handle the complexities of educational data mining: RF for robustness to feature interactions, Multinomial LR for interpretable probabilistic outputs, KNN for local behavioural patterns, LightGBM for advanced gradient boosting, SVM for non-linear boundary detection, and NN for deep learning capabilities. In order to address the crucial importance of accurately identifying at-risk students, each algorithm underwent systematic hyperparameter optimisation using GridSearchCV with 5-fold cross-validation, prioritising dropout recall performance ($\geq60\%$) while maintaining balanced accuracy through custom class weights: dropout class weighted $2.09$x, fail class $1.31$x, and pass class $0.48$x. Each ML model's hyperparameter search space is displayed in Table~\ref{tab:algo_search}. The hyperparameter search encompassed 2,032 total parameter combinations using parallel processing with 4 CPU cores.
 
 \begin{table}[h]
 	\centering
@@ -778,36 +898,125 @@ The following six algorithms are complementary in their ability to handle the co
 
 % -----------------------------------------------------------------------------
 
-\chapter{Critical Evaluation}
-\label{chap:evaluation}
-
-{\bf A topic-specific chapter, roughly 30\% of the total page-count} 
+\chapter{Result Analysis}
+\label{chap:result}
 \vspace{1cm} 
-
 \noindent
-This chapter is intended to evaluate what you did.  The content is highly 
-topic-specific, but for many projects will have flavours of the following:
+This chapter presents a detail analysis comparing six machine learning models (RF, LR, KNN, LightGBM, SVM, and NN) for student dropout prediction using the OULAD dataset, with primary focus on optimizing dropout recall performance to enable effective early intervention strategies.
 
-\begin{enumerate}
-\item functional  testing, including analysis and explanation of failure 
-      cases,
-\item behavioural testing, often including analysis of any results that 
-      draw some form of conclusion wrt. the aims and objectives,
-      and
-\item evaluation of options and decisions within the project, and/or a
-      comparison with alternatives.
-\end{enumerate}
+\section{Class Distribution Analysis}
+In order to address the inherent class imbalance in the OULAD dataset and guarantee representative class distributions, the dataset was systematically divided using stratified sampling with a $80$:$20$ split ratio ($22,178$ training samples, $5,544$ test samples), while maintaining the original class proportions across both subsets. Figure~\ref{fig:data_distribution} provides a visual representation of this distribution.  Both the training and test partitions had a proportionate representation of each outcome class. The Withdrawn class (Class 0), which had $4,237$ training samples and 1,059 test samples, had only $19.1\%$ of students, which is crucial for dropout prediction.
 
-\noindent
-This chapter often acts to differentiate project quality: even if the work
-completed is of a high technical quality, critical yet objective evaluation 
-and comparison of the outcomes is crucial.  In essence, the reader wants to
-learn something, so the worst examples amount to simple statements of fact 
-(e.g., ``graph X shows the result is Y''); the best examples are analytical 
-and exploratory (e.g., ``graph X shows the result is Y, which means Z; this 
-contradicts [1], which may be because I use a different assumption'').  As 
-such, both positive {\em and}\/ negative outcomes are valid {\em if} presented 
-in a suitable manner.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/4_1_data_class_distribution.png}
+	\caption{Data Class Distribution for Training and Test Data}
+	\label{fig:data_distribution}
+\end{figure}
+
+\section{Custom Weighted Analysis}
+There was a notable class imbalance and a strong bias in favour of successful students in the original training dataset.  With $55.5\%$ of the total samples, or $12,308$ students in the training set and $3,077$ in the test set, the $Pass$ class (Class 2) dominated, as seen in Figure~\ref{fig:data_distribution}.  With $5,633$ training samples and $1,408$ test samples, the $Fail$ class (Class 1) made up $25.4\%$ of the dataset.  With $4,237$ training samples and $1,059$ test samples, the $Withdrawn$ class (Class 0) represented only $19.1\%$ of students, which is crucial for dropout prediction.
+
+This distribution is further demonstrated in Figure~\ref{fig:weighted_data_class}, where the weighted distribution shows the optimisation strategy for dropout detection, and the pie chart emphasises the inherent imbalance.  Withdrawn students (Class 0) received the highest weight of $2.09$ according to the weighting method outlined in Section~\ref{sec:class-weighting}.  Due to their at-risk status, $Fail$ students (Class 1) were assigned a moderate weight of $1.31$.  With the lowest weight of $0.48$, $Pass$ students (Class 2) had less of an impact on model choices.  Adjusted emphasis proportions of $53.9\%$, $33.8\%$, and $12.4\%$ were the outcomes of these weights.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/4_2_weighted_data_class.png}
+	\caption{Original vs. Weighted Class Distribution}
+	\label{fig:weighted_data_class}
+\end{figure}
+
+\section{Model Performance Comparison and Rankings}
+\subsection{Primary Metric Analysis: Dropout Recall Performance}
+Significant differences in dropout recall performance were found when six machine learning models were evaluated, creating distinct performance hierarchies for identifying student risk. When compared to the main optimisation metric of dropout recall, the models showed different performance tiers, according to 5-fold cross-validation analysis.
+
+With a dropout recall score of $66.8\%$, LR was the best performer and had the strongest ability to identify dropout students, according to Figure~\ref{fig:model_perfomance_comparison}. With this performance, the model showed strong predictive potential for early intervention systems, placing it well above the median threshold. SVM established a competitive alternative with comparable detection capacity, coming in second with $63.1\%$ dropout recall. Three performance levels were identified by the analysis: (i) excellent ($\geq60\%$ dropout recall), attained by LR ($66.8\%$) and SVM ($63.1\%$); (ii) good ($40$–$59\%$), represented by RF ($59.0\%$) and LightGBM ($56.0\%$); and (iii) needing improvement ($<40\%$), with KNN ($31.3\%$) and NN ($18.7\%$), both of which did not support weight customisation during training. The significant performance differences between models—a $3.7$-point difference between the top two and a $48.1$-point difference between the best and worst performers—highlight the vital significance of selecting models carefully in student support systems.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{../Visualizations/Report/4_3_model_performance_comparison.png}
+	\caption{Model Performance Comparison}
+	\label{fig:model_perfomance_comparison}
+\end{figure}
+
+\subsection{Other Multi-Metrics Performance Evaluation}
+Proceeding with the examination of Figure~\ref{fig:model_perfomance_comparison}, the assessment along several performance dimensions uncovered intricate trade-offs between classification accuracy and detection capability.  Although dropout recall was the main optimisation goal, dropout precision, at-risk recall, and weighted F1 scores were also taken into account in order to provide a thorough evaluation of the overall efficacy of the model.
+
+Although recall performance was poor, NN showed superior dropout precision ($28.4\%$), indicating limited coverage of dropout students but high confidence in positive predictions.  While LR recorded $25.0\%$ precision, which represents the trade-off for maximised recall performance, RF ($27.0\%$), LightGBM ($26.9\%$), and SVM ($26.2\%$) attained comparable precision levels.
+
+In contrast to dropout recall, at-risk recall (which merges the Withdrawn and Fail classes into one) exhibited distinct rankings.  The highest at-risk recall ($40.8\%$) was attained by LightGBM, which was closely followed by SVM ($39.2\%$), RF ($39.3\%$), and Logistic Regression ($39.6\%$).  This metric demonstrated the models' ability to detect students who need more academic assistance than just the immediate risk of dropping out.
+
+Overall classification balance across all outcome categories was revealed by weighted F1 scores.  The highest weighted F1 score ($55.2\%$) was attained by NN, which was followed by KNN ($50.9\%$) and RF ($49.5\%$).  These findings showed that dropout recall-optimized models inevitably compromised overall classification balance, which is consistent with the intentional design decision to give dropout student identification priority.
+
+No single model dominated across all performance dimensions, according to the multi-metric analysis.  While models with strong overall classification performance showed limited dropout detection capabilities, the top-performing models for dropout recall (LR and SVM) performed moderately in other metrics.
+
+\section{Training Efficiency Analysis}
+Significant differences in the amount of time needed for training across machine learning algorithms were found by the computational efficiency analysis.  Training durations varied from 4 minutes for LR to $7.14$ hours for LightGBM, a difference of roughly $107$ times in computational demands, as shown in Figure~\ref{fig:model_training_time}.  LR achieved the highest dropout recall performance ($66.8\%$) and showed remarkable efficiency with a $4$ training duration.  Because of this combination, the algorithm was positioned as the best option for quick development cycles and real-time model updates.
+
+NN had the lowest dropout recall performance ($18.7\%$) and required $50$ minutes of training time. Out of all the algorithms that were evaluated, this efficiency-performance combination had the least favourable profile. SVM established a reasonable efficiency-performance balance for secondary deployment consideration, achieving competitive performance ($63.1\%$ dropout recall) with $1.34$ hours of training time. Different computational requirements were shown by the intermediate performers. LightGBM required the longest training time of $7.14$ hours for $56.0\%$ performance, while RF used $3.13$ hours with $59.0\%$ dropout recall. The fact that KNN only achieved $31.3\%$ dropout recall after $1.60$ hours of training shows that there is no relationship between training time and performance results.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/4_4_model_training_time.png}
+	\caption{Dropout Recall vs. Training Time for Six ML Models}
+	\label{fig:model_training_time}
+\end{figure}
+
+\section{Hyperparameter Optimization Analysis}
+Different hyperparameter space dimensionalities and optimisation requirements were reflected in the wide variations in grid search complexity among algorithms.  In order to evaluate the computational overhead related to model optimisation, the analysis looked at the number of parameter combinations tested during 5-fold cross-validation.
+
+LightGBM demonstrated the highest optimisation complexity, requiring $3,888$ parameter combinations during grid search and resulting in the longest training duration of $7.14$ hours, as illustrated in Figure~\ref{fig:model_runtime_gridSearchCV}.  With $6,120$ combinations over $3.13$ hours, RF came in second, demonstrating improved parameter evaluation efficiency in spite of a larger search space.  Given the small but well-explored hyperparameter space, LR's practical advantage for quick deployment is highlighted by its optimal efficiency, testing only $450$ parameter combinations in $4$ minutes.  Although the additional computational investment did not result in performance gains, NN evaluated $120$ combinations in $50$ minutes, indicating moderate optimisation complexity.  Lastly, SVM demonstrated targeted hyperparameter optimisation that produced efficient performance results by testing $24$ combinations in $1.34$ hours.
+
+An inverse relationship between search complexity and performance efficiency was found by the optimisation intensity analysis.  LightGBM and RF, two algorithms that required a great deal of hyperparameter exploration, used disproportionate amounts of computational resources without offering any performance benefits over more straightforward methods.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/4_5_model_runtime_gridSearchCV.png}
+	\caption{Training Runtime and Parameter Combinations Across Models}
+	\label{fig:model_runtime_gridSearchCV}
+\end{figure}
+
+\section{Multi-Dimensional Performance}
+A five-dimensional radar plot analysis is presented in Figure~\ref{fig:radar_plot}, which offers a comprehensive visual depiction of model performance across all evaluation metrics at the same time.  An alternate viewpoint for comparing the metrics of various ML models is provided by this radar plot.  Performance patterns that are not apparent in single-metric comparisons are revealed by the multi-dimensional approach.  To generate thorough performance profiles, the radar visualisation combines dropout recall, dropout precision, at-risk recall, weighted recall, and weighted F1 scores.
+
+As previously found, this radar plot visualisation also shows different performance patterns among models. LR is the top performer with the largest radar area, showing balanced strength across several dimensions, including maximum dropout recall ($0.668$) and consistent performance across recall-focused dimensions.  To illustrate why high weighted F1 scores do not ensure minority class identification effectiveness, NN, on the other hand, displays a highly unbalanced radar profile that is concentrated in precision and weighted F1 regions while displaying significant weaknesses in recall dimensions.  Performance gradient zones highlight threshold boundaries between excellent ($\geq0.60$), good ($0.40$-$0.59$), and needs improvement ($<0.40$) levels. This allows for quick assessment of model positioning relative to deployment criteria across all evaluation dimensions at once. The radar plot's colour-coded styling distinguishes performance tiers, with excellent performers (LR, SVM) in solid bold styling, good performers (RF, LightGBM) in medium styling, and models needing improvement (KNN, NN) in lighter dashed styling.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/4_6_radar_plot_comparison.png}
+	\caption{Multi-metric Radar Plot for Six ML Models}
+	\label{fig:radar_plot}
+\end{figure}
+
+
+
+%{\bf A topic-specific chapter, roughly 30\% of the total page-count} 
+%\vspace{1cm} 
+%
+%\noindent
+%This chapter is intended to evaluate what you did.  The content is highly 
+%topic-specific, but for many projects will have flavours of the following:
+%
+%\begin{enumerate}
+%\item functional  testing, including analysis and explanation of failure 
+%      cases,
+%\item behavioural testing, often including analysis of any results that 
+%      draw some form of conclusion wrt. the aims and objectives,
+%      and
+%\item evaluation of options and decisions within the project, and/or a
+%      comparison with alternatives.
+%\end{enumerate}
+%
+%\noindent
+%This chapter often acts to differentiate project quality: even if the work
+%completed is of a high technical quality, critical yet objective evaluation 
+%and comparison of the outcomes is crucial.  In essence, the reader wants to
+%learn something, so the worst examples amount to simple statements of fact 
+%(e.g., ``graph X shows the result is Y''); the best examples are analytical 
+%and exploratory (e.g., ``graph X shows the result is Y, which means Z; this 
+%contradicts [1], which may be because I use a different assumption'').  As 
+%such, both positive {\em and}\/ negative outcomes are valid {\em if} presented 
+%in a suitable manner.
 
 % -----------------------------------------------------------------------------
 
@@ -881,24 +1090,52 @@ And this, the final paragraph of this thesis template, is just a bunch of citati
 
 \appendix
 
-\chapter{An Example Appendix}
-\label{appx:example}
+\chapter{Socio-Demographic Visualisations}
+\label{appx:socio_demographic_plots}
 
-Content which is not central to, but may enhance the dissertation can be 
-included in one or more appendices; examples include, but are not limited
-to
+The linear regression analyses in this appendix look at the correlation between six important socio-demographic factors and student outcomes (Pass, Fail, Withdrawn).  To comprehend how various demographic factors affect academic performance and dropout patterns, each variable is examined independently.  Gender, age band, disability status, highest education level, income deprivation (IMD) band, and region are the six socio-demographic factors that were looked at.  The proportionate results across the demographic categories are displayed by fitting three regression lines for each variable; the slopes and $R^2$ values show the direction and strength of each relationship.
 
-\begin{itemize}
-\item lengthy mathematical proofs, numerical or graphical results which 
-      are summarised in the main body,
-\item sample or example calculations, 
-      and
-\item results of user studies or questionnaires.
-\end{itemize}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/A1_Gender_plot.png}
+	\caption{Student Outcomes by Gender}
+	\label{gender_plot}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/A1_Age_band_plot.png}
+	\caption{Student Outcomes by Age Band}
+	\label{age_band_plot}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/A1_HE_plot.png}
+	\caption{Student Outcomes by Highest Education Level}
+	\label{HE_plot}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/A1_IMD_band_plot.png}
+	\caption{Student Outcomes by IMD band}
+	\label{IMD_plot}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/A1_Disability_plot.png}
+	\caption{Student Outcomes by Disability Level}
+	\label{disability_plot}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Visualizations/Report/A1_Region_plot.png}
+	\caption{Student Outcomes by UK Region}
+	\label{Region_plot}
+\end{figure}
+
 
 \noindent
-Note that in line with most research conferences, the examiners are not
-obliged to read such appendices.
+%Note that in line with most research conferences, the examiners are not
+%obliged to read such appendices.
 
 % =============================================================================
 

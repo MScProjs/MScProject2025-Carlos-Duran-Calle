@@ -52,7 +52,7 @@ RESULT_CODE_MAPPING = {
 }
 
 # Visualization configuration
-PLOT_COLORS = ['#1f77b4', '#d62728', '#2ca02c']  # Blue, Red, Green
+PLOT_COLORS = ['#d62728', '#ff7f0e', '#1f77b4']  # Red (Withdrawn), Orange (Fail), Blue (Pass)
 PLOT_STYLE = 'seaborn-v0_8'
 
 # Variable configurations for plotting

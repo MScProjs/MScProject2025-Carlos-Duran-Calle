@@ -8,6 +8,7 @@
 \RequirePackage{pgfkeys}
 \RequirePackage{pgfopts}
 \RequirePackage{makecell}
+\RequirePackage{multirow}
 
 
 \pgfkeys{/dissertation/.cd,
