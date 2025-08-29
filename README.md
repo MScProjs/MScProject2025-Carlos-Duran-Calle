@@ -51,6 +51,9 @@ MScProject/
 ├── Documentation/                      # 📋 Project documentation
 │   └── Project_Plan-Carlos_Duran.pdf   # Project planning document
 │
+├── Dissertation_report/                # 📄 Dissertation and research documentation
+│   └── [Dissertation files]            # Research papers, reports, and analysis documents
+│
 ├── Python_files/                      # 🐍 Core analysis modules
 │   ├── __init__.py                     # Package initialization
 │   ├── config_file.py                  # Configuration settings
@@ -73,6 +76,24 @@ MScProject/
 │   └── X1_model_comparison_analysis.ipynb      # Comprehensive model comparison
 │
 └── Visualizations/                     # 📈 Generated plots and charts
+    ├── Report/                         # 📁 Dissertation report visualizations
+    │   ├── 2_1_database_scheme.png            # Database schema diagram
+    │   ├── 3_1_project_pipeline.png           # Overall project pipeline
+    │   ├── 3_2_features_pipeline.png          # Feature engineering pipeline
+    │   ├── 4_1_data_class_distribution.png    # Target class distribution analysis
+    │   ├── 4_2_weighted_data_class.png        # Class weighting strategy
+    │   ├── 4_3_model_performance_comparison.png # Model performance comparison
+    │   ├── 4_4_model_training_time.png        # Model training time analysis
+    │   ├── 4_5_model_runtime_gridSearchCV.png # Hyperparameter tuning runtime
+    │   ├── 4_6_radar_plot_comparison.png      # Radar plot model comparison
+    │   ├── 4_7_feature_importance.png         # Feature importance analysis
+    │   ├── A1_Gender_plot.png                 # Gender distribution analysis
+    │   ├── A1_Age_band_plot.png               # Age distribution analysis
+    │   ├── A1_HE_plot.png                     # Higher education background
+    │   ├── A1_Disability_plot.png             # Disability status analysis
+    │   ├── A1_IMD_band_plot.png               # IMD band distribution
+    │   └── A1_Region_plot.png                 # Regional distribution analysis
+    │
     └── Model_comparison/               # 📁 Model comparison visualizations
         ├── 01_class_distribution.png          # Target class distribution
         ├── 02_model_comparison.png            # Model performance comparison
@@ -149,3 +170,23 @@ The modular design allows for easy modification:
 ---
 
 **🎯 Goal**: Predict student academic outcomes (Withdrawn/Fail/Pass/Distinction) using demographic and engagement data through optimized machine learning models.
+
+## 📋 Conclusion
+
+This project addresses the critical challenge of high attrition rates in virtual learning environments through a comprehensive machine learning pipeline designed to identify at-risk students early and enable timely interventions. Using the Open University Learning Analytics Dataset, the analysis classifies student outcomes into three categories: Withdrawn (class 0), Fail (class 1), and Pass (class 2).
+
+### Key Approach
+- **Engagement Indicators**: Created three interpretable engagement metrics: excellent score (≥70), VLE activity, and composite student engagement flags
+- **Contextual Factors**: Incorporated socioeconomic and demographic variables (highest education, IMD band, disability, age, region)
+- **Balanced Methodology**: Employed cohort and outcome stratified data splitting to maintain class proportions
+- **Comprehensive Model Evaluation**: Assessed six machine learning algorithms with custom class weights and dropout-focused metrics
+
+### Results
+The Multinomial Logistic Regression model demonstrated exceptional performance for early-warning applications with:
+- **66.8% recall** for identifying Withdrawn students
+- **Efficient training time** (~4 minutes)
+- **Interpretable coefficients** for actionable insights
+- **Optimized hyperparameters** through stratified 5-fold GridSearchCV
+
+### Impact
+This research contributes to educational data mining by providing a robust, interpretable solution for early student risk identification, supporting institutional efforts to improve retention and student success through data-driven interventions.
