@@ -1,0 +1,21 @@
+feature,importance
+excellent_Score,0.255715192894249
+student_engagementt,0.2509231482472147
+active_in_VLE,0.14208380641697613
+imd_band_ord,0.10899329623901916
+highest_education_ord,0.08257226024210597
+disability_binary,0.026303022407350066
+age_band_ord,0.02382419443571507
+region_Wales,0.012050436285954723
+courses_per_term,0.011448391041071766
+region_Scotland,0.010243417178227878
+region_South Region,0.009670804741427773
+region_London Region,0.009125410006025712
+region_East Midlands Region,0.008577318252796362
+region_South West Region,0.008429612580965064
+region_South East Region,0.007626802761031648
+region_North Western Region,0.00740426093873244
+region_North Region,0.006699241942767685
+region_West Midlands Region,0.006510331493603912
+region_Yorkshire Region,0.006312983127573395
+region_Ireland,0.00548606876719173

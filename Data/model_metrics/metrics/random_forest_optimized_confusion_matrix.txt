@@ -1,0 +1,11 @@
+Confusion Matrix for random_forest_optimized
+==================================================
+
+Class Labels: 0, 1, 2
+
+Confusion Matrix:
+------------------------------
+Actual\Predicted	0	1	2
+0			368	299	392
+1			419	465	526
+2			401	389	2286

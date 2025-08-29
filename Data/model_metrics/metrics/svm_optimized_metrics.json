@@ -1,0 +1,150 @@
+{
+  "model_info": {
+    "model_name": "Support Vector Machine (SVM)",
+    "optimization_method": "GridSearchCV",
+    "primary_scoring_metric": "dropout_recall",
+    "total_runtime_minutes": 80.41,
+    "feature_scaling": "StandardScaler (REQUIRED for SVM)"
+  },
+  "dataset_info": {
+    "training_samples": 22180,
+    "test_samples": 5545,
+    "n_features": 20,
+    "n_classes": 3,
+    "class_distribution": {
+      "0": 4237,
+      "1": 5634,
+      "2": 12309
+    }
+  },
+  "hyperparameters": {
+    "best_params": {
+      "C": 0.1,
+      "class_weight": {
+        "0": 2.0939343875383525,
+        "1": 1.312270737190865,
+        "2": 0.48051561188290415
+      },
+      "gamma": "scale",
+      "kernel": "rbf"
+    },
+    "total_combinations_tested": 24,
+    "cv_folds": 5
+  },
+  "cross_validation_results": {
+    "best_cv_score": 0.6308720010692566,
+    "cv_scores_by_metric": {
+      "accuracy": {
+        "mean": 0.4831830477908025,
+        "std": 0.0075813656756933715
+      },
+      "f1_weighted": {
+        "mean": 0.48811126448858405,
+        "std": 0.0068360414206174586
+      },
+      "f1_macro": {
+        "mean": 0.41342989465978164,
+        "std": 0.006703143852192663
+      },
+      "precision_weighted": {
+        "mean": 0.5569507157929686,
+        "std": 0.006079538683326207
+      },
+      "recall_weighted": {
+        "mean": 0.4831830477908025,
+        "std": 0.0075813656756933715
+      },
+      "precision_macro": {
+        "mean": 0.4597112252768717,
+        "std": 0.006513698281565123
+      },
+      "recall_macro": {
+        "mean": 0.4559731167377752,
+        "std": 0.005964311081613799
+      },
+      "dropout_recall": {
+        "mean": 0.6308720010692566,
+        "std": 0.03102637236154473
+      },
+      "dropout_precision": {
+        "mean": 0.26227728536193473,
+        "std": 0.008028964013661264
+      },
+      "at_risk_recall": {
+        "mean": 0.3924665331894232,
+        "std": 0.005192552321178272
+      }
+    }
+  },
+  "test_set_performance": {
+    "accuracy": 0.4820559062218215,
+    "f1_weighted": 0.48810026389783745,
+    "f1_macro": 0.41255730285799214
+  },
+  "coefficient_analysis": {
+    "top_10_features": [
+      {
+        "feature": "excellent_Score",
+        "importance": 0.07443675050377761
+      },
+      {
+        "feature": "highest_education_ord",
+        "importance": 0.014405285325547712
+      },
+      {
+        "feature": "active_in_VLE",
+        "importance": 0.013538614767720003
+      },
+      {
+        "feature": "region_Wales",
+        "importance": 0.007488263467783951
+      },
+      {
+        "feature": "student_engagementt",
+        "importance": 0.006700045236008212
+      },
+      {
+        "feature": "region_London Region",
+        "importance": 0.005732151826918663
+      },
+      {
+        "feature": "imd_band_ord",
+        "importance": 0.005035415566420199
+      },
+      {
+        "feature": "disability_binary",
+        "importance": 0.00473566609482805
+      },
+      {
+        "feature": "region_North Western Region",
+        "importance": 0.004270778371812567
+      },
+      {
+        "feature": "region_South Region",
+        "importance": 0.003936384986595154
+      }
+    ]
+  },
+  "svm_specific_analysis": {
+    "kernel_type": "rbf",
+    "regularization_C": 0.1,
+    "gamma_parameter": "scale",
+    "support_vectors": {
+      "total_support_vectors": 20569,
+      "support_vectors_per_class": [
+        4008,
+        5601,
+        10960
+      ],
+      "support_vector_percentage": 92.73669972948603
+    },
+    "class_balance_handling": {
+      "method": "No class balancing",
+      "imbalance_ratio": 2.905121548265282
+    },
+    "preprocessing_requirements": {
+      "feature_scaling": "MANDATORY - StandardScaler applied",
+      "scaler_file": "../Data\\model_metrics\\models\\svm_optimized_scaler.pkl"
+    }
+  }
+}

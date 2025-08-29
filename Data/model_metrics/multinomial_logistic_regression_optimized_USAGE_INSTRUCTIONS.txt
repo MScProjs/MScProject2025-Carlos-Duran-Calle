@@ -1,0 +1,77 @@
+
+MULTINOMIAL LOGISTIC REGRESSION MODEL USAGE INSTRUCTIONS
+=======================================================
+
+Model Information:
+- Model Name: multinomial_logistic_regression_optimized
+- Model Type: Multinomial Logistic Regression (Optimized)
+- File Location: ../Data\model_metrics\models\multinomial_logistic_regression_optimized.pkl
+
+LOADING THE MODEL:
+-----------------
+```python
+import joblib
+import pandas as pd
+import numpy as np
+
+# Load the trained model
+model = joblib.load('../Data\model_metrics\models\multinomial_logistic_regression_optimized.pkl')
+
+# Make predictions on new data
+# Ensure your new data has the same features as training data
+predictions = model.predict(X_new)
+prediction_probabilities = model.predict_proba(X_new)
+
+# Get coefficients
+coefficients = model.coef_
+intercept = model.intercept_
+```
+
+BEST HYPERPARAMETERS:
+-------------------
+{
+  "C": 0.01,
+  "class_weight": {
+    "0": 2.0939343875383525,
+    "1": 1.312270737190865,
+    "2": 0.48051561188290415
+  },
+  "l1_ratio": 0.5,
+  "max_iter": 1000,
+  "penalty": "l1",
+  "solver": "saga"
+}
+
+PERFORMANCE METRICS:
+------------------
+- Test Accuracy: 0.4808
+- Test F1-Weighted: 0.4880
+- Test F1-Macro: 0.4157
+- Best CV Score (dropout_recall): 0.6684
+
+TOP 5 IMPORTANT FEATURES:
+-----------------------
+1. excellent_Score: 0.3293
+2. active_in_VLE: 0.2363
+3. student_engagementt: 0.1390
+4. highest_education_ord: 0.0898
+5. disability_binary: 0.0790
+
+
+FILES SAVED:
+-----------
+- Model: ../Data\model_metrics\models\multinomial_logistic_regression_optimized.pkl
+- Metrics: ../Data\model_metrics\metrics\multinomial_logistic_regression_optimized_metrics.json
+- Classification Report: ../Data\model_metrics\reports\multinomial_logistic_regression_optimized_classification_report.json
+- Confusion Matrix: ../Data\model_metrics\metrics\multinomial_logistic_regression_optimized_confusion_matrix.json
+- Coefficients: ../Data\model_metrics\metrics\multinomial_logistic_regression_optimized_coefficients.json
+- Usage Instructions: This file
+
+NOTES:
+-----
+- This model was optimized using GridSearchCV
+- Total combinations tested: 450
+- Cross-validation: 3-fold
+- Optimization runtime: 4.1 minutes
+- Primary scoring metric: dropout_recall
+- Model type: Multinomial (can handle multi-class problems)

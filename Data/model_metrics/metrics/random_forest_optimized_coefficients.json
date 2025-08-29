@@ -1,0 +1,353 @@
+{
+  "model_name": "random_forest_optimized",
+  "coefficient_analysis": [
+    {
+      "rank": 1,
+      "feature": "excellent_Score",
+      "importance": 0.32150113306409234
+    },
+    {
+      "rank": 2,
+      "feature": "student_engagementt",
+      "importance": 0.1863311932238093
+    },
+    {
+      "rank": 3,
+      "feature": "active_in_VLE",
+      "importance": 0.15031355104414076
+    },
+    {
+      "rank": 4,
+      "feature": "imd_band_ord",
+      "importance": 0.10754809672965499
+    },
+    {
+      "rank": 5,
+      "feature": "highest_education_ord",
+      "importance": 0.08277027863438287
+    },
+    {
+      "rank": 6,
+      "feature": "disability_binary",
+      "importance": 0.031757848537095804
+    },
+    {
+      "rank": 7,
+      "feature": "age_band_ord",
+      "importance": 0.020521884427359097
+    },
+    {
+      "rank": 8,
+      "feature": "region_Wales",
+      "importance": 0.012283295982842344
+    },
+    {
+      "rank": 9,
+      "feature": "courses_per_term",
+      "importance": 0.01212926803321126
+    },
+    {
+      "rank": 10,
+      "feature": "region_Scotland",
+      "importance": 0.009308803199734934
+    },
+    {
+      "rank": 11,
+      "feature": "region_London Region",
+      "importance": 0.009210711217722746
+    },
+    {
+      "rank": 12,
+      "feature": "region_East Midlands Region",
+      "importance": 0.009119947715201986
+    },
+    {
+      "rank": 13,
+      "feature": "region_South Region",
+      "importance": 0.009038866479246647
+    },
+    {
+      "rank": 14,
+      "feature": "region_South East Region",
+      "importance": 0.006759614905841041
+    },
+    {
+      "rank": 15,
+      "feature": "region_South West Region",
+      "importance": 0.006381327681327391
+    },
+    {
+      "rank": 16,
+      "feature": "region_Ireland",
+      "importance": 0.005342819425638905
+    },
+    {
+      "rank": 17,
+      "feature": "region_North Region",
+      "importance": 0.005303080798502109
+    },
+    {
+      "rank": 18,
+      "feature": "region_North Western Region",
+      "importance": 0.0050931893009181625
+    },
+    {
+      "rank": 19,
+      "feature": "region_Yorkshire Region",
+      "importance": 0.004685316132589828
+    },
+    {
+      "rank": 20,
+      "feature": "region_West Midlands Region",
+      "importance": 0.004599773466687588
+    }
+  ],
+  "class_specific_coefficients": {
+    "0": [
+      {
+        "feature": "excellent_Score",
+        "coefficient": 0.32150113306409234
+      },
+      {
+        "feature": "active_in_VLE",
+        "coefficient": 0.15031355104414076
+      },
+      {
+        "feature": "student_engagementt",
+        "coefficient": 0.1863311932238093
+      },
+      {
+        "feature": "courses_per_term",
+        "coefficient": 0.01212926803321126
+      },
+      {
+        "feature": "region_East Midlands Region",
+        "coefficient": 0.009119947715201986
+      },
+      {
+        "feature": "region_Ireland",
+        "coefficient": 0.005342819425638905
+      },
+      {
+        "feature": "region_London Region",
+        "coefficient": 0.009210711217722746
+      },
+      {
+        "feature": "region_North Region",
+        "coefficient": 0.005303080798502109
+      },
+      {
+        "feature": "region_North Western Region",
+        "coefficient": 0.0050931893009181625
+      },
+      {
+        "feature": "region_Scotland",
+        "coefficient": 0.009308803199734934
+      },
+      {
+        "feature": "region_South East Region",
+        "coefficient": 0.006759614905841041
+      },
+      {
+        "feature": "region_South Region",
+        "coefficient": 0.009038866479246647
+      },
+      {
+        "feature": "region_South West Region",
+        "coefficient": 0.006381327681327391
+      },
+      {
+        "feature": "region_Wales",
+        "coefficient": 0.012283295982842344
+      },
+      {
+        "feature": "region_West Midlands Region",
+        "coefficient": 0.004599773466687588
+      },
+      {
+        "feature": "region_Yorkshire Region",
+        "coefficient": 0.004685316132589828
+      },
+      {
+        "feature": "highest_education_ord",
+        "coefficient": 0.08277027863438287
+      },
+      {
+        "feature": "imd_band_ord",
+        "coefficient": 0.10754809672965499
+      },
+      {
+        "feature": "age_band_ord",
+        "coefficient": 0.020521884427359097
+      },
+      {
+        "feature": "disability_binary",
+        "coefficient": 0.031757848537095804
+      }
+    ],
+    "1": [
+      {
+        "feature": "excellent_Score",
+        "coefficient": 0.32150113306409234
+      },
+      {
+        "feature": "active_in_VLE",
+        "coefficient": 0.15031355104414076
+      },
+      {
+        "feature": "student_engagementt",
+        "coefficient": 0.1863311932238093
+      },
+      {
+        "feature": "courses_per_term",
+        "coefficient": 0.01212926803321126
+      },
+      {
+        "feature": "region_East Midlands Region",
+        "coefficient": 0.009119947715201986
+      },
+      {
+        "feature": "region_Ireland",
+        "coefficient": 0.005342819425638905
+      },
+      {
+        "feature": "region_London Region",
+        "coefficient": 0.009210711217722746
+      },
+      {
+        "feature": "region_North Region",
+        "coefficient": 0.005303080798502109
+      },
+      {
+        "feature": "region_North Western Region",
+        "coefficient": 0.0050931893009181625
+      },
+      {
+        "feature": "region_Scotland",
+        "coefficient": 0.009308803199734934
+      },
+      {
+        "feature": "region_South East Region",
+        "coefficient": 0.006759614905841041
+      },
+      {
+        "feature": "region_South Region",
+        "coefficient": 0.009038866479246647
+      },
+      {
+        "feature": "region_South West Region",
+        "coefficient": 0.006381327681327391
+      },
+      {
+        "feature": "region_Wales",
+        "coefficient": 0.012283295982842344
+      },
+      {
+        "feature": "region_West Midlands Region",
+        "coefficient": 0.004599773466687588
+      },
+      {
+        "feature": "region_Yorkshire Region",
+        "coefficient": 0.004685316132589828
+      },
+      {
+        "feature": "highest_education_ord",
+        "coefficient": 0.08277027863438287
+      },
+      {
+        "feature": "imd_band_ord",
+        "coefficient": 0.10754809672965499
+      },
+      {
+        "feature": "age_band_ord",
+        "coefficient": 0.020521884427359097
+      },
+      {
+        "feature": "disability_binary",
+        "coefficient": 0.031757848537095804
+      }
+    ],
+    "2": [
+      {
+        "feature": "excellent_Score",
+        "coefficient": 0.32150113306409234
+      },
+      {
+        "feature": "active_in_VLE",
+        "coefficient": 0.15031355104414076
+      },
+      {
+        "feature": "student_engagementt",
+        "coefficient": 0.1863311932238093
+      },
+      {
+        "feature": "courses_per_term",
+        "coefficient": 0.01212926803321126
+      },
+      {
+        "feature": "region_East Midlands Region",
+        "coefficient": 0.009119947715201986
+      },
+      {
+        "feature": "region_Ireland",
+        "coefficient": 0.005342819425638905
+      },
+      {
+        "feature": "region_London Region",
+        "coefficient": 0.009210711217722746
+      },
+      {
+        "feature": "region_North Region",
+        "coefficient": 0.005303080798502109
+      },
+      {
+        "feature": "region_North Western Region",
+        "coefficient": 0.0050931893009181625
+      },
+      {
+        "feature": "region_Scotland",
+        "coefficient": 0.009308803199734934
+      },
+      {
+        "feature": "region_South East Region",
+        "coefficient": 0.006759614905841041
+      },
+      {
+        "feature": "region_South Region",
+        "coefficient": 0.009038866479246647
+      },
+      {
+        "feature": "region_South West Region",
+        "coefficient": 0.006381327681327391
+      },
+      {
+        "feature": "region_Wales",
+        "coefficient": 0.012283295982842344
+      },
+      {
+        "feature": "region_West Midlands Region",
+        "coefficient": 0.004599773466687588
+      },
+      {
+        "feature": "region_Yorkshire Region",
+        "coefficient": 0.004685316132589828
+      },
+      {
+        "feature": "highest_education_ord",
+        "coefficient": 0.08277027863438287
+      },
+      {
+        "feature": "imd_band_ord",
+        "coefficient": 0.10754809672965499
+      },
+      {
+        "feature": "age_band_ord",
+        "coefficient": 0.020521884427359097
+      },
+      {
+        "feature": "disability_binary",
+        "coefficient": 0.031757848537095804
+      }
+    ]
+  }
+}

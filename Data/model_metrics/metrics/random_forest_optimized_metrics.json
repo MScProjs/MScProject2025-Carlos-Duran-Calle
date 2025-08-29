@@ -1,0 +1,130 @@
+{
+  "model_info": {
+    "model_name": "Random Forest Classifier",
+    "optimization_method": "GridSearchCV",
+    "primary_scoring_metric": "dropout_recall",
+    "total_runtime_minutes": 187.63
+  },
+  "dataset_info": {
+    "training_samples": 22180,
+    "test_samples": 5545,
+    "n_features": 20,
+    "n_classes": 3,
+    "class_distribution": {
+      "0": 4237,
+      "1": 5634,
+      "2": 12309
+    }
+  },
+  "hyperparameters": {
+    "best_params": {
+      "bootstrap": false,
+      "class_weight": {
+        "0": 2.0939343875383525,
+        "1": 1.312270737190865,
+        "2": 0.48051561188290415
+      },
+      "max_depth": 10,
+      "max_features": "sqrt",
+      "min_samples_leaf": 10,
+      "min_samples_split": 2,
+      "n_estimators": 100
+    },
+    "total_combinations_tested": 5120,
+    "cv_folds": 5
+  },
+  "cross_validation_results": {
+    "best_cv_score": 0.5895686217727384,
+    "cv_scores_by_metric": {
+      "accuracy": {
+        "mean": 0.4947249774571686,
+        "std": 0.001163524607805575
+      },
+      "f1_weighted": {
+        "mean": 0.504036471829765,
+        "std": 0.0027671677796496114
+      },
+      "f1_macro": {
+        "mean": 0.4294995451456224,
+        "std": 0.0043289140352661135
+      },
+      "precision_weighted": {
+        "mean": 0.5577180707545537,
+        "std": 0.005395542635111919
+      },
+      "recall_weighted": {
+        "mean": 0.4947249774571686,
+        "std": 0.001163524607805575
+      },
+      "precision_macro": {
+        "mean": 0.4589735561812616,
+        "std": 0.0042442783497398506
+      },
+      "recall_macro": {
+        "mean": 0.4614490224739384,
+        "std": 0.005033104156836021
+      },
+      "dropout_recall": {
+        "mean": 0.5895686217727384,
+        "std": 0.021409819924171125
+      },
+      "dropout_precision": {
+        "mean": 0.2704604542028443,
+        "std": 0.005395855174766914
+      },
+      "at_risk_recall": {
+        "mean": 0.3927584669554692,
+        "std": 0.012870639659234245
+      }
+    }
+  },
+  "test_set_performance": {
+    "accuracy": 0.49936880072137063,
+    "f1_weighted": 0.5063929738570071,
+    "f1_macro": 0.4289609851813026
+  },
+  "feature_importance": {
+    "top_10_features": [
+      {
+        "feature": "excellent_Score",
+        "importance": 0.32150113306409234
+      },
+      {
+        "feature": "student_engagementt",
+        "importance": 0.1863311932238093
+      },
+      {
+        "feature": "active_in_VLE",
+        "importance": 0.15031355104414076
+      },
+      {
+        "feature": "imd_band_ord",
+        "importance": 0.10754809672965499
+      },
+      {
+        "feature": "highest_education_ord",
+        "importance": 0.08277027863438287
+      },
+      {
+        "feature": "disability_binary",
+        "importance": 0.031757848537095804
+      },
+      {
+        "feature": "age_band_ord",
+        "importance": 0.020521884427359097
+      },
+      {
+        "feature": "region_Wales",
+        "importance": 0.012283295982842344
+      },
+      {
+        "feature": "courses_per_term",
+        "importance": 0.01212926803321126
+      },
+      {
+        "feature": "region_Scotland",
+        "importance": 0.009308803199734934
+      }
+    ]
+  }
+}

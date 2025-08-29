@@ -1,0 +1,10 @@
+# Ignore everything in Data folder except specific subdirectories
+/Data/*
+!Data/output/
+!Data/model_metrics/
+
+# But ignore model files in model_metrics
+/Data/model_metrics/models*
+
+# Ignore Python cache files
+/Python_files/__pycache__/

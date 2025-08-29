@@ -1,0 +1,25 @@
+{
+  "confusion_matrix": [
+    [
+      619,
+      159,
+      281
+    ],
+    [
+      792,
+      259,
+      359
+    ],
+    [
+      865,
+      320,
+      1891
+    ]
+  ],
+  "class_labels": [
+    0,
+    1,
+    2
+  ],
+  "model_name": "random_forest_optimized"
+}

@@ -1,0 +1,100 @@
+
+K-NEAREST NEIGHBORS MODEL USAGE INSTRUCTIONS
+===========================================
+
+Model Information:
+- Model Name: knn_optimized
+- Model Type: K-Nearest Neighbors Classifier (Optimized)
+- File Location: ../Data\model_metrics\models\knn_optimized.pkl
+- Scaler Location: ../Data\model_metrics\models\knn_optimized_scaler.pkl
+
+LOADING THE MODEL:
+-----------------
+```python
+import joblib
+import pandas as pd
+import numpy as np
+
+# Load the trained model AND scaler
+model = joblib.load('../Data\model_metrics\models\knn_optimized.pkl')
+scaler = joblib.load('../Data\model_metrics\models\knn_optimized_scaler.pkl')
+
+# IMPORTANT: Scale new data before prediction
+X_new_scaled = scaler.transform(X_new)
+predictions = model.predict(X_new_scaled)
+prediction_probabilities = model.predict_proba(X_new_scaled)
+
+# Get feature importance (if needed)
+# Note: KNN doesn't have built-in feature importance
+# Refer to the coefficients JSON for feature analysis
+```
+
+BEST HYPERPARAMETERS:
+-------------------
+{
+  "algorithm": "ball_tree",
+  "metric": "manhattan",
+  "n_neighbors": 3,
+  "p": 1,
+  "weights": "uniform"
+}
+
+PERFORMANCE METRICS:
+------------------
+- Test Accuracy: 0.5078
+- Test F1-Weighted: 0.5051
+- Test F1-Macro: 0.4195
+- Best CV Score (dropout_recall): 0.3127
+
+TOP 5 IMPORTANT FEATURES:
+-----------------------
+1. student_engagementt: 0.6347 (separation: 0.17)
+2. excellent_Score: 0.5839 (separation: 0.15)
+3. imd_band_ord: 0.4709 (separation: 0.02)
+4. active_in_VLE: 0.2854 (separation: 0.07)
+5. highest_education_ord: 0.1461 (separation: 0.02)
+
+
+KNN-SPECIFIC NOTES:
+-----------------
+- Optimal k (neighbors): 3
+- Best distance metric: manhattan
+- Weight strategy: uniform
+- Feature scaling: StandardScaler applied (MANDATORY!)
+
+FEATURE IMPORTANCE METHOD:
+------------------------
+- Analysis Method: Class Separation + Original Variance Analysis
+- Combined Score: 60% class separation + 40% original feature variance
+- Class Separation: F-ratio (between_class_var / within_class_var)
+- Original Variance: Standard deviation from unscaled data
+
+FILES SAVED:
+-----------
+- Model: ../Data\model_metrics\models\knn_optimized.pkl
+- Scaler: ../Data\model_metrics\models\knn_optimized_scaler.pkl
+- Metrics: ../Data\model_metrics\metrics\knn_optimized_metrics.json
+- Classification Report: ../Data\model_metrics\reports\knn_optimized_classification_report.json
+- Confusion Matrix: ../Data\model_metrics\metrics\knn_optimized_confusion_matrix.json
+- Feature Importance: ../Data\model_metrics\metrics\knn_optimized_coefficients.json
+- Usage Instructions: This file
+
+NOTES:
+-----
+- This model was optimized using GridSearchCV
+- Total combinations tested: 242
+- Cross-validation: 5-fold
+- Optimization runtime: 95.9 minutes
+- Primary scoring metric: dropout_recall
+- Feature scaling is MANDATORY for KNN - always use the saved scaler!
+
+⚠️  CRITICAL REMINDER: 
+KNN is sensitive to feature scales. Always apply the same StandardScaler 
+transformation to new data before making predictions!
+
+TROUBLESHOOTING:
+--------------
+- If predictions seem wrong, check that you scaled the input data
+- If loading fails, ensure all files are in the correct directory
+- For feature importance, refer to the coefficients JSON file
+- The model requires exactly 20 features in the correct order

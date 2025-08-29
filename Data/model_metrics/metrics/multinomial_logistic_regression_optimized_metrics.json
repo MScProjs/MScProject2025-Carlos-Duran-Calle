@@ -1,0 +1,129 @@
+{
+  "model_info": {
+    "model_name": "Multinomial Logistic Regression",
+    "optimization_method": "GridSearchCV",
+    "primary_scoring_metric": "dropout_recall",
+    "total_runtime_minutes": 4.05
+  },
+  "dataset_info": {
+    "training_samples": 22180,
+    "test_samples": 5545,
+    "n_features": 20,
+    "n_classes": 3,
+    "class_distribution": {
+      "0": 4237,
+      "1": 5634,
+      "2": 12309
+    }
+  },
+  "hyperparameters": {
+    "best_params": {
+      "C": 0.01,
+      "class_weight": {
+        "0": 2.0939343875383525,
+        "1": 1.312270737190865,
+        "2": 0.48051561188290415
+      },
+      "l1_ratio": 0.5,
+      "max_iter": 1000,
+      "penalty": "l1",
+      "solver": "saga"
+    },
+    "total_combinations_tested": 450,
+    "cv_folds": 5
+  },
+  "cross_validation_results": {
+    "best_cv_score": 0.6683906573700742,
+    "cv_scores_by_metric": {
+      "accuracy": {
+        "mean": 0.46920649233543726,
+        "std": 0.0065375765660442295
+      },
+      "f1_weighted": {
+        "mean": 0.47378544190950816,
+        "std": 0.006363685112251258
+      },
+      "f1_macro": {
+        "mean": 0.39804391144730655,
+        "std": 0.005014661998427188
+      },
+      "precision_weighted": {
+        "mean": 0.5721329846783716,
+        "std": 0.013286110578781596
+      },
+      "recall_weighted": {
+        "mean": 0.46920649233543726,
+        "std": 0.0065375765660442295
+      },
+      "precision_macro": {
+        "mean": 0.47304857767083125,
+        "std": 0.017912270128766384
+      },
+      "recall_macro": {
+        "mean": 0.4502288755868162,
+        "std": 0.00563928871128977
+      },
+      "dropout_recall": {
+        "mean": 0.6683906573700742,
+        "std": 0.03079231356655426
+      },
+      "dropout_precision": {
+        "mean": 0.24951778001928746,
+        "std": 0.006024858583354676
+      },
+      "at_risk_recall": {
+        "mean": 0.3958735608706444,
+        "std": 0.008275468895717345
+      }
+    }
+  },
+  "test_set_performance": {
+    "accuracy": 0.4807935076645627,
+    "f1_weighted": 0.4880195136328192,
+    "f1_macro": 0.4157164491812388
+  },
+  "coefficient_analysis": {
+    "top_10_features": [
+      {
+        "feature": "excellent_Score",
+        "importance": 0.32934755055368187
+      },
+      {
+        "feature": "active_in_VLE",
+        "importance": 0.23626687186538842
+      },
+      {
+        "feature": "student_engagementt",
+        "importance": 0.13901512749671036
+      },
+      {
+        "feature": "highest_education_ord",
+        "importance": 0.08978483677857856
+      },
+      {
+        "feature": "disability_binary",
+        "importance": 0.07903196649119075
+      },
+      {
+        "feature": "imd_band_ord",
+        "importance": 0.023389523923547515
+      },
+      {
+        "feature": "age_band_ord",
+        "importance": 0.0034596250634160997
+      },
+      {
+        "feature": "region_Wales",
+        "importance": 0.0004303115526467542
+      },
+      {
+        "feature": "region_Scotland",
+        "importance": 0.0003278835410086395
+      },
+      {
+        "feature": "region_Ireland",
+        "importance": 0.0
+      }
+    ]
+  }
+}

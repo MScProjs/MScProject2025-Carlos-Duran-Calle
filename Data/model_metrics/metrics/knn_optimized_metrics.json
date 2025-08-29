@@ -1,0 +1,124 @@
+{
+  "model_info": {
+    "model_name": "K-Nearest Neighbors Classifier",
+    "optimization_method": "GridSearchCV",
+    "primary_scoring_metric": "dropout_recall",
+    "total_runtime_minutes": 95.94
+  },
+  "dataset_info": {
+    "training_samples": 22180,
+    "test_samples": 5545,
+    "n_features": 20,
+    "n_classes": 3,
+    "class_distribution": {
+      "0": 4237,
+      "1": 5634,
+      "2": 12309
+    }
+  },
+  "hyperparameters": {
+    "best_params": {
+      "algorithm": "ball_tree",
+      "metric": "manhattan",
+      "n_neighbors": 3,
+      "p": 1,
+      "weights": "uniform"
+    },
+    "total_combinations_tested": 480,
+    "cv_folds": 5
+  },
+  "cross_validation_results": {
+    "best_cv_score": 0.31272164799180235,
+    "cv_scores_by_metric": {
+      "accuracy": {
+        "mean": 0.5090622182146078,
+        "std": 0.009883328491272325
+      },
+      "f1_weighted": {
+        "mean": 0.5074469653807375,
+        "std": 0.008646709659225966
+      },
+      "f1_macro": {
+        "mean": 0.42267522916633,
+        "std": 0.009259894119430873
+      },
+      "precision_weighted": {
+        "mean": 0.5101270044457185,
+        "std": 0.007599388028017595
+      },
+      "recall_weighted": {
+        "mean": 0.5090622182146078,
+        "std": 0.009883328491272325
+      },
+      "precision_macro": {
+        "mean": 0.4271311390538094,
+        "std": 0.009560572427995519
+      },
+      "recall_macro": {
+        "mean": 0.4243038794353554,
+        "std": 0.009058698196889302
+      },
+      "dropout_recall": {
+        "mean": 0.31272164799180235,
+        "std": 0.009601873392602416
+      },
+      "dropout_precision": {
+        "mean": 0.2522544655305386,
+        "std": 0.011796576864782159
+      },
+      "at_risk_recall": {
+        "mean": 0.2951600536267449,
+        "std": 0.008009876563793001
+      }
+    }
+  },
+  "test_set_performance": {
+    "accuracy": 0.5078449053201082,
+    "f1_weighted": 0.5051451791370637,
+    "f1_macro": 0.4194749694749695
+  },
+  "feature_importance_analysis": {
+    "top_10_features": [
+      {
+        "feature": "student_engagementt",
+        "importance": 0.6346881980968229
+      },
+      {
+        "feature": "excellent_Score",
+        "importance": 0.5838693399541074
+      },
+      {
+        "feature": "imd_band_ord",
+        "importance": 0.4708903169634756
+      },
+      {
+        "feature": "active_in_VLE",
+        "importance": 0.28543907542008523
+      },
+      {
+        "feature": "highest_education_ord",
+        "importance": 0.146114023002629
+      },
+      {
+        "feature": "age_band_ord",
+        "importance": 0.050425973199877495
+      },
+      {
+        "feature": "disability_binary",
+        "importance": 0.03256469533157899
+      },
+      {
+        "feature": "region_South Region",
+        "importance": 0.018111683276367294
+      },
+      {
+        "feature": "region_Scotland",
+        "importance": 0.016909879258209075
+      },
+      {
+        "feature": "region_North Western Region",
+        "importance": 0.01497739245274625
+      }
+    ]
+  }
+}

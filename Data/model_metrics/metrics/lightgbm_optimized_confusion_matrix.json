@@ -1,0 +1,25 @@
+{
+  "confusion_matrix": [
+    [
+      613,
+      191,
+      255
+    ],
+    [
+      775,
+      334,
+      301
+    ],
+    [
+      891,
+      429,
+      1756
+    ]
+  ],
+  "class_labels": [
+    0,
+    1,
+    2
+  ],
+  "model_name": "lightgbm_optimized"
+}
